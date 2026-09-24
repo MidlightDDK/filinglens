@@ -19,5 +19,63 @@
       "Bash(npx wrangler deploy)",
       "Bash(npx wrangler deploy *)"
     ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "AskUserQuestion|ExitPlanMode",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -Command \"(New-Object System.Media.SoundPlayer 'C:\\Windows\\Media\\Windows Exclamation.wav').PlaySync()\""
+          }
+        ]
+      }
+    ],
+
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -Command \"(New-Object System.Media.SoundPlayer 'C:\\Windows\\Media\\Windows Exclamation.wav').PlaySync()\""
+          }
+        ]
+      }
+    ],
+
+    "Elicitation": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -Command \"(New-Object System.Media.SoundPlayer 'C:\\Windows\\Media\\Windows Exclamation.wav').PlaySync()\""
+          }
+        ]
+      }
+    ],
+
+    "Notification": [
+      {
+        "matcher": "agent_needs_input",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -Command \"(New-Object System.Media.SoundPlayer 'C:\\Windows\\Media\\Windows Exclamation.wav').PlaySync()\""
+          }
+        ]
+      }
+    ],
+
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -Command \"(New-Object System.Media.SoundPlayer 'C:\\Windows\\Media\\Windows Notify System Generic.wav').PlaySync()\""
+          }
+        ]
+      }
+    ]
   }
 }

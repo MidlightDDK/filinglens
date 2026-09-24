@@ -36,13 +36,16 @@ export interface ChatRequest {
   temperature?: number;
   max_tokens?: number;
   response_format?: { type: "json_object" };
-  reasoning_effort?: "low" | "medium" | "high";
+  reasoning_effort?: "none" | "low" | "medium" | "high";
+  include_reasoning?: boolean;
 }
 
 export interface ChatResult {
   content: string;
   usage: { prompt_tokens: number; completion_tokens: number };
   cached: boolean;
+  /** Wall time of the original (uncached) call; absent in older cache files. */
+  latency_ms?: number;
 }
 
 const CACHE_DIR = `${REPO_ROOT}evals/.cache/llm`;
@@ -122,6 +125,7 @@ export class LlmClient {
         Math.max(this.requests.reserve(1), this.tokens.reserve(estimate)),
       );
       let res: Response;
+      const t0 = performance.now();
       try {
         res = await fetch(this.provider.url, {
           method: "POST",
@@ -146,6 +150,7 @@ export class LlmClient {
           content: body.choices[0]?.message.content ?? "",
           usage: body.usage ?? { prompt_tokens: 0, completion_tokens: 0 },
           cached: false,
+          latency_ms: Math.round(performance.now() - t0),
         };
         mkdirSync(CACHE_DIR, { recursive: true });
         writeFileSync(

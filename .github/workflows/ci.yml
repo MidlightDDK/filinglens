@@ -52,11 +52,18 @@ jobs:
   # Retrieval eval on the dev split for the default config, gated on
   # evals/baseline.json. The index is cached; a miss rebuilds it from cached
   # (or freshly downloaded) SEC filings, which needs the SEC_USER_AGENT secret.
+  #
+  # Then, only when the GROQ_API_KEY secret exists (forks get none), the answers
+  # eval on 20 dev items, gated on numeric EM and citation coverage vs
+  # evals/baseline_answers.json. The judge is skipped to save free-tier quota
+  # (the gated metrics don't use it); LLM calls are cached across runs.
   retrieval-eval:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: write
+    env:
+      HAS_GROQ: ${{ secrets.GROQ_API_KEY != '' }}
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6
@@ -108,12 +115,30 @@ jobs:
           pnpm -s index --strategy structure
       - name: Retrieval eval (gate)
         run: pnpm -s eval:retrieval --config default --split dev --gate
+      - if: always() && env.HAS_GROQ == 'true'
+        uses: actions/cache@v6
+        with:
+          path: evals/.cache/llm
+          key: llm-${{ github.run_id }}
+          restore-keys: llm-
+      - name: Answers eval (gate)
+        if: always() && env.HAS_GROQ == 'true'
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          code=0
+          node evals/src/answers.ts --split dev --limit 20 --skip-judge --gate || code=$?
+          if [ "$code" = 3 ]; then
+            echo "::warning::Groq free-tier quota exhausted; answers eval skipped"
+            exit 0
+          fi
+          exit "$code"
       - name: Comment on the PR
         if: always() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          summary="$(ls -d evals/results/*/ 2>/dev/null | tail -n 1)summary.md"
-          if [ -f "$summary" ]; then
-            gh pr comment "${{ github.event.pull_request.number }}" --body-file "$summary" --edit-last --create-if-none
+          cat evals/results/*/summary.md evals/results/*/answers.md > comment.md 2>/dev/null || true
+          if [ -s comment.md ]; then
+            gh pr comment "${{ github.event.pull_request.number }}" --body-file comment.md --edit-last --create-if-none
           fi

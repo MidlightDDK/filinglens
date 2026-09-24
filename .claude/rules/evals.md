@@ -20,7 +20,8 @@ paths:
 
 ## Runners (TypeScript in `evals/src/`, importing `packages/core`, the production code path)
 - `pnpm eval:retrieval --config <id|all> --split dev` → `evals/results/<ts>/retrieval.jsonl` + `summary.json`.
-- `pnpm eval:answers --split dev --limit N`: generation calls providers directly (`GROQ_API_KEY`). The judge runs on GitHub Models in CI (`https://models.github.ai/inference/chat/completions`, `GITHUB_TOKEN` with `permissions: models: read`; list model IDs once via `https://models.github.ai/catalog/models`) or on Groq locally. The judge model must differ from the generator model.
+- `pnpm eval:answers --split dev --limit N`: generation calls providers directly (`GROQ_API_KEY`, the Worker's Groq model and parameters). The judge runs on Groq (`qwen/qwen3.8-27b`, the Worker's judge model; `pnpm eval:judge` calibrates it). GitHub Models is not an option: on 2026-09-24 its catalog and inference endpoints answered every request with a bare `200 OK`. The judge model must differ from the generator model.
+- Groq's free tier allows 200K tokens/day per model (~2.5K per answer), so `--limit N` takes a stratified subset whose smaller limits are subsets of larger ones; runs stop with exit code 3 on quota and resume from the cache.
 - Cache every LLM call in `evals/.cache/` keyed by sha256(model | prompt), so reruns are free and reproducible. Use a token-bucket limiter per provider and make runs resumable.
 - Reports: `evals/reports/latest.json` (plus dated copies on release) for the web app, and a Markdown table for PR comments.
 

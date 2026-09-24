@@ -21,7 +21,8 @@
     "eval:synth": "node evals/src/synth.ts",
     "eval:import": "node evals/src/import.ts",
     "eval:retrieval": "node evals/src/retrieval.ts",
-    "eval:answers": "node -e \"console.log('eval:answers: not implemented (M5)')\"",
+    "eval:answers": "node evals/src/answers.ts",
+    "eval:judge": "node evals/src/judge.ts",
     "build": "pnpm --filter @filinglens/web build && pnpm --filter @filinglens/worker build",
     "deploy": "pnpm build && pnpm --filter @filinglens/worker run deploy"
   },

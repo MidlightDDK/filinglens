@@ -92,7 +92,7 @@ function loadConfigs(arg: string): RetrievalConfig[] {
 }
 
 /** Gold spans are offsets into data/processed/text; they must not have moved. */
-function changedTexts(): string[] {
+export function changedTexts(): string[] {
   if (!existsSync(TEXT_HASHES_PATH)) return [];
   const hashes = JSON.parse(readFileSync(TEXT_HASHES_PATH, "utf8")) as Record<
     string,
@@ -106,7 +106,7 @@ function changedTexts(): string[] {
     .map(([doc]) => doc);
 }
 
-function commit(): string | null {
+export function commit(): string | null {
   try {
     const sha = execSync("git rev-parse HEAD", { encoding: "utf8" }).trim();
     const dirty = execSync("git status --porcelain", {

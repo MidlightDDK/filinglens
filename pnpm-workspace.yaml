@@ -1,0 +1,10 @@
+packages:
+  - web
+  - worker
+  - packages/core
+  - scripts
+  - evals
+
+onlyBuiltDependencies:
+  - esbuild
+  - workerd

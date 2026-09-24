@@ -8,8 +8,8 @@
   },
   "scripts": {
     "dev": "pnpm --parallel --filter @filinglens/web --filter @filinglens/worker dev",
-    "data:ingest": "node -e \"console.log('data:ingest: not implemented (M1)')\"",
-    "data:chunk": "node -e \"console.log('data:chunk: not implemented (M1)')\"",
+    "data:ingest": "uv run --project pipeline python -m pipeline.ingest",
+    "data:chunk": "uv run --project pipeline python -m pipeline.chunk",
     "index": "node -e \"console.log('index: not implemented (M2)')\"",
     "examples": "node -e \"console.log('examples: not implemented (M6)')\"",
     "lint": "biome check .",

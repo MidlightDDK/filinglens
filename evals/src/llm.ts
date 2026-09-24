@@ -121,14 +121,22 @@ export class LlmClient {
       await sleep(
         Math.max(this.requests.reserve(1), this.tokens.reserve(estimate)),
       );
-      const res = await fetch(this.provider.url, {
-        method: "POST",
-        headers: {
-          authorization: `Bearer ${this.key}`,
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(req),
-      });
+      let res: Response;
+      try {
+        res = await fetch(this.provider.url, {
+          method: "POST",
+          headers: {
+            authorization: `Bearer ${this.key}`,
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(req),
+        });
+      } catch (e) {
+        // Network errors (timeouts, resets) are retried like 5xx responses.
+        if (attempt >= 5) throw e;
+        await sleep(2 ** attempt * 2000);
+        continue;
+      }
       if (res.ok) {
         const body = (await res.json()) as {
           choices: { message: { content: string | null } }[];

@@ -1,3 +1,18 @@
+export type {
+  AnswerDone,
+  AnswerRequest,
+  ErrorReason,
+  Usage,
+} from "./api.ts";
+export {
+  type Citation,
+  highlightSpan,
+  parseCitations,
+  type Segment,
+  type Span,
+  segmentMarkers,
+  splitSentences,
+} from "./citations.ts";
 export { quantize, searchDense } from "./dense.ts";
 export { type Embedder, type EmbedderOptions, loadEmbedder } from "./embed.ts";
 export {
@@ -15,6 +30,15 @@ export {
   tokenize,
 } from "./lexical.ts";
 export { EMBEDDING_MODEL, RERANKER_MODEL } from "./models.ts";
+export {
+  buildPrompt,
+  type ChatMessage,
+  INSUFFICIENT,
+  PROMPT_VERSION,
+  type PromptSource,
+  parseInsufficient,
+  sourceLabel,
+} from "./prompt.ts";
 export { loadReranker, type RerankerLib } from "./rerank.ts";
 export {
   type Candidate,
@@ -27,6 +51,7 @@ export {
   rrf,
   type Timings,
 } from "./retrieve.ts";
+export { formatSSE, parseSSE, type SSEEvent } from "./sse.ts";
 export {
   type ChunkRecord,
   ChunkStore,

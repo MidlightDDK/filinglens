@@ -118,6 +118,21 @@ describe("Answer", () => {
     expect(screen.queryByTestId("answer-text")).toBeNull();
   });
 
+  it("asks for the Turnstile check instead of claiming to write", () => {
+    render(
+      <Answer
+        state={state("", "pending")}
+        sources={sources}
+        active={null}
+        onCite={() => {}}
+        checkNeeded
+      />,
+    );
+    expect(screen.getByRole("status").textContent).toContain(
+      "Complete the Cloudflare check",
+    );
+  });
+
   it("shows a friendly quota message", () => {
     render(
       <Answer

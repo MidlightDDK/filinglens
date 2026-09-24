@@ -38,7 +38,7 @@ function LoadStatus({ load }: { load: LoadState }) {
 export function App() {
   const { load, outcome, error, busy, search } = useSearch();
   const turnstileRef = useRef<HTMLDivElement>(null);
-  const { state: answer, ask, prepare } = useAnswer(turnstileRef);
+  const { state: answer, ask, prepare, checkNeeded } = useAnswer(turnstileRef);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<ActiveCite | null>(null);
 
@@ -115,6 +115,7 @@ export function App() {
             sources={outcome.passages}
             active={active}
             onCite={setActive}
+            checkNeeded={checkNeeded}
           />
           <h2 className="font-medium">Sources</h2>
           <Passages passages={outcome.passages} active={active} />

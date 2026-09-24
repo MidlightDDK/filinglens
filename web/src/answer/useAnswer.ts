@@ -29,8 +29,13 @@ export type AnswerState =
 let sessionUntil = 0;
 let sessionP: Promise<void> | null = null;
 
-async function newSession(container: HTMLElement): Promise<void> {
-  const token = await turnstileToken(container);
+type OnInteractive = (active: boolean) => void;
+
+async function newSession(
+  container: HTMLElement,
+  onInteractive: OnInteractive,
+): Promise<void> {
+  const token = await turnstileToken(container, onInteractive);
   const res = await fetch(`${API_BASE}/session`, {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -41,9 +46,13 @@ async function newSession(container: HTMLElement): Promise<void> {
 }
 
 /** Gets a session unless one is valid for another minute; shares in-flight work. */
-function ensureSession(container: HTMLElement, force = false): Promise<void> {
+function ensureSession(
+  container: HTMLElement,
+  onInteractive: OnInteractive,
+  force = false,
+): Promise<void> {
   if (!force && sessionUntil - Date.now() > 60_000) return Promise.resolve();
-  sessionP ??= newSession(container).finally(() => {
+  sessionP ??= newSession(container, onInteractive).finally(() => {
     sessionP = null;
   });
   return sessionP;
@@ -71,6 +80,8 @@ async function reasonOf(res: Response): Promise<ErrorReason | "network"> {
  */
 export function useAnswer(turnstileRef: RefObject<HTMLElement | null>) {
   const [state, setState] = useState<AnswerState>({ status: "idle" });
+  /** Turnstile is showing a challenge the visitor has to complete. */
+  const [checkNeeded, setCheckNeeded] = useState(false);
   const current = useRef<AbortController | null>(null);
 
   useEffect(() => () => current.current?.abort(), []);
@@ -78,7 +89,7 @@ export function useAnswer(turnstileRef: RefObject<HTMLElement | null>) {
   /** Warm up a session early (e.g. when the question box gets focus). */
   const prepare = useCallback(() => {
     if (turnstileRef.current) {
-      ensureSession(turnstileRef.current).catch(() => {});
+      ensureSession(turnstileRef.current, setCheckNeeded).catch(() => {});
     }
   }, [turnstileRef]);
 
@@ -111,10 +122,10 @@ export function useAnswer(turnstileRef: RefObject<HTMLElement | null>) {
       let text = "";
       let ended = false;
       try {
-        await ensureSession(container);
+        await ensureSession(container, setCheckNeeded);
         let res = await post();
         if (res.status === 401) {
-          await ensureSession(container, true);
+          await ensureSession(container, setCheckNeeded, true);
           res = await post();
         }
         if (!res.ok || !res.body) throw new ApiError(await reasonOf(res));
@@ -147,5 +158,5 @@ export function useAnswer(turnstileRef: RefObject<HTMLElement | null>) {
     [turnstileRef],
   );
 
-  return { state, ask, prepare };
+  return { state, ask, prepare, checkNeeded };
 }

@@ -12,6 +12,8 @@ interface Turnstile {
       appearance: "always" | "execute" | "interaction-only";
       callback: (token: string) => void;
       "error-callback": () => void;
+      "before-interactive-callback": () => void;
+      "after-interactive-callback": () => void;
     },
   ): string;
   remove(id: string): void;
@@ -44,9 +46,13 @@ function loadTurnstile(): Promise<Turnstile> {
 
 /**
  * Runs a Turnstile challenge in `container` and resolves with its one-time
- * token. The widget stays invisible unless the visitor must interact.
+ * token. The widget stays invisible unless the visitor must interact, which
+ * `onInteractive(true)` reports.
  */
-export async function turnstileToken(container: HTMLElement): Promise<string> {
+export async function turnstileToken(
+  container: HTMLElement,
+  onInteractive: (active: boolean) => void,
+): Promise<string> {
   const ts = await loadTurnstile();
   return new Promise((resolve, reject) => {
     const id = ts.render(container, {
@@ -56,6 +62,8 @@ export async function turnstileToken(container: HTMLElement): Promise<string> {
         resolve(token);
         setTimeout(() => ts.remove(id));
       },
+      "before-interactive-callback": () => onInteractive(true),
+      "after-interactive-callback": () => onInteractive(false),
       "error-callback": () => {
         reject(new Error("Turnstile challenge failed"));
         setTimeout(() => ts.remove(id));

@@ -91,11 +91,14 @@ export function Answer({
   sources,
   active,
   onCite,
+  checkNeeded = false,
 }: {
   state: AnswerState;
   sources: Passage[];
   active: ActiveCite | null;
   onCite: (cite: ActiveCite) => void;
+  /** Turnstile wants the visitor to complete its check first. */
+  checkNeeded?: boolean;
 }) {
   if (state.status === "idle") return null;
   const { text, status } = state;
@@ -114,7 +117,9 @@ export function Answer({
       <h2 className="text-sm font-medium text-slate-500">Answer</h2>
       {writing && (
         <p className="mt-2 text-slate-500" role="status">
-          Writing a cited answer…
+          {status === "pending" && checkNeeded
+            ? "Complete the Cloudflare check above to get a live answer."
+            : "Writing a cited answer…"}
         </p>
       )}
 

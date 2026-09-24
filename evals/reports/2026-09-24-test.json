@@ -600,10 +600,7 @@
             "text": "Therefore, Amazon’s cash and cash equivalents were higher by $82,312 million − $29,943 million = $52,369 million.",
             "status": "unverified",
             "reason": "no_citation",
-            "missing": [
-              "$82,312 million",
-              "$29,943 million"
-            ],
+            "missing": ["$82,312 million", "$29,943 million"],
             "cites": [],
             "support": null
           }
@@ -656,13 +653,8 @@
             "text": "Apple’s operating income in FY 2025 was $133,050 million and its total net sales were $416,161 million, giving an operating margin of about 31.96 % (133,050 ÷ 416,161 ≈ 0.3196)【5】",
             "status": "unverified",
             "reason": "number_not_found",
-            "missing": [
-              "31.96 %",
-              "0.3196"
-            ],
-            "cites": [
-              5
-            ],
+            "missing": ["31.96 %", "0.3196"],
+            "cites": [5],
             "support": {
               "supported": true,
               "reason": "Numbers match source; arithmetic is correct."
@@ -704,13 +696,8 @@
             "text": "PepsiCo’s research and development expense in fiscal 2024 was $813 million, and its total net revenue that year was $91,854 million, giving an R&D expense of about 0.9 % of revenue (813 ÷ 91,854 ≈ 0.00885, or 0.885 %)【1】【4】",
             "status": "unverified",
             "reason": "number_not_found",
-            "missing": [
-              "813"
-            ],
-            "cites": [
-              1,
-              4
-            ],
+            "missing": ["813"],
+            "cites": [1, 4],
             "support": {
               "supported": true,
               "reason": "Numbers match sources; arithmetic is correct."

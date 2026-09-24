@@ -117,7 +117,7 @@ When compacting, keep: the goal, current milestone, decisions and constraints, f
 ## Milestone status (tick only when every acceptance box for that milestone passes)
 - [x] M0 Scaffold + hello-world deploy
 - [x] M1 Ingest, parse, chunk
-- [ ] M2 Index + in-browser retrieval
+- [x] M2 Index + in-browser retrieval
 - [ ] M3 Eval set v1 + retrieval evals in CI
 - [ ] M4 Gateway + grounded, cited answers
 - [ ] M5 Sentence verification + answer evals

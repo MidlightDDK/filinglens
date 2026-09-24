@@ -77,10 +77,10 @@ Acceptance:
 ## M2: Index + in-browser retrieval
 - `scripts/build-index.ts`; `packages/core` retrieval (filters, lexical, dense, RRF, rerank hook); the Ask page in search-only mode showing ranked passages; model loading in a Web Worker.
 Acceptance:
-- [ ] Index within budget.
-- [ ] Node and browser return identical top-10 ids for 5 fixture queries (automated test).
-- [ ] Query → passages in < 1 s after warm-up on the user's laptop (report the measured number).
-- [ ] Deployed.
+- [x] Index within budget.
+- [x] Node and browser return identical top-10 ids for 5 fixture queries (automated test).
+- [x] Query → passages in < 1 s after warm-up on the user's laptop (report the measured number).
+- [x] Deployed.
 
 ## M3: Eval set v1 + retrieval evals in CI
 - XBRL items; synthetic generator + review CSV flow; handwritten-item template for the user; dev/test split; retrieval runner, metrics, report; `baseline.json`; CI gate.

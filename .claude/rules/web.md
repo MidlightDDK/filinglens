@@ -18,7 +18,7 @@ paths:
 - The build copies `evals/reports/latest.json` to `web/public/evals/latest.json` (gitignored copy).
 
 ## Security headers: `web/public/_headers`
-`Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://challenges.cloudflare.com; connect-src 'self' https://huggingface.co https://*.huggingface.co https://*.hf.co https://cdn.jsdelivr.net; frame-src https://challenges.cloudflare.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'`. Verify once with Playwright (no violations while loading and answering), adjust, and note what changed.
+`Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' blob: https://cdn.jsdelivr.net https://challenges.cloudflare.com; connect-src 'self' https://huggingface.co https://*.huggingface.co https://*.hf.co https://cdn.jsdelivr.net; frame-src https://challenges.cloudflare.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'`. Verified with Playwright on the live site (2026-09-24, M7): `script-src` needed `blob:`, because onnxruntime-web imports its runtime module from a blob URL. `e2e/smoke.e2e.ts` re-checks it daily.
 - Render model output as Markdown without raw HTML; links only to sec.gov.
 
 ## Config

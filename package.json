@@ -10,7 +10,7 @@
     "dev": "pnpm --parallel --filter @filinglens/web --filter @filinglens/worker dev",
     "data:ingest": "uv run --project pipeline python -m pipeline.ingest",
     "data:chunk": "uv run --project pipeline python -m pipeline.chunk",
-    "index": "node -e \"console.log('index: not implemented (M2)')\"",
+    "index": "node scripts/src/build-index.ts",
     "examples": "node -e \"console.log('examples: not implemented (M6)')\"",
     "lint": "biome check .",
     "format": "biome check --write .",

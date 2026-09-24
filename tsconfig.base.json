@@ -13,6 +13,9 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "noEmit": true,
+    // Node runs scripts/*.ts directly (type stripping), so imports carry .ts.
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
     "types": []
   }
 }

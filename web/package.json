@@ -10,6 +10,8 @@
     "e2e": "playwright test"
   },
   "dependencies": {
+    "@filinglens/core": "workspace:*",
+    "@huggingface/transformers": "4.3.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },

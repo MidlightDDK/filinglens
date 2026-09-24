@@ -8,3 +8,9 @@ packages:
 onlyBuiltDependencies:
   - esbuild
   - workerd
+
+# onnxruntime-node ships CPU binaries in the package; its postinstall only
+# downloads optional CUDA builds.
+ignoredBuiltDependencies:
+  - onnxruntime-node
+  - protobufjs

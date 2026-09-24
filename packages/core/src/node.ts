@@ -50,10 +50,10 @@ export async function loadNodeEmbedder(
     (globalThis as Record<symbol, unknown>)[Symbol.for("onnxruntime")] = ort;
   }
   loadedRuntime = runtime;
-  const { env, pipeline } = await import("@huggingface/transformers");
-  env.cacheDir = MODEL_CACHE;
+  const transformers = await import("@huggingface/transformers");
+  transformers.env.cacheDir = MODEL_CACHE;
   // "auto" lets the injected runtime choose its default backend (wasm).
-  return loadEmbedder(pipeline, {
+  return loadEmbedder(transformers, {
     device: runtime === "wasm" ? "auto" : "cpu",
   });
 }

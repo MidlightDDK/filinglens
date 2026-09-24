@@ -10,12 +10,16 @@ import {
   type RetrievalConfig,
   retrieve,
 } from "@filinglens/core";
-import { env, pipeline } from "@huggingface/transformers";
+import { AutoModel, AutoTokenizer, env } from "@huggingface/transformers";
 import defaultConfig from "../../../evals/configs/default.json";
 import type { Device, WorkerRequest, WorkerResponse } from "./protocol";
 
 const config: RetrievalConfig = defaultConfig;
 env.allowLocalModels = false;
+// huggingface.co answers requests whose Referer is a *.workers.dev page with a
+// 404 and no CORS headers, so model downloads go out without a referrer.
+env.fetch = (input, init) =>
+  fetch(input, { ...init, referrerPolicy: "no-referrer" });
 
 const post = (msg: WorkerResponse) => self.postMessage(msg);
 
@@ -60,7 +64,10 @@ async function loadModel(device: Device): Promise<Embedder> {
     }
     post({ type: "progress", stage: "model", fraction: loaded / total });
   };
-  return loadEmbedder(pipeline, { device, progress_callback });
+  return loadEmbedder(
+    { AutoModel, AutoTokenizer },
+    { device, progress_callback },
+  );
 }
 
 let ready: Promise<{

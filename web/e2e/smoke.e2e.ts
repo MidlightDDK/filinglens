@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("placeholder page renders without console errors", async ({ page }) => {
+test("home page renders without console errors", async ({ page }) => {
   const errors: string[] = [];
   page.on("console", (msg) => {
     if (msg.type() === "error") errors.push(msg.text());

@@ -1,4 +1,8 @@
-import type { pipeline } from "@huggingface/transformers";
+import type {
+  AutoModel,
+  AutoTokenizer,
+  Tensor,
+} from "@huggingface/transformers";
 import { EMBEDDING_MODEL } from "./models.ts";
 
 export interface Embedder {
@@ -14,22 +18,38 @@ export interface EmbedderOptions {
   progress_callback?: (info: unknown) => void;
 }
 
-/** Loads the pinned embedding model through an injected Transformers.js `pipeline`. */
+/** The parts of Transformers.js the embedder needs, injected by each caller. */
+export interface TransformersLib {
+  AutoModel: typeof AutoModel;
+  AutoTokenizer: typeof AutoTokenizer;
+}
+
+/**
+ * Loads the pinned embedding model. This mirrors Transformers.js's
+ * feature-extraction pipeline (CLS pooling, L2 norm) but loads the tokenizer
+ * and model directly, because `pipeline()` (4.3.0) fetches config.json from
+ * `main` before honoring `revision`.
+ */
 export async function loadEmbedder(
-  pipelineFn: typeof pipeline,
+  { AutoModel, AutoTokenizer }: TransformersLib,
   { device, progress_callback }: EmbedderOptions,
 ): Promise<Embedder> {
-  const extractor = await pipelineFn("feature-extraction", EMBEDDING_MODEL.id, {
-    revision: EMBEDDING_MODEL.revision,
-    dtype: EMBEDDING_MODEL.dtype,
-    device,
-    progress_callback,
-  });
+  const options = { revision: EMBEDDING_MODEL.revision, progress_callback };
+  const [tokenizer, model] = await Promise.all([
+    AutoTokenizer.from_pretrained(EMBEDDING_MODEL.id, options),
+    AutoModel.from_pretrained(EMBEDDING_MODEL.id, {
+      ...options,
+      dtype: EMBEDDING_MODEL.dtype,
+      device,
+    }),
+  ]);
   const embed = async (texts: string[]): Promise<Float32Array[]> => {
-    const out = await extractor(texts, {
-      pooling: EMBEDDING_MODEL.pooling,
-      normalize: true,
-    });
+    const inputs = tokenizer(texts, { padding: true, truncation: true });
+    const { last_hidden_state } = (await model(inputs)) as {
+      last_hidden_state: Tensor;
+    };
+    // CLS pooling, then L2 normalization, exactly as the pipeline does.
+    const out = last_hidden_state.slice(null, 0).normalize(2, -1);
     const dim = out.dims.at(-1) ?? EMBEDDING_MODEL.dim;
     const data = out.data as Float32Array;
     return texts.map((_, i) => data.slice(i * dim, (i + 1) * dim));

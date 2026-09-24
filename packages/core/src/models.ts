@@ -6,7 +6,6 @@ export const EMBEDDING_MODEL = {
   // Same dtype in Node and in the browser: q8 = onnx/model_quantized.onnx (~34 MB).
   dtype: "q8",
   dim: 384,
-  pooling: "cls",
   // Query instruction from https://huggingface.co/BAAI/bge-small-en-v1.5;
   // passages are embedded without a prefix.
   queryPrefix: "Represent this sentence for searching relevant passages: ",

@@ -107,9 +107,9 @@ Acceptance:
 ## M6: Pipeline Lab, Evals page, examples
 - `pnpm examples` (precompute the six example answers with full metadata; committed), `/lab`, `/evals`, and the "Under the hood" drawer.
 Acceptance:
-- [ ] Example chips are instant and work even when every provider is down.
-- [ ] `/lab` compares two configs live.
-- [ ] `/evals` shows the dataset, metrics, and judge agreement.
+- [x] Example chips are instant and work even when every provider is down.
+- [x] `/lab` compares two configs live.
+- [x] `/evals` shows the dataset, metrics, and judge agreement.
 
 ## M7: Polish + launch
 - README (outline below), architecture diagram (Mermaid in the README), performance-budget and mobile pass, `smoke.yml`, release eval on the test split, final numbers in the README.

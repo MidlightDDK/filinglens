@@ -85,9 +85,9 @@ Acceptance:
 ## M3: Eval set v1 + retrieval evals in CI
 - XBRL items; synthetic generator + review CSV flow; handwritten-item template for the user; dev/test split; retrieval runner, metrics, report; `baseline.json`; CI gate.
 Acceptance:
-- [ ] ≥ 150 reviewed items covering every category.
-- [ ] Report for ≥ 4 configs; the default config chosen from dev metrics, with the decision recorded in README "Design decisions".
-- [ ] The CI gate proven by a deliberately broken branch (then reverted).
+- [x] ≥ 150 reviewed items covering every category. (211 items; reviewed and handwritten by Claude at the user's request.)
+- [x] Report for ≥ 4 configs; the default config chosen from dev metrics, with the decision recorded in README "Design decisions".
+- [x] The CI gate proven by a deliberately broken branch (then reverted). (PR #3: recall@10 70.7 vs 88.7.)
 
 ## M4: Gateway + grounded, cited answers
 - Worker endpoints, provider chain, SSE, Turnstile session, rate limits, KV cache, prompt, abstention; answer UI with citation chips and source highlighting.

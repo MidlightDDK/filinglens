@@ -118,7 +118,7 @@ When compacting, keep: the goal, current milestone, decisions and constraints, f
 - [x] M0 Scaffold + hello-world deploy
 - [x] M1 Ingest, parse, chunk
 - [x] M2 Index + in-browser retrieval
-- [ ] M3 Eval set v1 + retrieval evals in CI
+- [x] M3 Eval set v1 + retrieval evals in CI
 - [ ] M4 Gateway + grounded, cited answers
 - [ ] M5 Sentence verification + answer evals
 - [ ] M6 Pipeline Lab, Evals page, examples

@@ -27,6 +27,14 @@ jobs:
       - run: pnpm -s typecheck
       - run: pnpm -s test
       - run: pnpm -s build
+      # Secret values must never ship to browsers: Groq (gsk_), Google (AIza),
+      # and Turnstile secret keys (0x4…, ~35 chars; public site keys are ~22).
+      - name: No secrets in the web bundle
+        run: |
+          if grep -rEl 'gsk_[A-Za-z0-9]{20,}|AIza[0-9A-Za-z_-]{30,}|0x4[A-Za-z0-9_-]{28,}' web/dist; then
+            echo "::error::secret-like value in web/dist"
+            exit 1
+          fi
 
   python:
     runs-on: ubuntu-latest

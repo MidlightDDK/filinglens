@@ -13,7 +13,10 @@ Citation-verified Q&A over SEC 10-K filings. Ask a question about the annual rep
 | [onnxruntime-web](https://www.npmjs.com/package/onnxruntime-web) WASM via [jsDelivr](https://www.jsdelivr.com/terms) | Running the embedding model in the browser | MIT; Transformers.js loads it from cdn.jsdelivr.net. |
 | SEC EDGAR [XBRL company facts API](https://www.sec.gov/search-filings/edgar-application-programming-interfaces) | Numeric eval items with exact answers (`pnpm data:xbrl` → `evals/datasets/xbrl_numeric.jsonl`) | Same as EDGAR above. |
 | [`Xenova/ms-marco-MiniLM-L-6-v2`](https://huggingface.co/Xenova/ms-marco-MiniLM-L-6-v2), pinned revision `a0914435` | A cross-encoder rerank stage that was evaluated but not shipped (see Design decisions) | ONNX conversion of [`cross-encoder/ms-marco-MiniLM-L-6-v2`](https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2) (Apache-2.0). |
-| [Groq](https://groq.com/terms-of-use) free tier, `openai/gpt-oss-120b` | Proposing synthetic eval questions (`pnpm eval:synth`), which a person reviews before they enter the eval set | Model weights Apache-2.0. Used offline only; no card needed. |
+| [Groq](https://groq.com/terms-of-use) free tier, `openai/gpt-oss-120b` | Proposing synthetic eval questions (`pnpm eval:synth`), which a person reviews before they enter the eval set; second fallback for live answers | Model weights Apache-2.0. Free tier, no card needed. |
+| [Cloudflare Workers AI](https://www.cloudflare.com/service-specific-terms-developer-platform/) free allocation, `@cf/meta/llama-3.3-70b-instruct-fp8-fast` | First choice for live answers (`worker/src/providers/`) | [Llama 3.3 Community License](https://www.llama.com/llama3_3/license/). 10k free neurons a day, roughly 70 answers. |
+| [Google Gemini API](https://ai.google.dev/gemini-api/terms) free tier, `gemini-3.5-flash-lite` | Last fallback for live answers | Free tier, no card needed. Google may use free-tier prompts to improve its products; prompts contain only public filing text and the visitor's question. |
+| [Cloudflare Turnstile](https://www.cloudflare.com/turnstile-terms-of-use/) | Bot check before a visitor can request live answers | Free; no personal data is stored by FilingLens. |
 
 Raw filings and processed text live in `data/` and are not committed. Run `pnpm data:ingest` (needs `SEC_USER_AGENT="Full Name email@example.com"`), then `pnpm data:chunk`. `pnpm index` then builds the search index into `web/public/index/` (also not committed).
 
@@ -24,6 +27,9 @@ Raw filings and processed text live in `data/` and are not committed. Run `pnpm 
 - **Custom BM25 instead of MiniSearch:** the lexical index is a compact term → postings map with deterministic output and no dependency, and one tokenizer (`packages/core/src/lexical.ts`) runs at build time and query time.
 - **q8 embeddings everywhere:** Node and the browser run the same quantized ONNX file (34 MB instead of 133 MB), so indexed and query vectors come from the same weights.
 - **Queries in Node use the browser's WASM runtime:** onnxruntime-node's x86 int8 kernels give slightly different vectors than WASM (cosine ~0.998 on some inputs), enough to reorder close results. Evals and the parity test embed queries with onnxruntime-web, so Node and the browser return identical rankings. Passages are embedded once at index time with the ~10x faster onnxruntime-node.
+
+- **Answers go through a Worker gateway with a provider chain:** Workers AI, then Groq, then Gemini. A provider that returns 429 or 5xx, or sends no first token within 8 s, is skipped for 60 s. The Worker loads passage text from its own static index and never trusts text sent by the browser. Answers are cached in Workers KV for 7 days, keyed by prompt version, config, normalized question, and passage ids. `/api/answer` needs a 30-minute session cookie issued after a Turnstile check, and is rate-limited per IP.
+- **Workers AI tokens are read from `choices[].delta.content`:** its stream also carries a legacy `response` field that turns numeric tokens into JSON numbers (`" 2025"` becomes `2025`, `"0"` becomes `0`), which silently drops spaces and zeros from figures.
 
 ### Retrieval config, chosen from dev metrics
 

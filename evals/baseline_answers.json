@@ -1,0 +1,9 @@
+{
+  "split": "dev",
+  "items_sha256": "cf4e2253d7e498052101bf0d9d932eb48cbd0f33e21f3ff1a7cafc5a18012fbf",
+  "numeric_em": 1,
+  "citation_coverage": 0.9545,
+  "generator": "openai/gpt-oss-120b",
+  "prompt_version": "answer-v2",
+  "commit": "efed4b9ad426a8811152f2c321b2814e89e3f213-dirty"
+}

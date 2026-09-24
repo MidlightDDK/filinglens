@@ -417,5 +417,140 @@
         "p95": 7580
       }
     }
+  },
+  "answers": {
+    "created_at": "2026-09-24T18:45:48.198Z",
+    "commit": "efed4b9ad426a8811152f2c321b2814e89e3f213-dirty",
+    "split": "dev",
+    "dataset": {
+      "items": 35,
+      "sampled": "stratified by category",
+      "ids_sha256": "8c5f4a24f351eec6bccd3cc745343153bf2ec22a902270eef0958fe2db0b2ded"
+    },
+    "config": "default",
+    "generator": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b"
+    },
+    "prompt_version": "answer-v2",
+    "judge": {
+      "model": "qwen/qwen3.8-27b",
+      "correctness_version": "correctness-v1"
+    },
+    "summary": {
+      "items": 35,
+      "accuracy": {
+        "value": 0.9143,
+        "n": 35
+      },
+      "numeric_em": {
+        "value": 0.8947,
+        "n": 19
+      },
+      "judge_correct": {
+        "value": 1,
+        "n": 6
+      },
+      "false_premise_correction": {
+        "value": 0.8,
+        "n": 5
+      },
+      "abstention": {
+        "precision": 1,
+        "recall": 1,
+        "abstained": 5,
+        "unanswerable": 5
+      },
+      "sentences": 39,
+      "citation_coverage": 0.9231,
+      "citation_precision": 1,
+      "verified_rate": 0.8718,
+      "unsupported_rate": 0,
+      "per_category": {
+        "lookup": {
+          "accuracy": 1,
+          "n": 5
+        },
+        "table_number": {
+          "accuracy": 0.8,
+          "n": 5
+        },
+        "comparison": {
+          "accuracy": 0.8,
+          "n": 5
+        },
+        "trend": {
+          "accuracy": 1,
+          "n": 5
+        },
+        "multi_hop": {
+          "accuracy": 1,
+          "n": 5
+        },
+        "false_premise": {
+          "accuracy": 0.8,
+          "n": 5
+        },
+        "unanswerable": {
+          "accuracy": 1,
+          "n": 5
+        }
+      },
+      "latency_ms": {
+        "retrieval": {
+          "p50": 34,
+          "p95": 87
+        },
+        "generation": {
+          "p50": 997,
+          "p95": 11028
+        }
+      },
+      "tokens": {
+        "in": 78635,
+        "out": 4014
+      },
+      "providers": {
+        "groq": 35
+      }
+    }
+  },
+  "judge": {
+    "created_at": "2026-09-24T18:45:48.198Z",
+    "judge_model": "qwen/qwen3.8-27b",
+    "correctness_version": "correctness-v1",
+    "support_version": "support-v1",
+    "correctness": {
+      "n": 54,
+      "agreement": 1,
+      "kappa": 1,
+      "disagreements": []
+    },
+    "support": {
+      "n": 67,
+      "agreement": 0.9552,
+      "kappa": 0.8613,
+      "disagreements": [
+        {
+          "id": "js-032",
+          "human": "unsupported",
+          "judge": "supported",
+          "reason": "Difference calculation is correct based on cited sources."
+        },
+        {
+          "id": "js-043",
+          "human": "unsupported",
+          "judge": "supported",
+          "reason": "North America income increased by over 67%, not tripled."
+        },
+        {
+          "id": "js-051",
+          "human": "unsupported",
+          "judge": "supported",
+          "reason": "Source [1] shows 2025 Cloud revenue $58,705M and 2024 $43,229M."
+        }
+      ],
+      "unjudged": 0
+    }
   }
 }

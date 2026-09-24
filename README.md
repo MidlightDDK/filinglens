@@ -13,7 +13,8 @@ Citation-verified Q&A over SEC 10-K filings. Ask a question about the annual rep
 | [onnxruntime-web](https://www.npmjs.com/package/onnxruntime-web) WASM via [jsDelivr](https://www.jsdelivr.com/terms) | Running the embedding model in the browser | MIT; Transformers.js loads it from cdn.jsdelivr.net. |
 | SEC EDGAR [XBRL company facts API](https://www.sec.gov/search-filings/edgar-application-programming-interfaces) | Numeric eval items with exact answers (`pnpm data:xbrl` → `evals/datasets/xbrl_numeric.jsonl`) | Same as EDGAR above. |
 | [`Xenova/ms-marco-MiniLM-L-6-v2`](https://huggingface.co/Xenova/ms-marco-MiniLM-L-6-v2), pinned revision `a0914435` | A cross-encoder rerank stage that was evaluated but not shipped (see Design decisions) | ONNX conversion of [`cross-encoder/ms-marco-MiniLM-L-6-v2`](https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2) (Apache-2.0). |
-| [Groq](https://groq.com/terms-of-use) free tier, `openai/gpt-oss-120b` | Proposing synthetic eval questions (`pnpm eval:synth`), which a person reviews before they enter the eval set; second fallback for live answers | Model weights Apache-2.0. Free tier, no card needed. |
+| [Groq](https://groq.com/terms-of-use) free tier, `openai/gpt-oss-120b` | Proposing synthetic eval questions (`pnpm eval:synth`), which a person reviews before they enter the eval set; second fallback for live answers; the generator in answer evals | Model weights Apache-2.0. Free tier, no card needed. |
+| [Groq](https://groq.com/terms-of-use) free tier, `qwen/qwen3.8-27b` | The AI judge: "Check with AI judge" in the app (`/api/verify`) and the judged metrics in answer evals | Free tier, no card needed. |
 | [Cloudflare Workers AI](https://www.cloudflare.com/service-specific-terms-developer-platform/) free allocation, `@cf/meta/llama-3.3-70b-instruct-fp8-fast` | First choice for live answers (`worker/src/providers/`) | [Llama 3.3 Community License](https://www.llama.com/llama3_3/license/). 10k free neurons a day, roughly 70 answers. |
 | [Google Gemini API](https://ai.google.dev/gemini-api/terms) free tier, `gemini-3.5-flash-lite` | Last fallback for live answers | Free tier, no card needed. Google may use free-tier prompts to improve its products; prompts contain only public filing text and the visitor's question. |
 | [Cloudflare Turnstile](https://www.cloudflare.com/turnstile-terms-of-use/) | Bot check before a visitor can request live answers | Free; no personal data is stored by FilingLens. |
@@ -68,6 +69,28 @@ Latency is measured in Node on the same WASM runtime the browser uses, one query
 - **XBRL items** (`pnpm data:xbrl`) take exact values from SEC's structured data: single values, year-over-year changes, ratios, and two-company comparisons. They use the figure for the filing's own fiscal-year end, never a prior-year comparative.
 - **Synthetic items** were proposed by `openai/gpt-oss-120b` on Groq from sampled passages. Quotes that weren't verbatim were dropped automatically, which left 94 proposals.
 - **Review:** at the project owner's request, Claude (the AI coding assistant that built this repo) reviewed the proposals instead of a person: 65 kept (8 of them edited) and 29 rejected, with a reason for each in `evals/review/queue.csv`. Claude also wrote the 38 handwritten items (`evals/review/handwritten.csv`) and checked every answer against the filing text.
+
+### Answer quality
+
+`pnpm eval:answers --split dev --limit 35 --report` runs the production path end to end: the browser's retrieval code, the Worker's prompt, `openai/gpt-oss-120b` on Groq (the live chain's second provider; Workers AI's Llama 3.3 answers first), sentence verification, and an AI judge from a different model family (`qwen/qwen3.8-27b`). The 35 items are a stratified dev sample, 5 per category. Groq's free tier allows 200K tokens a day per model (roughly 75 answers), so the full 127-item dev split has to run over several days; every call is cached, so reruns resume.
+
+| Metric | Value | n |
+| --- | ---: | ---: |
+| Accuracy per item (numeric match, judge, or abstention) | 91.4% | 35 items |
+| Numeric exact match | 89.5% | 19 |
+| Judge correctness (non-numeric answers) | 100% | 6 |
+| False-premise correction | 80% | 5 |
+| Abstention precision / recall (unanswerable) | 100% / 100% | 5 |
+| Citation coverage (sentences with a valid citation) | 92.3% | 39 sentences |
+| Citation precision (cited passage holds gold evidence or is judged supporting) | 100% | 60 citations |
+| Verified sentences | 87.2% | 39 sentences |
+
+The three misses: Intel's 2025 net income ($26M consolidated, where the −$267M attributable to Intel was expected), AMD vs Intel operating income (the answer compared segment subtotals), and a false premise about Meta's cash that the answer sidestepped by switching to cash plus marketable securities.
+
+- **Verified** (the badge on each answer sentence): the sentence cites a passage, and every number in it appears in a cited passage or is one arithmetic step (difference, sum, ratio, percent change) from two numbers in the same answer that do. Anything else is **unverified**; "Check with AI judge" can also mark a sentence **unsupported**.
+- **Numeric match** accepts the gold number stated in the answer (rounding within the item's tolerance). For "How did X change?" items, whose gold number is a percent change, stating both endpoints also counts.
+- **Judge calibration** (`pnpm eval:judge`, `evals/datasets/judge_labels.jsonl`): the correctness judge agreed with 54 of 54 human labels (Cohen's kappa 1.00); the support judge with 64 of 67 (95.5%, kappa 0.86). The labels cover this run's real answers plus hand-edited wrong variants (a prior year's figure, swapped companies, an accepted false premise, a citation to the wrong company's table), because the real answers are mostly right. The support judge's misses were 3 of the 15 unsupported sentences, for example accepting "more than tripled" for a 1.7x rise. At the project owner's request, Claude wrote these labels as well, reading every cited passage; each row has its rationale.
+- The judge was planned for GitHub Models, but on 2026-09-24 its endpoints answered every request with a bare `200 OK`, so it runs on Groq.
 
 ## License
 

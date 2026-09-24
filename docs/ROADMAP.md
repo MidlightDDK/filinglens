@@ -70,9 +70,9 @@ evals/.cache/
 ## M1: Ingest, parse, chunk
 - `corpus.yaml`, SEC client (User-Agent, rate limit, cache, manifest), parser, `fixed` and `structure` chunkers, stats output.
 Acceptance:
-- [ ] All 24 filings downloaded and parsed; any failure logged with its reason.
-- [ ] Items 1/1A/7/7A/8 found in ≥ 95% of docs.
-- [ ] pytest green on the fixtures; `pnpm data:chunk` prints stats.
+- [x] All 24 filings downloaded and parsed; any failure logged with its reason.
+- [x] Items 1/1A/7/7A/8 found in ≥ 95% of docs.
+- [x] pytest green on the fixtures; `pnpm data:chunk` prints stats.
 
 ## M2: Index + in-browser retrieval
 - `scripts/build-index.ts`; `packages/core` retrieval (filters, lexical, dense, RRF, rerank hook); the Ask page in search-only mode showing ranked passages; model loading in a Web Worker.

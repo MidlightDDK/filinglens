@@ -115,7 +115,7 @@ When compacting, keep: the goal, current milestone, decisions and constraints, f
 - `docs/ROADMAP.md`: milestones, acceptance criteria, M0 file templates, README outline.
 
 ## Milestone status (tick only when every acceptance box for that milestone passes)
-- [ ] M0 Scaffold + hello-world deploy
+- [x] M0 Scaffold + hello-world deploy
 - [ ] M1 Ingest, parse, chunk
 - [ ] M2 Index + in-browser retrieval
 - [ ] M3 Eval set v1 + retrieval evals in CI

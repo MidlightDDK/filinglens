@@ -1,0 +1,44 @@
+# FilingLens corpus. Edit the company list freely; CIKs are resolved at runtime
+# from SEC's company_tickers.json (never hardcoded).
+form: 10-K # amendments (10-K/A) are excluded
+filings_per_company: 2 # the latest N fiscal years
+items: ["1", "1A", "7", "7A", "8"] # everything else is dropped (index-size budget)
+
+# Optional per company: `sections` maps an item to {start, end} heading regexes (full,
+# case-insensitive match) for filings that print that item outside an "Item N"
+# heading. They add to (and override) what the Item headings find.
+
+companies:
+  - ticker: NVDA
+    name: NVIDIA
+    sections: # Item 8 points to the statements filed under Item 15
+      "8": { start: "Report of Independent Registered Public Accounting Firm", end: "Schedule II.*|Exhibit Index" }
+  - { ticker: AMD, name: AMD }
+  - ticker: INTC
+    name: Intel
+    sections: # organized by topic, with a cross-reference index instead of Item headings
+      "1": { start: "Availability of Company Information", end: "Management's Discussion and Analysis" }
+      "1A": { start: "Risk Factors", end: "Sales and Marketing|Other Key Information" }
+      "7": { start: "Management's Discussion and Analysis", end: "Risk Factors( and Other Key Information)?" }
+      "7A": { start: "Quantitative and Qualitative Disclosures About Market Risk", end: "Cybersecurity|Critical Accounting Estimates" }
+      "8": { start: "Financial Statements and Supplemental Details", end: "Key Terms" }
+  - { ticker: AAPL, name: Apple }
+  - { ticker: MSFT, name: Microsoft }
+  - { ticker: GOOGL, name: Alphabet }
+  - { ticker: AMZN, name: Amazon }
+  - { ticker: META, name: Meta Platforms }
+  - ticker: NFLX
+    name: Netflix
+    sections: # Item 8 points to the statements filed after Item 16
+      "8": { start: "Index to Financial Statements", end: "Exhibit Index" }
+  - { ticker: KO, name: Coca-Cola }
+  - ticker: PEP
+    name: PepsiCo
+    sections: # the statements sit before the Item 8 heading, which points back to them
+      "8": { start: "Consolidated Statement of Income", end: "Glossary" }
+  - ticker: JPM
+    name: JPMorgan Chase
+    sections: # Items 7, 7A, 8 point to Annual Report sections that follow Item 15
+      "7": { start: "Introduction", end: "Management's report on internal control over financial reporting" }
+      "7A": { start: "Market Risk Management", end: "Country Risk Management" }
+      "8": { start: "Management's report on internal control over financial reporting", end: "Supplementary Information:.*" }

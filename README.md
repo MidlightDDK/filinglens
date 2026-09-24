@@ -32,11 +32,11 @@ The app uses `evals/configs/default.json`: structure-aware chunks, BM25 and dens
 | Config (`evals/configs/`) | Recall@5 | Recall@10 | MRR@10 | nDCG@10 | p50 ms |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | **default**: hybrid + filters | **85.9** | **94.5** | **68.4** | **48.1** | 36 |
-| dense-only | 67.2 | 88.3 | 58.9 | 40.8 | 33 |
+| dense-only | 67.2 | 88.3 | 58.9 | 40.8 | 39 |
 | lexical-only (BM25) | 62.5 | 80.5 | 49.5 | 35.3 | 3 |
 | no-filters | 64.8 | 74.2 | 48.5 | 29.2 | 51 |
-| fixed: 350-token windows instead of structure chunks | 53.1 | 62.5 | 43.2 | 23.6 | 32 |
-| rerank: default + cross-encoder on the top 30 | 77.3 | 89.8 | 50.4 | 39.6 | 7,147 |
+| fixed: 350-token windows instead of structure chunks | 53.1 | 62.5 | 43.2 | 23.6 | 37 |
+| rerank: default + cross-encoder on the top 30 | 77.3 | 89.8 | 50.4 | 39.6 | 7,401 |
 
 - **Hybrid over either retriever alone:** fusion adds 6 points of recall@10 over dense-only and 14 over BM25-only.
 - **Filters:** without them recall@10 falls 20 points, and 25 on two-company comparisons, where the question names both companies.

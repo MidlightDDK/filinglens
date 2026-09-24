@@ -27,23 +27,41 @@ Raw filings and processed text live in `data/` and are not committed. Run `pnpm 
 
 ### Retrieval config, chosen from dev metrics
 
-The app uses `evals/configs/default.json`: structure-aware chunks, BM25 and dense search fused with Reciprocal Rank Fusion (k = 60), company and fiscal-year filters taken from the question, and no reranker. It had the best score on every quality metric in the dev-split comparison below (eval set v1, 64 dev items: all XBRL-derived so far; the reviewed synthetic and handwritten items are next). Reproduce with `pnpm eval:retrieval --config all --split dev`; full per-category numbers are in `evals/reports/latest.json`.
+The app uses `evals/configs/default.json`: structure-aware chunks, BM25 and dense search fused with Reciprocal Rank Fusion (k = 60), company and fiscal-year filters taken from the question, and no reranker. It had the best overall score on every quality metric in the dev-split comparison below: 127 dev items, 111 of them with gold evidence (unanswerable items have none). Reproduce with `pnpm eval:retrieval --config all --split dev`; per-category numbers are in `evals/reports/latest.json`.
 
 | Config (`evals/configs/`) | Recall@5 | Recall@10 | MRR@10 | nDCG@10 | p50 ms |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| **default**: hybrid + filters | **85.9** | **94.5** | **68.4** | **48.1** | 36 |
-| dense-only | 67.2 | 88.3 | 58.9 | 40.8 | 39 |
-| lexical-only (BM25) | 62.5 | 80.5 | 49.5 | 35.3 | 3 |
-| no-filters | 64.8 | 74.2 | 48.5 | 29.2 | 51 |
-| fixed: 350-token windows instead of structure chunks | 53.1 | 62.5 | 43.2 | 23.6 | 37 |
-| rerank: default + cross-encoder on the top 30 | 77.3 | 89.8 | 50.4 | 39.6 | 7,401 |
+| **default**: hybrid + filters | **79.3** | **88.7** | **61.7** | **52.3** | 35 |
+| lexical-only (BM25) | 65.8 | 79.7 | 52.0 | 45.6 | 2 |
+| dense-only | 58.6 | 75.2 | 50.1 | 40.8 | 31 |
+| no-filters | 60.8 | 72.1 | 44.8 | 36.0 | 50 |
+| fixed: 350-token windows instead of structure chunks | 53.1 | 64.9 | 45.1 | 33.3 | 29 |
+| rerank: default + cross-encoder on the top 30 | 74.3 | 86.0 | 52.8 | 48.7 | 6,869 |
 
-- **Hybrid over either retriever alone:** fusion adds 6 points of recall@10 over dense-only and 14 over BM25-only.
-- **Filters:** without them recall@10 falls 20 points, and 25 on two-company comparisons, where the question names both companies.
-- **Structure-aware chunks:** fixed windows lose 32 points of recall@10.
-- **No reranker:** the MS MARCO cross-encoder, trained on web search passages, lowered MRR@10 by 18 points on these filings and took about 7 s per query (Node, WASM), so the app does not download it.
+- **Hybrid over either retriever alone:** fusion adds 9 points of recall@10 over BM25-only and 14 over dense-only. Dense-only is weakest on false-premise questions (36 vs 71), where exact figures and names matter.
+- **Filters:** without them recall@10 falls 17 points, and 24 on two-company comparisons, where the question names both companies.
+- **Structure-aware chunks:** fixed windows lose 24 points of recall@10.
+- **No reranker:** the MS MARCO cross-encoder, trained on web search passages, lowered MRR@10 by 9 points and recall@10 by 3 (it helped only on lookup questions) and took about 7 s per query (Node, WASM), so the app does not download it.
 
 Latency is measured in Node on the same WASM runtime the browser uses, one query at a time, including query embedding.
+
+### Eval set v1
+
+211 questions over the 24 filings, split 60/40 into dev and test within each category (`evals/datasets/golden.jsonl`). Evidence is stored as character offsets into each filing's text, so the labels don't depend on how the text is chunked.
+
+| Category | Items | Sources |
+| --- | ---: | --- |
+| lookup | 34 | synthetic, reviewed |
+| table_number | 36 | XBRL |
+| comparison | 28 | XBRL 24, synthetic 4 |
+| trend | 24 | XBRL |
+| multi_hop | 40 | XBRL 24, handwritten 10, synthetic 6 |
+| false_premise | 23 | handwritten 17, synthetic 6 |
+| unanswerable | 26 | handwritten 11, synthetic 15 |
+
+- **XBRL items** (`pnpm data:xbrl`) take exact values from SEC's structured data: single values, year-over-year changes, ratios, and two-company comparisons. They use the figure for the filing's own fiscal-year end, never a prior-year comparative.
+- **Synthetic items** were proposed by `openai/gpt-oss-120b` on Groq from sampled passages. Quotes that weren't verbatim were dropped automatically, which left 94 proposals.
+- **Review:** at the project owner's request, Claude (the AI coding assistant that built this repo) reviewed the proposals instead of a person: 65 kept (8 of them edited) and 29 rejected, with a reason for each in `evals/review/queue.csv`. Claude also wrote the 38 handwritten items (`evals/review/handwritten.csv`) and checked every answer against the filing text.
 
 ## License
 

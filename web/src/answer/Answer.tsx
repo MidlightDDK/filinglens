@@ -2,11 +2,17 @@ import {
   INSUFFICIENT,
   parseCitations,
   parseInsufficient,
+  type SentenceCheck,
+  type SentenceStatus,
+  type SupportVerdict,
   segmentMarkers,
+  verifySentences,
+  withJudge,
 } from "@filinglens/core";
 import type { Passage } from "../search/protocol";
 import { answerBlocks } from "./render";
 import type { AnswerState } from "./useAnswer";
+import type { JudgeState } from "./useVerify";
 
 /** The citation the visitor clicked: source `n`, cited by `sentence`. */
 export interface ActiveCite {
@@ -28,19 +34,159 @@ const MESSAGES: Record<string, string> = {
 const FALLBACK =
   "Live answers are unavailable right now. The passages below still come from live retrieval in your browser.";
 
+const JUDGE_MESSAGES: Record<string, string> = {
+  quota: "The AI judge has used up today's free quota. Try again tomorrow.",
+  rate_limit: "Too many requests this minute. Wait a minute and try again.",
+};
+
 export const sourceTitle = ({ doc, chunk }: Passage) =>
   `${doc.company} FY${doc.fy}, Item ${chunk.item}`;
+
+/** A sentence's final status and why, for its badge. */
+interface Status {
+  status: SentenceStatus;
+  detail: string;
+}
+
+const BADGES: Record<
+  SentenceStatus,
+  { icon: string; label: string; className: string }
+> = {
+  verified: {
+    icon: "✓",
+    label: "Verified",
+    className: "border-emerald-200 bg-emerald-50 text-emerald-800",
+  },
+  unverified: {
+    icon: "?",
+    label: "Unverified",
+    className: "border-amber-300 bg-amber-50 text-amber-900",
+  },
+  unsupported: {
+    icon: "✗",
+    label: "Unsupported",
+    className: "border-red-200 bg-red-50 text-red-800",
+  },
+};
+
+function StatusBadge({ status, detail }: Status) {
+  const badge = BADGES[status];
+  return (
+    <span
+      data-status={status}
+      title={detail}
+      className={`ml-1 inline-flex items-center gap-0.5 rounded border px-1 align-text-top text-[11px] font-medium leading-4 ${badge.className}`}
+    >
+      <span aria-hidden="true">{badge.icon}</span>
+      {badge.label}
+      <span className="sr-only">: {detail}</span>
+    </span>
+  );
+}
+
+/** The deterministic check, overruled by the judge's "not supported". */
+function statusOf(
+  check: SentenceCheck,
+  verdicts: ReadonlyMap<string, SupportVerdict>,
+): Status {
+  const verdict = verdicts.get(check.plain);
+  const status = withJudge(check, verdict?.supported);
+  if (status === "unsupported") {
+    return {
+      status,
+      detail: `AI judge: ${verdict?.reason || "the cited text doesn't support this"}`,
+    };
+  }
+  if (check.reason === "no_citation") return { status, detail: "No citation" };
+  if (check.reason === "number_not_found") {
+    return {
+      status,
+      detail: `Not in the cited passage: ${check.missing.join(", ")}`,
+    };
+  }
+  return {
+    status,
+    detail: `Cited, and every number ${
+      check.derived.length
+        ? `appears in the cited passage or is computed from ones that do (${check.derived.join(", ")})`
+        : "appears in the cited passage"
+    }${verdict?.supported ? "; the AI judge agrees" : ""}`,
+  };
+}
+
+function Checks({
+  statuses,
+  judge,
+  onJudge,
+}: {
+  statuses: Status[];
+  judge: JudgeState;
+  onJudge?: () => void;
+}) {
+  const count = (s: SentenceStatus) =>
+    statuses.filter((x) => x.status === s).length;
+  const unsupported = count("unsupported");
+  let message =
+    "An independent model checks each cited sentence against its passage.";
+  if (judge.status === "pending") message = "Checking…";
+  if (judge.status === "error") {
+    message =
+      JUDGE_MESSAGES[judge.reason] ?? "The AI judge is unavailable right now.";
+  }
+  if (judge.status === "done") {
+    const { verdicts, model, cached } = judge.result;
+    const ok = verdicts.filter((v) => v.supported).length;
+    message = verdicts.length
+      ? `Judged by ${model}${cached ? " (cached)" : ""}: ${ok} of ${verdicts.length} cited sentences supported.`
+      : "No cited sentences to judge.";
+  }
+  return (
+    <div
+      data-testid="checks"
+      className="mt-3 border-t border-slate-100 pt-3 text-sm text-slate-600"
+    >
+      <p>
+        <span className="font-medium text-slate-800">Checks:</span>{" "}
+        {count("verified")} verified · {count("unverified")} unverified
+        {unsupported ? ` · ${unsupported} unsupported` : ""}. Verified means the
+        sentence cites a passage and every number in it appears there.
+      </p>
+      {onJudge && (
+        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <button
+            type="button"
+            onClick={onJudge}
+            disabled={judge.status === "pending" || judge.status === "done"}
+            className="rounded-md border border-slate-300 bg-white px-2 py-1 font-medium text-slate-800 hover:bg-slate-50 disabled:opacity-60"
+          >
+            {judge.status === "pending"
+              ? "Judging…"
+              : judge.status === "done"
+                ? "Checked by AI judge"
+                : "Check with AI judge"}
+          </button>
+          <span role="status" data-testid="judge-status">
+            {message}
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function Sentence({
   text,
   sources,
   active,
   onCite,
+  status,
 }: {
   text: string;
   sources: Passage[];
   active: ActiveCite | null;
   onCite: (cite: ActiveCite) => void;
+  /** Shown once the answer is complete. */
+  status?: Status;
 }) {
   const { plain } = parseCitations(
     text,
@@ -81,7 +227,8 @@ function Sentence({
             {seg.n}
           </button>
         );
-      })}{" "}
+      })}
+      {status && <StatusBadge {...status} />}{" "}
     </span>
   );
 }
@@ -92,6 +239,8 @@ export function Answer({
   active,
   onCite,
   checkNeeded = false,
+  judge = { status: "idle" },
+  onJudge,
 }: {
   state: AnswerState;
   sources: Passage[];
@@ -99,6 +248,8 @@ export function Answer({
   onCite: (cite: ActiveCite) => void;
   /** Turnstile wants the visitor to complete its check first. */
   checkNeeded?: boolean;
+  judge?: JudgeState;
+  onJudge?: () => void;
 }) {
   if (state.status === "idle") return null;
   const { text, status } = state;
@@ -107,6 +258,27 @@ export function Answer({
   const writing =
     status === "pending" ||
     (status === "streaming" && INSUFFICIENT.startsWith(trimmed));
+  const blocks = answerBlocks(text);
+  const current: JudgeState =
+    judge.status !== "idle" && judge.answer === text
+      ? judge
+      : { status: "idle" };
+  const verdicts = new Map(
+    current.status === "done"
+      ? current.result.verdicts.map((v) => [v.plain, v])
+      : [],
+  );
+  // Statuses need complete sentences, so they appear once the answer is done.
+  let statuses: Status[][] | null = null;
+  if (status === "done") {
+    const checks = verifySentences(
+      blocks.flatMap((b) => b.sentences),
+      sources.map((s) => s.candidate.chunk_id),
+      (id) => sources.find((s) => s.candidate.chunk_id === id)?.chunk.text,
+    ).map((c) => statusOf(c, verdicts));
+    let k = 0;
+    statuses = blocks.map((b) => b.sentences.map(() => checks[k++] as Status));
+  }
 
   return (
     <section
@@ -141,7 +313,7 @@ export function Answer({
           data-testid="answer-text"
           className="mt-2 flex flex-col gap-2 leading-relaxed"
         >
-          {answerBlocks(text).map((block, b) => {
+          {blocks.map((block, b) => {
             const sentences = block.sentences.map((s, i) => (
               <Sentence
                 /*  biome-ignore lint/suspicious/noArrayIndexKey: positional parts of the answer text, which only grows */
@@ -150,6 +322,7 @@ export function Answer({
                 sources={sources}
                 active={active}
                 onCite={onCite}
+                status={statuses?.[b]?.[i]}
               />
             ));
             return (
@@ -164,6 +337,10 @@ export function Answer({
             );
           })}
         </div>
+      )}
+
+      {missing === null && statuses && statuses.flat().length > 0 && (
+        <Checks statuses={statuses.flat()} judge={current} onJudge={onJudge} />
       )}
 
       {status === "error" && (

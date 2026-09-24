@@ -3,7 +3,9 @@ import { handleAnswer } from "./answer";
 import type { Env } from "./env";
 import { HttpError, json, log, rateLimit, requireMethod } from "./http";
 import { providerStatus } from "./providers/chain";
+import { JUDGE_CHAIN } from "./providers/providers.config";
 import { handleSession } from "./session";
+import { handleVerify } from "./verify";
 
 export type { Env } from "./env";
 
@@ -22,11 +24,14 @@ async function route(
         status: "ok",
         promptVersion: PROMPT_VERSION,
         providers: providerStatus(env),
+        judge: providerStatus(env, JUDGE_CHAIN),
       });
     case "/api/session":
       return handleSession(request, env);
     case "/api/answer":
       return handleAnswer(request, env, ctx);
+    case "/api/verify":
+      return handleVerify(request, env);
     default:
       throw new HttpError(404, "not_found");
   }

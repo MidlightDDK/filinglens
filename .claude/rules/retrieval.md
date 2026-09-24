@@ -37,6 +37,6 @@ Return every candidate with lexical, dense, fused, and rerank scores plus stage 
 ## Citations and verification (pure functions, heavily unit-tested)
 - Sentence splitter robust to "$1.2 billion.", "U.S.", decimals, and list items. Markers map to chunk ids; drop markers that point outside SOURCES.
 - Number normalizer: commas, %, $, million/billion/thousand, parentheses as negatives, per-share values.
-- Per sentence: `verified` (at least one valid citation and every number appears in a cited chunk), `unverified` (no citation, or a number not found), `unsupported` (the optional LLM judge says the cited text doesn't support it).
+- Per sentence: `verified` (at least one valid citation and every number appears in a cited chunk, or is one arithmetic step (difference, sum, ratio, percent change) from two numbers of the same answer that do), `unverified` (no citation, or a number not found), `unsupported` (the optional LLM judge says the cited text doesn't support it). Markers may be ASCII `[2]` or full-width `【2】` (gpt-oss).
 - Highlight span: inside the cited chunk, prefer the number match, else the window with the largest token overlap.
 

@@ -1,4 +1,5 @@
 // The Worker's HTTP contract, shared by the Worker and the browser.
+import type { SupportVerdict } from "./judge.ts";
 
 export interface Usage {
   prompt_tokens: number;
@@ -19,6 +20,23 @@ export interface AnswerDone {
   promptVersion: string;
   usage: Usage | null;
   latencyMs: number;
+  cached: boolean;
+}
+
+/** POST /api/verify body: the answer to check against the same sources. */
+export interface VerifyRequest {
+  question: string;
+  answer: string;
+  chunkIds: string[];
+  configId: string;
+}
+
+/** POST /api/verify response. Claims the judge skipped have no verdict. */
+export interface VerifyResponse {
+  verdicts: SupportVerdict[];
+  provider: string;
+  model: string;
+  judgeVersion: string;
   cached: boolean;
 }
 

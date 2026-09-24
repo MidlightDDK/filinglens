@@ -8,7 +8,12 @@ import type { AnswerState } from "./useAnswer";
 
 afterEach(cleanup);
 
-const passage = (id: string, company: string, fy: number): Passage => ({
+const passage = (
+  id: string,
+  company: string,
+  fy: number,
+  text = "t",
+): Passage => ({
   candidate: {
     chunk_id: id,
     doc_id: `${company}-${fy}`,
@@ -18,7 +23,7 @@ const passage = (id: string, company: string, fy: number): Passage => ({
     rerank: null,
   },
   chunk: {
-    text: "t",
+    text,
     doc_id: `${company}-${fy}`,
     item: "7",
     heading_path: [],
@@ -167,6 +172,132 @@ describe("Answer", () => {
     );
     expect(screen.getByTestId("answer-meta").textContent).toBe(
       "openai/gpt-oss-120b via groq · 1.2 s · 120 tokens · cached",
+    );
+  });
+});
+
+describe("sentence statuses", () => {
+  const checked = [
+    passage("a", "Apple", 2025, "Sales rose 5% in fiscal 2025."),
+    passage("b", "NVIDIA", 2026, "Data center revenue grew."),
+  ];
+  const text = "Sales rose 5% [1]. Data center grew 9% [2]. Nothing else.";
+  const badges = () =>
+    [...document.querySelectorAll("[data-status]")].map((b) => [
+      b.getAttribute("data-status"),
+      b.textContent,
+    ]);
+
+  it("labels each sentence with an icon and a text status once done", () => {
+    render(
+      <Answer
+        state={state(text)}
+        sources={checked}
+        active={null}
+        onCite={() => {}}
+      />,
+    );
+    expect(badges()).toEqual([
+      [
+        "verified",
+        "✓Verified: Cited, and every number appears in the cited passage",
+      ],
+      ["unverified", "?Unverified: Not in the cited passage: 9%"],
+      ["unverified", "?Unverified: No citation"],
+    ]);
+    expect(screen.getByTestId("checks").textContent).toContain(
+      "1 verified · 2 unverified",
+    );
+  });
+
+  it("shows no statuses while streaming", () => {
+    render(
+      <Answer
+        state={state(text, "streaming")}
+        sources={checked}
+        active={null}
+        onCite={() => {}}
+      />,
+    );
+    expect(badges()).toEqual([]);
+    expect(screen.queryByTestId("checks")).toBeNull();
+  });
+
+  it("asks the judge and applies its verdicts to this answer only", () => {
+    const onJudge = vi.fn();
+    const { rerender } = render(
+      <Answer
+        state={state(text)}
+        sources={checked}
+        active={null}
+        onCite={() => {}}
+        onJudge={onJudge}
+      />,
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "Check with AI judge" }),
+    );
+    expect(onJudge).toHaveBeenCalledOnce();
+
+    const result = {
+      verdicts: [
+        { plain: "Sales rose 5%.", supported: false, reason: "wrong year" },
+        { plain: "Data center grew 9%.", supported: true, reason: "" },
+      ],
+      provider: "groqJudge",
+      model: "qwen/qwen3.8-27b",
+      judgeVersion: "support-v1",
+      cached: false,
+    };
+    const props = {
+      sources: checked,
+      active: null,
+      onCite: () => {},
+      onJudge,
+    };
+    rerender(
+      <Answer
+        {...props}
+        state={state(text)}
+        judge={{ status: "done", answer: text, result }}
+      />,
+    );
+    expect(badges().map(([s]) => s)).toEqual([
+      "unsupported",
+      "unverified", // the judge can't clear a number the check didn't find
+      "unverified",
+    ]);
+    expect(badges()[0]?.[1]).toBe("✗Unsupported: AI judge: wrong year");
+    expect(screen.getByTestId("judge-status").textContent).toBe(
+      "Judged by qwen/qwen3.8-27b: 1 of 2 cited sentences supported.",
+    );
+    expect(
+      screen.getByRole("button", { name: "Checked by AI judge" }),
+    ).toHaveProperty("disabled", true);
+
+    rerender(
+      <Answer
+        {...props}
+        state={state("Other answer [1].")}
+        judge={{ status: "done", answer: text, result }}
+      />,
+    );
+    expect(badges().map(([s]) => s)).toEqual(["verified"]);
+  });
+
+  it("shows a friendly message when the judge is out of quota", () => {
+    render(
+      <Answer
+        state={state(text)}
+        sources={checked}
+        active={null}
+        onCite={() => {}}
+        onJudge={() => {}}
+        judge={{ status: "error", answer: text, reason: "quota" }}
+      />,
+    );
+    expect(screen.getByTestId("judge-status").textContent).toContain(
+      "free quota",
     );
   });
 });

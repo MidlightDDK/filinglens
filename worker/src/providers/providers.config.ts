@@ -10,10 +10,16 @@ export const FIRST_TOKEN_TIMEOUT_MS = 8_000;
 /** How long a failing provider is skipped (per isolate, best effort). */
 export const COLD_MS = 60_000;
 
-export type ProviderId = "workersAi" | "groq" | "gemini";
+export type ProviderId = "workersAi" | "groq" | "gemini" | "groqJudge";
 
 /** Fallback order. */
 export const CHAIN: ProviderId[] = ["workersAi", "groq", "gemini"];
+
+/**
+ * The support judge (`/api/verify`). Its first model differs from every
+ * answer model, and the eval runners calibrate it against human labels.
+ */
+export const JUDGE_CHAIN: ProviderId[] = ["groqJudge", "workersAi"];
 
 export const WORKERS_AI = {
   // https://developers.cloudflare.com/workers-ai/models/llama-3.3-70b-instruct-fp8-fast/
@@ -48,4 +54,13 @@ export const GEMINI: OpenAiCompatible = {
   model: "gemini-3.5-flash-lite",
   max_tokens: ANSWER_MAX_TOKENS + 800,
   extra: { reasoning_effort: "low" },
+};
+
+export const GROQ_JUDGE: OpenAiCompatible = {
+  // Groq free plan, 2026-09-24: 30 RPM, 8K TPM, 200K TPD, a separate budget
+  // from gpt-oss-120b (https://console.groq.com/docs/rate-limits).
+  url: GROQ.url,
+  model: "qwen/qwen3.8-27b",
+  max_tokens: 600,
+  extra: { reasoning_effort: "none" },
 };

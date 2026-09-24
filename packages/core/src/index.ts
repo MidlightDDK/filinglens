@@ -3,10 +3,12 @@ export type {
   AnswerRequest,
   ErrorReason,
   Usage,
+  VerifyRequest,
+  VerifyResponse,
 } from "./api.ts";
 export {
   type Citation,
-  highlightSpan,
+  MARKER,
   parseCitations,
   type Segment,
   type Span,
@@ -21,6 +23,15 @@ export {
   detectFilters,
   type QueryFilters,
 } from "./filters.ts";
+export {
+  buildSupportPrompt,
+  type Claim,
+  claimsOf,
+  firstJsonObject,
+  JUDGE_VERSION,
+  parseSupportVerdicts,
+  type SupportVerdict,
+} from "./judge.ts";
 export {
   buildLexicalIndex,
   type Hit,
@@ -63,3 +74,17 @@ export {
   SHARDS,
   shardOf,
 } from "./store.ts";
+export {
+  answerSentences,
+  type ChunkText,
+  extractNumbers,
+  highlightSpan,
+  type NumberMention,
+  numbersMatch,
+  type SentenceCheck,
+  type SentenceStatus,
+  verifyAnswer,
+  verifySentence,
+  verifySentences,
+  withJudge,
+} from "./verify.ts";

@@ -1,8 +1,10 @@
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import { type ActiveCite, Answer } from "./answer/Answer";
 import { useAnswer } from "./answer/useAnswer";
+import { useVerify } from "./answer/useVerify";
 import { Passages } from "./ask/Passages";
 import { UnderTheHood } from "./ask/UnderTheHood";
+import { CONFIG_ID } from "./config";
 import { type LoadState, useSearch } from "./search/useSearch";
 
 function LoadStatus({ load }: { load: LoadState }) {
@@ -39,6 +41,7 @@ export function App() {
   const { load, outcome, error, busy, search } = useSearch();
   const turnstileRef = useRef<HTMLDivElement>(null);
   const { state: answer, ask, prepare, checkNeeded } = useAnswer(turnstileRef);
+  const { state: judge, verify } = useVerify(turnstileRef);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<ActiveCite | null>(null);
 
@@ -116,6 +119,16 @@ export function App() {
             active={active}
             onCite={setActive}
             checkNeeded={checkNeeded}
+            judge={judge}
+            onJudge={() =>
+              answer.status === "done" &&
+              verify({
+                question: answer.question,
+                answer: answer.text,
+                chunkIds: answer.chunkIds,
+                configId: CONFIG_ID,
+              })
+            }
           />
           <h2 className="font-medium">Sources</h2>
           <Passages passages={outcome.passages} active={active} />

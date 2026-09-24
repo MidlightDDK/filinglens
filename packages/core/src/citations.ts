@@ -10,9 +10,9 @@ export interface Citation {
   chunk_id: string;
 }
 
-/** `[2]`, `[2][5]`, or `[2, 5]`. */
-const MARKER = /\[(\d{1,2}(?:\s*,\s*\d{1,2})*)\]/g;
-const MARKERS = String.raw`(?:\s*\[\d{1,2}(?:\s*,\s*\d{1,2})*\])*`;
+/** `[2]`, `[2][5]`, or `[2, 5]`; gpt-oss writes full-width `【2】`. */
+export const MARKER = /[[【](\d{1,2}(?:\s*,\s*\d{1,2})*)[\]】]/g;
+const MARKERS = String.raw`(?:\s*[\[【]\d{1,2}(?:\s*,\s*\d{1,2})*[\]】])*`;
 /** A sentence end: terminal punctuation, closing quotes, then any markers. */
 const END = new RegExp(`[.!?]["'’”)]*(${MARKERS})(?=\\s|$)`, "g");
 const LIST_ITEM = /^\s*(?:[-*•]|\d{1,2}[.)])\s+/;
@@ -121,46 +121,4 @@ export function segmentMarkers(text: string): Segment[] {
   }
   if (last < text.length) out.push({ type: "text", text: text.slice(last) });
   return out;
-}
-
-const STOPWORDS = new Set(
-  "a an and are as at be by for from has have in is it its of on or that the this to was were which with".split(
-    " ",
-  ),
-);
-
-/** Lowercased content words and numbers ("1,234.5" → "1234.5"). */
-function terms(text: string): string[] {
-  return (text.toLowerCase().match(/\d[\d,]*(?:\.\d+)?|[a-z]+/g) ?? [])
-    .map((t) => (/^\d/.test(t) ? t.replace(/,/g, "") : t))
-    .filter((t) => !STOPWORDS.has(t));
-}
-
-const isNumber = (t: string) => /^\d/.test(t);
-
-/**
- * The part of `chunkText` that best supports `sentence`: the chunk sentence
- * (or line) sharing the most terms with it, where a shared number outweighs
- * any number of shared words. Null when nothing overlaps.
- */
-export function highlightSpan(
-  sentence: string,
-  chunkText: string,
-): Span | null {
-  const wanted = new Set(terms(parseCitations(sentence, []).plain));
-  if (wanted.size === 0) return null;
-  let best: Span | null = null;
-  let bestScore = 0;
-  for (const span of splitSentences(chunkText)) {
-    const seen = new Set(terms(chunkText.slice(span.start, span.end)));
-    let score = 0;
-    for (const t of seen) {
-      if (wanted.has(t)) score += isNumber(t) ? 100 : 1;
-    }
-    if (score > bestScore) {
-      best = span;
-      bestScore = score;
-    }
-  }
-  return best;
 }

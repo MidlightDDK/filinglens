@@ -29,7 +29,7 @@ export type AnswerState =
 let sessionUntil = 0;
 let sessionP: Promise<void> | null = null;
 
-type OnInteractive = (active: boolean) => void;
+export type OnInteractive = (active: boolean) => void;
 
 async function newSession(
   container: HTMLElement,
@@ -46,7 +46,7 @@ async function newSession(
 }
 
 /** Gets a session unless one is valid for another minute; shares in-flight work. */
-function ensureSession(
+export function ensureSession(
   container: HTMLElement,
   onInteractive: OnInteractive,
   force = false,
@@ -58,7 +58,7 @@ function ensureSession(
   return sessionP;
 }
 
-class ApiError extends Error {
+export class ApiError extends Error {
   readonly reason: ErrorReason | "network";
   constructor(reason: ErrorReason | "network") {
     super(reason);
@@ -66,7 +66,9 @@ class ApiError extends Error {
   }
 }
 
-async function reasonOf(res: Response): Promise<ErrorReason | "network"> {
+export async function reasonOf(
+  res: Response,
+): Promise<ErrorReason | "network"> {
   try {
     return ((await res.json()) as { reason: ErrorReason }).reason;
   } catch {

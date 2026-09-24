@@ -1,10 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  highlightSpan,
-  parseCitations,
-  segmentMarkers,
-  splitSentences,
-} from "./citations.ts";
+import { parseCitations, segmentMarkers, splitSentences } from "./citations.ts";
 
 const sentences = (text: string) =>
   splitSentences(text).map((s) => text.slice(s.start, s.end));
@@ -88,28 +83,5 @@ describe("segmentMarkers", () => {
       { type: "cite", n: 3 },
       { type: "text", text: " b" },
     ]);
-  });
-});
-
-describe("highlightSpan", () => {
-  const chunk =
-    "Total net sales were $391,035 million in 2024. Services net sales increased due to advertising. iPhone net sales decreased.";
-
-  it("prefers the chunk sentence with the matching number", () => {
-    const span = highlightSpan("Net sales were $391,035 million [1].", chunk);
-    expect(span && chunk.slice(span.start, span.end)).toBe(
-      "Total net sales were $391,035 million in 2024.",
-    );
-  });
-
-  it("falls back to the largest word overlap", () => {
-    const span = highlightSpan("Advertising lifted services sales [1].", chunk);
-    expect(span && chunk.slice(span.start, span.end)).toBe(
-      "Services net sales increased due to advertising.",
-    );
-  });
-
-  it("returns null without overlap", () => {
-    expect(highlightSpan("Unrelated words [1].", chunk)).toBeNull();
   });
 });

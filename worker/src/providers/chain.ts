@@ -1,10 +1,11 @@
 import type { ChatMessage } from "@filinglens/core";
 import type { Env } from "../env";
-import { gemini, groq } from "./openaiCompat";
+import { gemini, groq, groqJudge } from "./openaiCompat";
 import {
   CHAIN,
   COLD_MS,
   FIRST_TOKEN_TIMEOUT_MS,
+  JUDGE_CHAIN,
   type ProviderId,
 } from "./providers.config";
 import { type Provider, ProviderError, type ProviderEvent } from "./types";
@@ -14,6 +15,7 @@ export const PROVIDERS: Record<ProviderId, Provider> = {
   workersAi,
   groq,
   gemini,
+  groqJudge,
 };
 
 /** Provider → time until which it is skipped. Per isolate, best effort. */
@@ -133,11 +135,13 @@ export async function startChain(
 }
 
 /** For `/api/health`: which providers could take a request right now. */
-export function providerStatus(env: Env) {
-  return CHAIN.map((id) => ({
+export function providerStatus(env: Env, chain: ProviderId[] = CHAIN) {
+  return chain.map((id) => ({
     id,
     model: PROVIDERS[id].model,
     configured: PROVIDERS[id].configured(env),
     cold: isCold(id),
   }));
 }
+
+export const judgeProviders = () => JUDGE_CHAIN.map((id) => PROVIDERS[id]);

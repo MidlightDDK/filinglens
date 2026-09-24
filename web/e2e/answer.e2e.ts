@@ -1,4 +1,5 @@
-// Ask → streamed, cited answer → click a citation → highlighted source.
+// Ask → streamed, cited answer → click a citation → highlighted source →
+// sentence statuses and the AI judge.
 // The mocked test stubs Turnstile and /api/*, so it runs against any server;
 // `E2E_LIVE=1` also runs one against the real gateway (e.g. `wrangler dev` or
 // the deployed site via E2E_BASE_URL), which spends free-tier LLM quota.
@@ -67,6 +68,33 @@ test("mocked gateway: chips, highlight, insufficient evidence, quota", async ({
   await chip.click();
   await expect(chip).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator("#source-1 [data-testid=highlight]")).toBeVisible();
+
+  // Every sentence gets a status; the AI judge can mark it unsupported.
+  await expect(page.locator("[data-status=verified]")).toContainText(
+    "Verified",
+  );
+  await page.route("**/api/verify", (route) =>
+    route.fulfill({
+      json: {
+        verdicts: [
+          {
+            plain: "Apple iPhone net sales changed in fiscal 2025.",
+            supported: false,
+            reason: "mock verdict",
+          },
+        ],
+        provider: "groqJudge",
+        model: "mock-judge",
+        judgeVersion: "mock",
+        cached: false,
+      },
+    }),
+  );
+  await page.getByRole("button", { name: "Check with AI judge" }).click();
+  await expect(page.locator("[data-status=unsupported]")).toContainText(
+    "Unsupported",
+  );
+  await expect(page.getByTestId("judge-status")).toContainText("mock-judge");
 
   reply = "INSUFFICIENT_EVIDENCE: The filings do not cover French geography.";
   await ask(page, FRANCE);

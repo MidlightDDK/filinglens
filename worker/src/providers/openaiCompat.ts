@@ -3,6 +3,7 @@ import type { Env } from "../env";
 import {
   GEMINI,
   GROQ,
+  GROQ_JUDGE,
   type OpenAiCompatible,
   type ProviderId,
 } from "./providers.config";
@@ -68,4 +69,9 @@ export const gemini = openAiCompatible(
   "gemini",
   GEMINI,
   (env) => env.GEMINI_API_KEY,
+);
+export const groqJudge = openAiCompatible(
+  "groqJudge",
+  GROQ_JUDGE,
+  (env) => env.GROQ_API_KEY,
 );

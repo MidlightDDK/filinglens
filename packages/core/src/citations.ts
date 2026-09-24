@@ -10,9 +10,12 @@ export interface Citation {
   chunk_id: string;
 }
 
-/** `[2]`, `[2][5]`, or `[2, 5]`; gpt-oss writes full-width `【2】`. */
-export const MARKER = /[[【](\d{1,2}(?:\s*,\s*\d{1,2})*)[\]】]/g;
-const MARKERS = String.raw`(?:\s*[\[【]\d{1,2}(?:\s*,\s*\d{1,2})*[\]】])*`;
+/**
+ * `[2]`, `[2][5]`, or `[2, 5]`; gpt-oss writes full-width `【2】`, sometimes
+ * with a line range (`【2†L4-L9】`), which is ignored.
+ */
+export const MARKER = /[[【](\d{1,2}(?:\s*,\s*\d{1,2})*)(?:†[^\]】]*)?[\]】]/g;
+const MARKERS = String.raw`(?:\s*[\[【]\d{1,2}(?:\s*,\s*\d{1,2})*(?:†[^\]】]*)?[\]】])*`;
 /** A sentence end: terminal punctuation, closing quotes, then any markers. */
 const END = new RegExp(`[.!?]["'’”)]*(${MARKERS})(?=\\s|$)`, "g");
 const LIST_ITEM = /^\s*(?:[-*•]|\d{1,2}[.)])\s+/;

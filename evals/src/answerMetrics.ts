@@ -18,15 +18,40 @@ function unitFits(n: NumberMention, unit: string): boolean {
 }
 
 /**
- * Numeric exact match: some number in the answer equals the gold value within
- * its tolerance (signs ignored; prose carries direction in words).
+ * Numeric exact match: the answer states the gold value within its tolerance
+ * (signs ignored; prose carries direction in words). With `change`, for trend
+ * questions ("How did X change?") whose gold is a percent change, stating
+ * both endpoints also counts: "from $8,249 million to $14,265 million"
+ * determines the 72.9% rise.
  */
-export function numericMatch(answer: string, gold: GoldNumeric): boolean {
+export function numericMatch(
+  answer: string,
+  gold: GoldNumeric,
+  change = false,
+): boolean {
   const target = Math.abs(gold.value);
-  return extractNumbers(answer.replace(MARKER, " ")).some(
-    (n) =>
-      unitFits(n, gold.unit) &&
-      Math.abs(Math.abs(n.value) - target) <= gold.tolerance + target * 1e-9,
+  const slack = gold.tolerance + target * 1e-9;
+  const numbers = extractNumbers(answer.replace(MARKER, " "));
+  if (
+    numbers.some(
+      (n) =>
+        unitFits(n, gold.unit) && Math.abs(Math.abs(n.value) - target) <= slack,
+    )
+  ) {
+    return true;
+  }
+  if (!change || gold.unit !== "%") return false;
+  const amounts = numbers
+    .filter((n) => !n.percent)
+    .map((n) => Math.abs(n.value));
+  return amounts.some((a, i) =>
+    amounts.slice(i + 1).some((b) => {
+      const [lo, hi] = a < b ? [a, b] : [b, a];
+      if (lo === 0) return false;
+      const up = ((hi - lo) / lo) * 100;
+      const down = ((hi - lo) / hi) * 100;
+      return Math.abs(up - target) <= slack || Math.abs(down - target) <= slack;
+    }),
   );
 }
 

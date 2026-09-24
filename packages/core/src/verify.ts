@@ -204,7 +204,11 @@ function oneStep(
     : [hi - lo, hi + lo, hi / lo, lo / hi];
 }
 
-function derivable(claim: NumberMention, operands: NumberMention[]): boolean {
+/** Whether `claim` is one arithmetic step (see `oneStep`) from two of `operands`. */
+export function derivable(
+  claim: NumberMention,
+  operands: NumberMention[],
+): boolean {
   const target = Math.abs(claim.value);
   const slack = claim.tolerance + target * 1e-9;
   for (const [i, a] of operands.entries()) {

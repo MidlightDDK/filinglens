@@ -373,7 +373,8 @@ async function runItem(item: GoldItem, d: Deps) {
     answerable: item.answerable,
     abstained,
     numeric_em: item.gold_numeric
-      ? !abstained && numericMatch(answer, item.gold_numeric)
+      ? !abstained &&
+        numericMatch(answer, item.gold_numeric, item.category === "trend")
       : null,
     judge_correct: correctness ? correctness.correct : null,
     sentences: checks.length,

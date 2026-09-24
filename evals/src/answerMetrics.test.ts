@@ -34,6 +34,29 @@ describe("numericMatch", () => {
     expect(numericMatch("$0.55 million", eps)).toBe(false);
   });
 
+  it("accepts a percent change from stated endpoints, for trend items only", () => {
+    const pct = { value: 72.9, unit: "%", tolerance: 0.5 };
+    const endpoints =
+      "Cash rose from $8,249 million to $14,265 million, up $6,016 million [8].";
+    expect(numericMatch(endpoints, pct, true)).toBe(true);
+    expect(numericMatch(endpoints, pct)).toBe(false);
+    expect(numericMatch("Cash rose by $6,016 million [8].", pct, true)).toBe(
+      false,
+    );
+    const drop = { value: -2.4, unit: "%", tolerance: 0.5 };
+    expect(numericMatch("Fell from $58,471M to $57,048M.", drop, true)).toBe(
+      true,
+    );
+    const diff = { value: 30_338_000_000, unit: "USD", tolerance: 660_850_000 };
+    expect(
+      numericMatch(
+        "Alphabet $132,170 million vs Microsoft $101,832 million.",
+        diff,
+        true,
+      ),
+    ).toBe(false);
+  });
+
   it("does not count citation markers as numbers", () => {
     const gold = { value: 2, unit: "%", tolerance: 0.1 };
     expect(numericMatch("Sales grew [2].", gold)).toBe(false);

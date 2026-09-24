@@ -51,6 +51,26 @@ describe("splitSentences", () => {
   });
 });
 
+describe("full-width markers", () => {
+  it("parses 【n】 and 【n†L1-L3】 like [n]", () => {
+    const text = "Sales rose 5%【1†L22-L24】【2】. Costs fell【2】.";
+    expect(sentences(text)).toEqual([
+      "Sales rose 5%【1†L22-L24】【2】.",
+      "Costs fell【2】.",
+    ]);
+    expect(
+      parseCitations("Sales rose 5%【1†L22-L24】【2】.", ["a", "b"]),
+    ).toEqual({
+      plain: "Sales rose 5%.",
+      citations: [
+        { n: 1, chunk_id: "a" },
+        { n: 2, chunk_id: "b" },
+      ],
+      invalid: [],
+    });
+  });
+});
+
 describe("parseCitations", () => {
   const ids = ["c1", "c2", "c3"];
 

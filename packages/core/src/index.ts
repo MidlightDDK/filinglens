@@ -77,6 +77,7 @@ export {
 export {
   answerSentences,
   type ChunkText,
+  derivable,
   extractNumbers,
   highlightSpan,
   type NumberMention,

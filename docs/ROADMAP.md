@@ -92,10 +92,10 @@ Acceptance:
 ## M4: Gateway + grounded, cited answers
 - Worker endpoints, provider chain, SSE, Turnstile session, rate limits, KV cache, prompt, abstention; answer UI with citation chips and source highlighting.
 Acceptance:
-- [ ] Live answers stream with citations.
-- [ ] Forced failure of each provider (dev-only flag) falls through correctly (tests).
-- [ ] An out-of-scope question shows the insufficient-evidence UI.
-- [ ] No secret values in the bundle (grep `web/dist` for key prefixes returns nothing).
+- [x] Live answers stream with citations.
+- [x] Forced failure of each provider (dev-only flag) falls through correctly (tests).
+- [x] An out-of-scope question shows the insufficient-evidence UI.
+- [x] No secret values in the bundle (grep `web/dist` for key prefixes returns nothing).
 
 ## M5: Sentence verification + answer evals
 - Deterministic verifier; optional judge endpoint; sentence status UI; `judge_labels.jsonl` calibration report; answers runner; PR comment.

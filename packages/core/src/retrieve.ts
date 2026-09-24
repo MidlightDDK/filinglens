@@ -90,7 +90,7 @@ export async function retrieve(
   const t0 = performance.now();
   const { rows, docs, meta } = index;
 
-  const filters = detectFilters(query, config.filters ? docs : {});
+  const filters = detectFilters(query, {}); // DELIBERATELY BROKEN: gate proof, do not merge
   let allowed: Uint8Array | null = null;
   if (filters.doc_ids) {
     const ids = new Set(filters.doc_ids);

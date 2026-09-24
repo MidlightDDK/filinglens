@@ -120,7 +120,7 @@ When compacting, keep: the goal, current milestone, decisions and constraints, f
 - [x] M2 Index + in-browser retrieval
 - [x] M3 Eval set v1 + retrieval evals in CI
 - [x] M4 Gateway + grounded, cited answers
-- [ ] M5 Sentence verification + answer evals
+- [x] M5 Sentence verification + answer evals
 - [ ] M6 Pipeline Lab, Evals page, examples
 - [ ] M7 Polish + launch
 

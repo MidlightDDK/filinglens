@@ -100,9 +100,9 @@ Acceptance:
 ## M5: Sentence verification + answer evals
 - Deterministic verifier; optional judge endpoint; sentence status UI; `judge_labels.jsonl` calibration report; answers runner; PR comment.
 Acceptance:
-- [ ] Judge agreement reported (target ≥ 85%; if lower, iterate on the rubric and report honestly).
-- [ ] Answer metrics on dev in `latest.json`.
-- [ ] The UI shows sentence statuses.
+- [x] Judge agreement reported (target ≥ 85%; if lower, iterate on the rubric and report honestly).
+- [x] Answer metrics on dev in `latest.json`.
+- [x] The UI shows sentence statuses.
 
 ## M6: Pipeline Lab, Evals page, examples
 - `pnpm examples` (precompute the six example answers with full metadata; committed), `/lab`, `/evals`, and the "Under the hood" drawer.

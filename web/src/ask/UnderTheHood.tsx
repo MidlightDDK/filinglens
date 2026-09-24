@@ -1,4 +1,5 @@
 import type { Ranked } from "@filinglens/core";
+import type { AnswerState } from "../answer/useAnswer";
 import type { LoadState, SearchOutcome } from "../search/useSearch";
 
 const cell = (r: Ranked | null, digits: number) =>
@@ -7,10 +8,13 @@ const cell = (r: Ranked | null, digits: number) =>
 export function UnderTheHood({
   outcome,
   load,
+  answer,
 }: {
   outcome: SearchOutcome;
   load: LoadState;
+  answer?: AnswerState;
 }) {
+  const done = answer?.status === "done" ? answer.done : undefined;
   const { result, fetch_ms, wall_ms } = outcome;
   const { filters, timings } = result;
   const stages: [string, number][] = [
@@ -54,6 +58,25 @@ export function UnderTheHood({
               {load.strategy} chunks, {load.n.toLocaleString()} passages ·
               config {result.config_id}
             </dd>
+          </>
+        )}
+        {done && (
+          <>
+            <dt className="text-slate-500">LLM</dt>
+            <dd className="break-all" data-testid="llm">
+              {done.model} via {done.provider}
+              {done.cached ? " (cached answer)" : ""}
+            </dd>
+            <dt className="text-slate-500">Prompt</dt>
+            <dd>{done.promptVersion}</dd>
+            <dt className="text-slate-500">Tokens</dt>
+            <dd>
+              {done.usage
+                ? `${done.usage.prompt_tokens.toLocaleString()} in · ${done.usage.completion_tokens.toLocaleString()} out`
+                : "not reported"}
+            </dd>
+            <dt className="text-slate-500">Answer latency</dt>
+            <dd>{done.latencyMs.toLocaleString()} ms (server)</dd>
           </>
         )}
       </dl>

@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node -e \"require('fs').mkdirSync('../web/dist',{recursive:true})\" && wrangler dev",
+    "dev": "node -e \"require('fs').mkdirSync('../web/dist',{recursive:true})\" && wrangler dev --var DEV_FLAGS:1 --var TURNSTILE_SECRET_KEY:1x0000000000000000000000000000000AA --var SESSION_HMAC_SECRET:local-dev-only",
     "build": "wrangler deploy --dry-run --outdir dist",
     "deploy": "wrangler deploy",
     "typecheck": "tsc --noEmit"
@@ -12,5 +12,9 @@
     "@cloudflare/workers-types": "^5.20260924.1",
     "typescript": "^7.0.2",
     "wrangler": "^4.137.0"
+  },
+  "dependencies": {
+    "@filinglens/core": "workspace:*",
+    "zod": "^4.6.5"
   }
 }

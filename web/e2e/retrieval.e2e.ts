@@ -48,7 +48,7 @@ test("Node and browser return identical top-10 ids", async ({ page }) => {
   const wallMs: number[] = [];
   for (const [i, q] of QUERIES.entries()) {
     await page.getByRole("searchbox").fill(q);
-    await page.getByRole("button", { name: "Search" }).click();
+    await page.getByRole("button", { name: "Ask" }).click();
     await expect(page.getByTestId("result-summary")).toContainText(q);
     const ids = await page
       .getByTestId("candidates")

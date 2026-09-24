@@ -19,7 +19,14 @@ export default defineConfig({
   // The search worker imports Transformers.js, which code-splits.
   worker: { format: "es", plugins: () => [dropOrtWasm()] },
   server: {
-    // `pnpm dev` runs `wrangler dev` (worker/) on its default port alongside Vite.
-    proxy: { "/api": "http://127.0.0.1:8787" },
+    // `pnpm dev` runs `wrangler dev` (worker/) on its default port alongside
+    // Vite. The Worker accepts same-origin POSTs only, so present as its origin.
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:8787",
+        changeOrigin: true,
+        headers: { origin: "http://127.0.0.1:8787" },
+      },
+    },
   },
 });

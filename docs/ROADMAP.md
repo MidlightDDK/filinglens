@@ -114,7 +114,7 @@ Acceptance:
 ## M7: Polish + launch
 - README (outline below), architecture diagram (Mermaid in the README), performance-budget and mobile pass, `smoke.yml`, release eval on the test split, final numbers in the README.
 Acceptance:
-- [ ] README complete; test-split release numbers committed.
+- [x] README complete; test-split release numbers committed.
 - [ ] Smoke workflow green for 3 consecutive days.
 - [ ] Demo video (recorded by the user) linked at the top of the README.
 

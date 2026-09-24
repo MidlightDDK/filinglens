@@ -40,3 +40,72 @@ jobs:
       - run: uv run --project pipeline ruff check -q
       - run: uv run --project pipeline ruff format --check -q
       - run: uv run --project pipeline pytest -q
+
+  # Retrieval eval on the dev split for the default config, gated on
+  # evals/baseline.json. The index is cached; a miss rebuilds it from cached
+  # (or freshly downloaded) SEC filings, which needs the SEC_USER_AGENT secret.
+  retrieval-eval:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/cache@v6
+        with:
+          path: data/models
+          key: models-${{ hashFiles('packages/core/src/models.ts', 'pipeline/pipeline/tokenizer.py') }}
+      - id: index
+        uses: actions/cache@v6
+        with:
+          # data/processed holds the texts that gold spans point into.
+          path: |
+            data/processed
+            web/public/index/structure
+          key: index-${{ hashFiles('pipeline/pipeline/**', 'pipeline/config/**', 'pipeline/uv.lock', 'scripts/src/build-index.ts', 'packages/core/src/**', 'pnpm-lock.yaml') }}
+      - if: steps.index.outputs.cache-hit != 'true'
+        uses: actions/cache@v6
+        with:
+          path: data/raw
+          key: sec-raw-${{ hashFiles('pipeline/config/corpus.yaml') }}
+      - if: steps.index.outputs.cache-hit != 'true'
+        uses: actions/cache@v6
+        with:
+          # Content-addressed passage embeddings: a partial restore still helps.
+          path: data/cache/embeddings
+          key: embeddings-${{ hashFiles('packages/core/src/models.ts') }}-${{ hashFiles('pipeline/pipeline/**', 'pipeline/config/**') }}
+          restore-keys: embeddings-${{ hashFiles('packages/core/src/models.ts') }}-
+      - if: steps.index.outputs.cache-hit != 'true'
+        uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+      - name: Build the index (cache miss)
+        if: steps.index.outputs.cache-hit != 'true'
+        env:
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+        run: |
+          if [ -z "$SEC_USER_AGENT" ]; then
+            echo "::error::Index cache miss and no SEC_USER_AGENT secret (forks get no secrets)."
+            exit 1
+          fi
+          uv sync --project pipeline --locked
+          pnpm -s data:ingest
+          pnpm -s data:chunk > /dev/null
+          pnpm -s index --strategy structure
+      - name: Retrieval eval (gate)
+        run: pnpm -s eval:retrieval --config default --split dev --gate
+      - name: Comment on the PR
+        if: always() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          summary="$(ls -d evals/results/*/ 2>/dev/null | tail -n 1)summary.md"
+          if [ -f "$summary" ]; then
+            gh pr comment "${{ github.event.pull_request.number }}" --body-file "$summary" --edit-last --create-if-none
+          fi

@@ -6,11 +6,11 @@ paths:
 # Evals + CI
 
 ## Datasets (`evals/datasets/`, JSONL, committed, stable ids)
-- `golden.jsonl`: `{id, question, category, companies[], fiscal_years[], answerable, gold_answer, gold_numeric?: {value, unit, tolerance}, gold_spans: [{doc_id, char_start, char_end}], source: xbrl|synthetic_reviewed|handwritten, split: dev|test}`.
+- `golden.jsonl`: `{id, question, category, companies[], fiscal_years[], answerable, gold_answer, gold_numeric?: {value, unit, tolerance}, gold_spans: [{doc_id, char_start, char_end, group?}], source: xbrl|synthetic_reviewed|handwritten, split: dev|test}`. `tolerance` is absolute, in `unit`. Spans sharing a `group` are interchangeable evidence for one fact (a span without one is its own group); recall counts groups.
 - Categories: lookup, table_number, comparison, trend, multi_hop, false_premise, unanswerable. Target 200 items with ≥ 20 per category; split dev/test 60/40, stratified. The test split runs only for release numbers.
 - Sources: XBRL numeric items (pipeline); synthetic items (an LLM proposes Q/A plus evidence from sampled chunks → the user reviews `evals/review/queue.csv` with accept/edit/reject → an import script); ≥ 30 handwritten hard items (false premise, unanswerable, multi-hop) written by the user.
 - `judge_labels.jsonl`: ≥ 50 `(question, answer, human_label, rationale)` rows for judge calibration.
-- Gold spans are character offsets into `data/processed/text/{doc_id}.txt`, so they are chunking-independent. A retrieved chunk is relevant if it overlaps a gold span by ≥ 30 characters.
+- Gold spans are character offsets into `data/processed/text/{doc_id}.txt`, so they are chunking-independent. A retrieved chunk is relevant if it overlaps a gold span by ≥ 30 characters. `evals/datasets/text_hashes.json` records each text's sha256; the runner refuses to score if a text changed.
 
 ## Metrics
 - Retrieval (no LLM): recall@5, recall@10, MRR@10, nDCG@10, per config and per category.

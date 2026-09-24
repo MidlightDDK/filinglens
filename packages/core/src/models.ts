@@ -10,3 +10,12 @@ export const EMBEDDING_MODEL = {
   // passages are embedded without a prefix.
   queryPrefix: "Represent this sentence for searching relevant passages: ",
 } as const;
+
+// Optional cross-encoder rerank stage (retrieval configs with `rerank`). It is
+// kept in the app only if evals show a gain worth its latency.
+export const RERANKER_MODEL = {
+  id: "Xenova/ms-marco-MiniLM-L-6-v2",
+  revision: "a09144355adeed5f58c8ed011d209bf8ee5a1fec",
+  // q8 = onnx/model_quantized.onnx (~23 MB).
+  dtype: "q8",
+} as const;

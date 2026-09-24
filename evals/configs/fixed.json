@@ -1,0 +1,10 @@
+{
+  "id": "fixed",
+  "strategy": "fixed",
+  "filters": true,
+  "lexical_k": 50,
+  "dense_k": 50,
+  "rrf_k": 60,
+  "rerank": null,
+  "top_k": 8
+}

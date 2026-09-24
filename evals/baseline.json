@@ -1,0 +1,10 @@
+{
+  "config": "default",
+  "split": "dev",
+  "dataset_sha256": "5ed8f1454d4f50bca724417013a66379ff55604866961fa3a33ba39b1e82b586",
+  "commit": "431c6624b657055a8549e830b0af9e5f920aa1f3",
+  "recall_at_5": 0.8594,
+  "recall_at_10": 0.9453,
+  "mrr_at_10": 0.684,
+  "ndcg_at_10": 0.4808
+}

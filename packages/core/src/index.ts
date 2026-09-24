@@ -14,7 +14,8 @@ export {
   searchLexical,
   tokenize,
 } from "./lexical.ts";
-export { EMBEDDING_MODEL } from "./models.ts";
+export { EMBEDDING_MODEL, RERANKER_MODEL } from "./models.ts";
+export { loadReranker, type RerankerLib } from "./rerank.ts";
 export {
   type Candidate,
   type Ranked,

@@ -5,6 +5,8 @@ import { availableParallelism } from "node:os";
 import { dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { type Embedder, loadEmbedder } from "./embed.ts";
+import { loadReranker } from "./rerank.ts";
+import type { Reranker } from "./retrieve.ts";
 import type { IndexSource } from "./store.ts";
 
 export const REPO_ROOT = fileURLToPath(new URL("../../../", import.meta.url));
@@ -32,10 +34,8 @@ export type NodeRuntime = "wasm" | "native";
 
 let loadedRuntime: NodeRuntime | null = null;
 
-/** The pinned embedding model, cached under data/models/hf. */
-export async function loadNodeEmbedder(
-  runtime: NodeRuntime = "wasm",
-): Promise<Embedder> {
+/** Transformers.js on the chosen ONNX runtime, caching models in data/models/hf. */
+async function transformersFor(runtime: NodeRuntime) {
   // Transformers.js picks its ONNX runtime once, when it is first imported.
   if (loadedRuntime && loadedRuntime !== runtime) {
     throw new Error(`this process already loaded the ${loadedRuntime} runtime`);
@@ -52,8 +52,27 @@ export async function loadNodeEmbedder(
   loadedRuntime = runtime;
   const transformers = await import("@huggingface/transformers");
   transformers.env.cacheDir = MODEL_CACHE;
-  // "auto" lets the injected runtime choose its default backend (wasm).
-  return loadEmbedder(transformers, {
-    device: runtime === "wasm" ? "auto" : "cpu",
+  return transformers;
+}
+
+// "auto" lets the injected runtime choose its default backend (wasm).
+const deviceFor = (runtime: NodeRuntime) =>
+  runtime === "wasm" ? ("auto" as const) : ("cpu" as const);
+
+/** The pinned embedding model, cached under data/models/hf. */
+export async function loadNodeEmbedder(
+  runtime: NodeRuntime = "wasm",
+): Promise<Embedder> {
+  return loadEmbedder(await transformersFor(runtime), {
+    device: deviceFor(runtime),
+  });
+}
+
+/** The pinned cross-encoder, on the same runtime as the embedder. */
+export async function loadNodeReranker(
+  runtime: NodeRuntime = "wasm",
+): Promise<Reranker> {
+  return loadReranker(await transformersFor(runtime), {
+    device: deviceFor(runtime),
   });
 }

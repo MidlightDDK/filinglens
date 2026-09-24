@@ -1,5 +1,11 @@
 {
   "name": "@filinglens/evals",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@filinglens/core": "workspace:*"
+  }
 }

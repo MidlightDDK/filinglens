@@ -1,0 +1,10 @@
+{
+  "id": "lexical-only",
+  "strategy": "structure",
+  "filters": true,
+  "lexical_k": 50,
+  "dense_k": 0,
+  "rrf_k": 60,
+  "rerank": null,
+  "top_k": 8
+}

@@ -1,0 +1,10 @@
+{
+  "id": "dense-only",
+  "strategy": "structure",
+  "filters": true,
+  "lexical_k": 0,
+  "dense_k": 50,
+  "rrf_k": 60,
+  "rerank": null,
+  "top_k": 8
+}

@@ -1,0 +1,12 @@
+{
+  "id": "rerank",
+  "strategy": "structure",
+  "filters": true,
+  "lexical_k": 50,
+  "dense_k": 50,
+  "rrf_k": 60,
+  "rerank": {
+    "top_n": 30
+  },
+  "top_k": 8
+}

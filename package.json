@@ -10,6 +10,7 @@
     "dev": "pnpm --parallel --filter @filinglens/web --filter @filinglens/worker dev",
     "data:ingest": "uv run --project pipeline python -m pipeline.ingest",
     "data:chunk": "uv run --project pipeline python -m pipeline.chunk",
+    "data:xbrl": "uv run --project pipeline python -m pipeline.xbrl",
     "index": "node scripts/src/build-index.ts",
     "examples": "node -e \"console.log('examples: not implemented (M6)')\"",
     "lint": "biome check .",
@@ -17,7 +18,9 @@
     "typecheck": "pnpm -r --if-present typecheck",
     "test": "vitest run",
     "e2e": "pnpm --filter @filinglens/web e2e",
-    "eval:retrieval": "node -e \"console.log('eval:retrieval: not implemented (M3)')\"",
+    "eval:synth": "node evals/src/synth.ts",
+    "eval:import": "node evals/src/import.ts",
+    "eval:retrieval": "node evals/src/retrieval.ts",
     "eval:answers": "node -e \"console.log('eval:answers: not implemented (M5)')\"",
     "build": "pnpm --filter @filinglens/web build && pnpm --filter @filinglens/worker build",
     "deploy": "pnpm build && pnpm --filter @filinglens/worker run deploy"

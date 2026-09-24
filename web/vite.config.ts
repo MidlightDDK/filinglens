@@ -26,6 +26,7 @@ function trendPoint(label: string, r: any) {
     label,
     created_at: r.created_at,
     commit: r.commit,
+    split: r.split,
     items: r.dataset.items,
     retrieval: r.retrieval?.default?.overall ?? null,
     answers: s

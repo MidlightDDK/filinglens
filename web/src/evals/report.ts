@@ -120,6 +120,7 @@ export interface TrendPoint {
   label: string;
   created_at: string;
   commit: string | null;
+  split?: string;
   items: number;
   retrieval: RetrievalMetrics | null;
   answers: {

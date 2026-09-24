@@ -133,3 +133,17 @@ test("/lab compares two configs live", async ({ page }) => {
   await expect(b.locator("[data-chunk-id]")).toHaveCount(8);
   expect(errors).toEqual([]);
 });
+
+test("/about renders the architecture and the $0 table", async ({ page }) => {
+  const errors = watchErrors(page);
+  await page.goto("/");
+  await page.getByRole("link", { name: "About" }).click();
+  await expect(page).toHaveURL(/\/about$/);
+  await expect(
+    page.getByRole("heading", { name: "How it works" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "How this runs for $0" }),
+  ).toBeVisible();
+  expect(errors).toEqual([]);
+});

@@ -4,18 +4,22 @@ import { REPO } from "./evals/report";
 import { Link, usePath } from "./router";
 import { useSearchEngine } from "./search/useSearch";
 
-// Lab and Evals load on first visit, keeping them out of the Ask page's bundle.
+// Lab, Evals, and About load on first visit, keeping them out of the Ask page's bundle.
 const LabPage = lazy(() =>
   import("./lab/LabPage").then((m) => ({ default: m.LabPage })),
 );
 const EvalsPage = lazy(() =>
   import("./evals/EvalsPage").then((m) => ({ default: m.EvalsPage })),
 );
+const AboutPage = lazy(() =>
+  import("./about/AboutPage").then((m) => ({ default: m.AboutPage })),
+);
 
 const TITLES: Record<string, string> = {
   "/": "FilingLens",
   "/lab": "Pipeline Lab · FilingLens",
   "/evals": "Evals · FilingLens",
+  "/about": "About · FilingLens",
 };
 
 const navLink =
@@ -53,6 +57,9 @@ export function App() {
         <Link to="/evals" className={navLink}>
           Evals
         </Link>
+        <Link to="/about" className={navLink}>
+          About
+        </Link>
         <a
           href={REPO}
           target="_blank"
@@ -77,6 +84,7 @@ export function App() {
               <EvalsPage />
             </div>
           )}
+          {path === "/about" && <AboutPage />}
         </Suspense>
         {!known && (
           <div className="flex flex-col gap-2">

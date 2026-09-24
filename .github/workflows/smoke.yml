@@ -1,0 +1,54 @@
+name: Smoke
+
+# Daily check of the live site: load /, call /api/health, open one example.
+# Opens (or comments on) a "smoke failure" issue when it fails.
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  SITE: https://filinglens.azar-majed7.workers.dev
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: GET /api/health
+        run: |
+          curl -fsS --retry 3 --retry-all-errors "$SITE/api/health" | tee health.json
+          node -e 'const h=require("./health.json"); if (h.status !== "ok") process.exit(1)'
+      - run: pnpm --filter @filinglens/web exec playwright install --with-deps chromium
+      - name: Home page and one example
+        env:
+          E2E_BASE_URL: ${{ env.SITE }}
+        run: pnpm --filter @filinglens/web exec playwright test e2e/smoke.e2e.ts
+
+  report:
+    needs: smoke
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          open=$(gh issue list --state open --search 'in:title "Smoke test failed"' --json number --jq '.[0].number')
+          if [ -n "$open" ]; then
+            gh issue comment "$open" --body "Failed again: $RUN"
+          else
+            gh issue create --title "Smoke test failed" --body "The daily smoke test failed: $RUN"
+          fi

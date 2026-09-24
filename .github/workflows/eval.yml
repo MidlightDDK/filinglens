@@ -1,0 +1,113 @@
+name: Eval
+
+# Manual full run: every retrieval config, then (when GROQ_API_KEY exists) the
+# answers eval with the judge. Results are uploaded as an artifact; with
+# `release`, the report is committed as evals/reports/<date>-<split>.json and
+# latest.json (which the web app shows).
+on:
+  workflow_dispatch:
+    inputs:
+      split:
+        description: Eval split
+        type: choice
+        options: [dev, test]
+        default: dev
+      limit:
+        description: Answer items (stratified; Groq free tier is ~75 answers a day)
+        default: "35"
+      release:
+        description: Commit the report
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: eval
+  cancel-in-progress: false
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: write
+    env:
+      HAS_GROQ: ${{ secrets.GROQ_API_KEY != '' }}
+      SPLIT: ${{ inputs.split }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/cache@v6
+        with:
+          path: data/models
+          key: models-${{ hashFiles('packages/core/src/models.ts', 'pipeline/pipeline/tokenizer.py') }}
+      # Same keys as ci.yml, so a CI run's cached index is reused. `fixed` is
+      # built here on every run (it isn't cached by CI).
+      - id: index
+        uses: actions/cache@v6
+        with:
+          path: |
+            data/processed
+            web/public/index/structure
+          key: index-${{ hashFiles('pipeline/pipeline/**', 'pipeline/config/**', 'pipeline/uv.lock', 'scripts/src/build-index.ts', 'packages/core/src/**', 'pnpm-lock.yaml') }}
+      - uses: actions/cache@v6
+        with:
+          path: data/raw
+          key: sec-raw-${{ hashFiles('pipeline/config/corpus.yaml') }}
+      - uses: actions/cache@v6
+        with:
+          path: data/cache/embeddings
+          key: embeddings-${{ hashFiles('packages/core/src/models.ts') }}-${{ hashFiles('pipeline/pipeline/**', 'pipeline/config/**') }}
+          restore-keys: embeddings-${{ hashFiles('packages/core/src/models.ts') }}-
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+      - name: Build the indexes
+        env:
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+          INDEX_HIT: ${{ steps.index.outputs.cache-hit }}
+        run: |
+          uv sync --project pipeline --locked
+          if [ "$INDEX_HIT" != "true" ]; then
+            pnpm -s data:ingest
+            pnpm -s data:chunk > /dev/null
+            pnpm -s index --strategy structure
+          fi
+          pnpm -s index --strategy fixed
+      - name: Retrieval eval (all configs)
+        run: pnpm -s eval:retrieval --config all --split "$SPLIT" --report
+      - if: env.HAS_GROQ == 'true'
+        uses: actions/cache@v6
+        with:
+          path: evals/.cache/llm
+          key: llm-${{ github.run_id }}
+          restore-keys: llm-
+      - name: Answers eval
+        if: env.HAS_GROQ == 'true'
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          LIMIT: ${{ inputs.limit }}
+        run: node evals/src/answers.ts --split "$SPLIT" --limit "$LIMIT" --report
+      - run: cat evals/results/*/summary.md evals/results/*/answers.md >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
+      - uses: actions/upload-artifact@v7
+        with:
+          name: eval-${{ inputs.split }}-${{ github.run_id }}
+          path: |
+            evals/results
+            evals/reports/latest.json
+      - name: Commit the release report
+        if: inputs.release
+        run: |
+          cp evals/reports/latest.json "evals/reports/$(date -u +%F)-$SPLIT.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evals/reports
+          git commit -m "chore(evals): $SPLIT release report"
+          git push

@@ -203,8 +203,8 @@ export function LabPage({ load, run }: { load: LoadState; run: RunSearch }) {
         <h1 className="text-3xl font-semibold tracking-tight">Pipeline Lab</h1>
         <p className="text-slate-700">
           The same question through two retrieval configs, live in your browser.
-          The table shows how each config scored on the dev split of the eval
-          set (every number comes from{" "}
+          The table shows how each config scored on the eval set (configs were
+          chosen on the dev split; every number comes from{" "}
           <code className="text-sm">pnpm eval:retrieval</code>).
         </p>
       </header>
@@ -216,7 +216,7 @@ export function LabPage({ load, run }: { load: LoadState; run: RunSearch }) {
         <h2 id="configs-heading" className="font-medium">
           Measured quality
           {report.status === "ready" &&
-            ` (dev split, ${report.data.retrieval.default?.overall.n ?? "?"} scored items)`}
+            ` (${report.data.split} split, ${report.data.retrieval.default?.overall.n ?? "?"} scored items)`}
         </h2>
         {retrieval ? (
           <ConfigTable

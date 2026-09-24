@@ -186,7 +186,7 @@ function AnswerMetrics({ answers }: { answers: AnswerReport }) {
   return (
     <>
       <p className="text-sm text-slate-700">
-        {answers.dataset.items} dev items (
+        {answers.dataset.items} {answers.split} items (
         {answers.dataset.sampled === "all"
           ? "the whole split"
           : "stratified by category"}
@@ -309,7 +309,7 @@ function Trend({ points }: { points: TrendPoint[] }) {
         <thead className="text-slate-500">
           <tr className="border-b border-slate-200">
             <th className={`${cell} font-normal`}>Release</th>
-            <th className={`${num} font-normal`}>Dev items</th>
+            <th className={`${num} font-normal`}>Items</th>
             <th className={`${num} font-normal`}>Recall@10</th>
             <th className={`${num} font-normal`}>MRR@10</th>
             <th className={`${num} font-normal`}>Answer accuracy</th>
@@ -322,7 +322,9 @@ function Trend({ points }: { points: TrendPoint[] }) {
               <td className={cell}>
                 {p.label} · <Commit commit={p.commit} />
               </td>
-              <td className={num}>{p.items}</td>
+              <td className={num}>
+                {p.items} {p.split ?? ""}
+              </td>
               <td className={num}>{pct(p.retrieval?.recall_at_10)}</td>
               <td className={num}>{pct(p.retrieval?.mrr_at_10)}</td>
               <td className={num}>
@@ -420,8 +422,8 @@ export function EvalsPage() {
 
       <Section id="retrieval" title="Retrieval configs">
         <p className="text-sm text-slate-700">
-          {r.retrieval.default?.overall.n ?? "?"} scored dev items per config
-          (items without evidence spans, such as unanswerable ones, are
+          {r.retrieval.default?.overall.n ?? "?"} scored {r.split} items per
+          config (items without evidence spans, such as unanswerable ones, are
           skipped). Compare any two live in the Pipeline Lab.
         </p>
         <ConfigTable configs={r.retrieval} />

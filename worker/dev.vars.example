@@ -1,0 +1,5 @@
+# Copy to worker/.dev.vars (gitignored) and fill in locally. Never commit values.
+GROQ_API_KEY=
+GEMINI_API_KEY=
+TURNSTILE_SECRET_KEY=
+SESSION_HMAC_SECRET=

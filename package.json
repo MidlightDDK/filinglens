@@ -1,0 +1,31 @@
+{
+  "name": "filinglens",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.34.5",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @filinglens/web --filter @filinglens/worker dev",
+    "data:ingest": "node -e \"console.log('data:ingest: not implemented (M1)')\"",
+    "data:chunk": "node -e \"console.log('data:chunk: not implemented (M1)')\"",
+    "index": "node -e \"console.log('index: not implemented (M2)')\"",
+    "examples": "node -e \"console.log('examples: not implemented (M6)')\"",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "vitest run",
+    "e2e": "pnpm --filter @filinglens/web e2e",
+    "eval:retrieval": "node -e \"console.log('eval:retrieval: not implemented (M3)')\"",
+    "eval:answers": "node -e \"console.log('eval:answers: not implemented (M5)')\"",
+    "build": "pnpm --filter @filinglens/web build && pnpm --filter @filinglens/worker build",
+    "deploy": "pnpm build && pnpm --filter @filinglens/worker run deploy"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.14",
+    "@types/node": "^26.6.2",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.1"
+  }
+}

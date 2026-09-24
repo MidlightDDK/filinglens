@@ -116,7 +116,7 @@ Acceptance:
 Acceptance:
 - [x] README complete; test-split release numbers committed.
 - [ ] Smoke workflow green for 3 consecutive days.
-- [ ] Demo video (recorded by the user) linked at the top of the README.
+- [x] Demo video linked at the top of the README (at the user's request, Claude recorded it with a Playwright script against the live site and uploaded it to YouTube and GitHub).
 
 ## Stretch (only when the user asks)
 `contextual` chunking variant; an MCP server exposing `search_filings` and `get_passage`; an in-browser fallback LLM for when every provider quota is spent.

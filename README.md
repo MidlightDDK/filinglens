@@ -4,7 +4,9 @@ Citation-verified Q&A over SEC 10-K filings. Ask about the annual reports of 12 
 
 **Live demo: [filinglens.azar-majed7.workers.dev](https://filinglens.azar-majed7.workers.dev)**. No login. The six example questions answer instantly from precomputed files; the [Pipeline Lab](https://filinglens.azar-majed7.workers.dev/lab) and [Evals](https://filinglens.azar-majed7.workers.dev/evals) pages show how retrieval choices change measured quality.
 
-<!-- 60-second demo video: link goes here once recorded. -->
+https://github.com/user-attachments/assets/6d8726cc-ed18-4cca-a2b3-6e9ae2677c45
+
+**Demo video (81 s)**: embedded above, or [watch it on YouTube](https://youtu.be/P4qqevx9zMk). It's a Playwright-scripted recording of the live site; the live answer and the AI-judge check in it are real calls.
 
 ## Results (held-out test split)
 

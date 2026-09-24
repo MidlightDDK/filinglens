@@ -10,6 +10,7 @@ import {
   type GoldItem,
   type GoldSpan,
   locate,
+  locateAll,
   REVIEW_DIR,
   type Source,
 } from "./dataset.ts";
@@ -86,7 +87,18 @@ function parseBool(cell: string, fallback: boolean): boolean {
   throw new Error(`answerable must be yes or no, got "${cell}"`);
 }
 
-function anchor(entry: string, hint: string | undefined): GoldSpan {
+const MAX_OCCURRENCES = 8;
+
+/**
+ * Spans for one evidence entry. A quote found several times yields one span per
+ * occurrence in a shared group (any of them is valid evidence); a span hint
+ * from the generator pins the original occurrence.
+ */
+function anchor(
+  entry: string,
+  hint: string | undefined,
+  i: number,
+): GoldSpan[] {
   const m = DOC_ID.exec(entry.trim());
   if (!m)
     throw new Error(
@@ -104,19 +116,23 @@ function anchor(entry: string, hint: string | undefined): GoldSpan {
     const [start, end] = [Number(h[2]), Number(h[3])];
     const same = locate(text.slice(start, end), quote);
     if (same && same.char_start === 0 && same.char_end === end - start) {
-      return { doc_id: docId, char_start: start, char_end: end };
+      return [{ doc_id: docId, char_start: start, char_end: end }];
     }
+    const near = locate(text, quote, { key: docId, near: start });
+    if (near) return [{ doc_id: docId, ...near }];
   }
-  const hit = locate(text, quote, {
-    key: docId,
-    near: h && h[1] === docId ? Number(h[2]) : undefined,
-  });
-  if (!hit) {
+  const hits = locateAll(text, quote, docId);
+  if (hits.length === 0) {
+    throw new Error(`quote not found in ${docId}: "${quote.slice(0, 80)}"`);
+  }
+  if (hits.length > MAX_OCCURRENCES) {
     throw new Error(
-      `quote not found in ${docId}, or found more than once (quote a longer passage): "${quote.slice(0, 80)}"`,
+      `quote found ${hits.length} times in ${docId}; quote a longer passage: "${quote.slice(0, 80)}"`,
     );
   }
-  return { doc_id: docId, ...hit };
+  if (hits.length === 1)
+    return [{ doc_id: docId, ...(hits[0] as (typeof hits)[number]) }];
+  return hits.map((hit) => ({ doc_id: docId, ...hit, group: `e${i}` }));
 }
 
 /** A reviewed CSV row as a gold item (without split). Throws on invalid rows. */
@@ -142,7 +158,7 @@ export function rowToItem(row: Row, source: Source): Omit<GoldItem, "split"> {
   const gold_spans = (row.evidence ?? "")
     .split(SEP)
     .filter((e) => e.trim())
-    .map((e, i) => anchor(e, hints[i]));
+    .flatMap((e, i) => anchor(e, hints[i], i));
   if (answerable && gold_spans.length === 0) {
     throw new Error("answerable items need at least one evidence quote");
   }

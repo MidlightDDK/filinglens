@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { locate } from "./dataset.ts";
+import { locate, locateAll } from "./dataset.ts";
 
 describe("locate", () => {
   const text = "Revenue was  $130.5 billion.\nWe’re “growing”. Revenue was up.";
@@ -17,5 +17,10 @@ describe("locate", () => {
     expect(locate(text, "Revenue was")).toBeNull();
     expect(locate(text, "Revenue was", { near: 40 })?.char_start).toBe(46);
     expect(locate(text, "absent")).toBeNull();
+  });
+
+  it("finds every occurrence with locateAll", () => {
+    const hits = locateAll(text, "Revenue was");
+    expect(hits.map((h) => h.char_start)).toEqual([0, 46]);
   });
 });

@@ -131,30 +131,40 @@ function normalize(text: string): { norm: string; offsets: number[] } {
 
 const normalized = new Map<string, ReturnType<typeof normalize>>();
 
+type Hit = { char_start: number; char_end: number };
+
 /**
- * Offsets of `quote` in `text`, ignoring whitespace differences and curly
- * quotes. A quote that appears more than once resolves to the occurrence
- * nearest `near`, or to null without it. `key` caches the normalized text.
+ * Every occurrence of `quote` in `text`, ignoring whitespace differences and
+ * curly quotes. `key` caches the normalized text.
  */
-export function locate(
-  text: string,
-  quote: string,
-  { key, near }: { key?: string; near?: number } = {},
-): { char_start: number; char_end: number } | null {
+export function locateAll(text: string, quote: string, key?: string): Hit[] {
   let n = key ? normalized.get(key) : undefined;
   if (!n) {
     n = normalize(text);
     if (key) normalized.set(key, n);
   }
   const q = normalize(quote).norm.trim();
-  if (!q) return null;
-  const hits: { char_start: number; char_end: number }[] = [];
+  if (!q) return [];
+  const hits: Hit[] = [];
   for (let at = n.norm.indexOf(q); at >= 0; at = n.norm.indexOf(q, at + 1)) {
     hits.push({
       char_start: n.offsets[at] as number,
       char_end: (n.offsets[at + q.length - 1] as number) + 1,
     });
   }
+  return hits;
+}
+
+/**
+ * The single occurrence of `quote` in `text`; with several, the one nearest
+ * `near`, or null without it.
+ */
+export function locate(
+  text: string,
+  quote: string,
+  { key, near }: { key?: string; near?: number } = {},
+): Hit | null {
+  const hits = locateAll(text, quote, key);
   if (hits.length === 1) return hits[0] ?? null;
   if (hits.length === 0 || near === undefined) return null;
   const dist = (h: { char_start: number }) => Math.abs(h.char_start - near);

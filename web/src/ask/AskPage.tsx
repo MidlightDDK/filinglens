@@ -15,6 +15,22 @@ import { loadExample, prefetchExamples } from "./loadExample";
 import { Passages } from "./Passages";
 import { UnderTheHood } from "./UnderTheHood";
 
+// Mirrors pipeline/config/corpus.yaml (name, ticker).
+const COMPANIES = [
+  ["NVIDIA", "NVDA"],
+  ["AMD", "AMD"],
+  ["Intel", "INTC"],
+  ["Apple", "AAPL"],
+  ["Microsoft", "MSFT"],
+  ["Alphabet", "GOOGL"],
+  ["Amazon", "AMZN"],
+  ["Meta Platforms", "META"],
+  ["Netflix", "NFLX"],
+  ["Coca-Cola", "KO"],
+  ["PepsiCo", "PEP"],
+  ["JPMorgan Chase", "JPM"],
+] as const;
+
 function LoadStatus({ load }: { load: LoadState }) {
   if (load.status === "error") {
     return (
@@ -102,9 +118,25 @@ export function AskPage({ load, run }: { load: LoadState; run: RunSearch }) {
       <header className="flex flex-col gap-2">
         <h1 className="text-4xl font-semibold tracking-tight">FilingLens</h1>
         <p className="text-lg text-slate-700">
-          Ask about the 10-K annual reports of 12 public companies. Retrieval
-          runs in your browser, and every sentence of the answer cites the
-          passage it came from.
+          Ask about the 10-K annual reports of these {COMPANIES.length} public
+          companies:
+        </p>
+        <ul
+          aria-label="Companies covered"
+          className="flex flex-wrap gap-x-4 gap-y-1 text-slate-800"
+        >
+          {COMPANIES.map(([name, ticker]) => (
+            <li key={ticker} className="font-medium">
+              {name}{" "}
+              <span className="font-mono text-xs font-normal text-slate-500">
+                {ticker}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p className="text-slate-600">
+          Retrieval runs in your browser, and every sentence of the answer cites
+          the passage it came from.
         </p>
       </header>
 

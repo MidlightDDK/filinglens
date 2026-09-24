@@ -1,18 +1,28 @@
-import type { Ranked } from "@filinglens/core";
+import type { Candidate, Ranked } from "@filinglens/core";
 import type { AnswerState } from "../answer/useAnswer";
 import type { LoadState, SearchOutcome } from "../search/useSearch";
 
 const cell = (r: Ranked | null, digits: number) =>
   r ? `#${r.rank} (${r.score.toFixed(digits)})` : "–";
 
+/** How far the reranker moved a candidate from its fused (RRF) rank. */
+export function rerankMove(c: Candidate): string {
+  if (!c.rerank) return "";
+  const d = c.fused.rank - c.rerank.rank;
+  return d > 0 ? `↑${d}` : d < 0 ? `↓${-d}` : "=";
+}
+
 export function UnderTheHood({
   outcome,
   load,
   answer,
+  precomputed = false,
 }: {
   outcome: SearchOutcome;
   load: LoadState;
   answer?: AnswerState;
+  /** A precomputed example: retrieval ran in Node on the same WASM kernels. */
+  precomputed?: boolean;
 }) {
   const done = answer?.status === "done" ? answer.done : undefined;
   const { result, fetch_ms, wall_ms } = outcome;
@@ -25,7 +35,9 @@ export function UnderTheHood({
     ["RRF", timings.fuse_ms],
     ["Rerank", timings.rerank_ms],
     ["Fetch passages", fetch_ms],
-    ["Total (incl. messaging)", wall_ms],
+    precomputed
+      ? ["Total", Math.round((timings.total_ms + fetch_ms) * 10) / 10]
+      : ["Total (incl. messaging)", wall_ms],
   ];
   return (
     <details className="rounded-lg border border-slate-200 bg-white p-4 text-sm">
@@ -51,7 +63,11 @@ export function UnderTheHood({
             <dt className="text-slate-500">Model</dt>
             <dd className="break-all">
               {load.model}@{load.revision.slice(0, 7)} ({load.dtype}) on{" "}
-              {load.device === "webgpu" ? "WebGPU" : "WASM"}
+              {precomputed
+                ? "WASM in Node (precomputed by pnpm examples)"
+                : load.device === "webgpu"
+                  ? "WebGPU"
+                  : "WASM"}
             </dd>
             <dt className="text-slate-500">Index</dt>
             <dd>
@@ -119,7 +135,9 @@ export function UnderTheHood({
                 <td className="pr-3 whitespace-nowrap">{cell(c.lexical, 2)}</td>
                 <td className="pr-3 whitespace-nowrap">{cell(c.dense, 3)}</td>
                 <td className="pr-3">{c.fused.score.toFixed(4)}</td>
-                <td className="whitespace-nowrap">{cell(c.rerank, 3)}</td>
+                <td className="whitespace-nowrap">
+                  {cell(c.rerank, 3)} {rerankMove(c)}
+                </td>
               </tr>
             ))}
           </tbody>

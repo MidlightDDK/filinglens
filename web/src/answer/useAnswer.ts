@@ -96,7 +96,7 @@ export function useAnswer(turnstileRef: RefObject<HTMLElement | null>) {
   }, [turnstileRef]);
 
   const ask = useCallback(
-    async (question: string, chunkIds: string[]) => {
+    async (question: string, chunkIds: string[], configId = CONFIG_ID) => {
       current.current?.abort();
       const ctrl = new AbortController();
       current.current = ctrl;
@@ -108,11 +108,7 @@ export function useAnswer(turnstileRef: RefObject<HTMLElement | null>) {
 
       const container = turnstileRef.current;
       if (!container) return;
-      const request: AnswerRequest = {
-        question,
-        chunkIds,
-        configId: CONFIG_ID,
-      };
+      const request: AnswerRequest = { question, chunkIds, configId };
       const post = () =>
         fetch(`${API_BASE}/answer`, {
           method: "POST",

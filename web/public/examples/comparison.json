@@ -1,0 +1,1115 @@
+{
+  "id": "comparison",
+  "category": "comparison",
+  "question": "Which company reported higher diluted earnings per share for fiscal year 2025, Apple or Amazon, and by how much?",
+  "created_at": "2026-09-24T19:39:45.265Z",
+  "commit": "7a5fde023461d8d69d3c10ba75389626e6f0b6bc-dirty",
+  "retrieval": {
+    "result": {
+      "query": "Which company reported higher diluted earnings per share for fiscal year 2025, Apple or Amazon, and by how much?",
+      "config_id": "default",
+      "filters": {
+        "tickers": ["AAPL", "AMZN"],
+        "fiscal_years": [2025],
+        "latest": false,
+        "doc_ids": ["AAPL-FY2025", "AMZN-FY2025"],
+        "notes": []
+      },
+      "candidates": [
+        {
+          "chunk_id": "AAPL-FY2025-structure-00139",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 2, "score": 27.790407579796316 },
+          "dense": { "rank": 1, "score": 0.7397203268505278 },
+          "fused": { "rank": 1, "score": 0.03252247488101534 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00115",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 5, "score": 22.178025823652874 },
+          "dense": { "rank": 2, "score": 0.7258971742994382 },
+          "fused": { "rank": 2, "score": 0.0315136476426799 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00140",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 1, "score": 28.759134474204675 },
+          "dense": { "rank": 8, "score": 0.6979375685917313 },
+          "fused": { "rank": 3, "score": 0.031099324975891997 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00129",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 6, "score": 21.908396602641275 },
+          "dense": { "rank": 3, "score": 0.7135543209247636 },
+          "fused": { "rank": 4, "score": 0.031024531024531024 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00111",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 29, "score": 11.792969837674029 },
+          "dense": { "rank": 5, "score": 0.7028383005517399 },
+          "fused": { "rank": 5, "score": 0.02662057044079516 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00180",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 17, "score": 13.621471755805008 },
+          "dense": { "rank": 33, "score": 0.6764489190205539 },
+          "fused": { "rank": 6, "score": 0.023739701159056 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00131",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 30, "score": 11.784461654833507 },
+          "dense": { "rank": 22, "score": 0.6859694649802851 },
+          "fused": { "rank": 7, "score": 0.023306233062330622 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00119",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 28, "score": 12.069154353679433 },
+          "dense": { "rank": 45, "score": 0.6653288802839658 },
+          "fused": { "rank": 8, "score": 0.02088744588744589 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00200",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 47, "score": 10.586387623732596 },
+          "dense": { "rank": 31, "score": 0.6789672402875474 },
+          "fused": { "rank": 9, "score": 0.020334805381534354 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00140",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 3, "score": 24.60546011968384 },
+          "dense": null,
+          "fused": { "rank": 10, "score": 0.015873015873015872 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00139",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 4, "score": 24.26905281726418 },
+          "dense": null,
+          "fused": { "rank": 11, "score": 0.015625 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00214",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 4, "score": 0.7122724462002883 },
+          "fused": { "rank": 12, "score": 0.015625 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00157",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 6, "score": 0.7013424567431434 },
+          "fused": { "rank": 13, "score": 0.015151515151515152 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00095",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 7, "score": 17.895680172479626 },
+          "dense": null,
+          "fused": { "rank": 14, "score": 0.014925373134328358 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00196",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 7, "score": 0.7001403310806873 },
+          "fused": { "rank": 15, "score": 0.014925373134328358 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00102",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 8, "score": 17.15578691722728 },
+          "dense": null,
+          "fused": { "rank": 16, "score": 0.014705882352941176 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00070",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 9, "score": 17.007946329778708 },
+          "dense": null,
+          "fused": { "rank": 17, "score": 0.014492753623188406 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00193",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 9, "score": 0.6923262427424612 },
+          "fused": { "rank": 18, "score": 0.014492753623188406 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00122",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 10, "score": 16.821065591145246 },
+          "dense": null,
+          "fused": { "rank": 19, "score": 0.014285714285714285 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00187",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 10, "score": 0.6919170165032679 },
+          "fused": { "rank": 20, "score": 0.014285714285714285 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00097",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 11, "score": 0.691866386124616 },
+          "fused": { "rank": 21, "score": 0.014084507042253521 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00136",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 11, "score": 16.635208135168213 },
+          "dense": null,
+          "fused": { "rank": 22, "score": 0.014084507042253521 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00087",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 12, "score": 0.6912418162308035 },
+          "fused": { "rank": 23, "score": 0.013888888888888888 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00103",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 12, "score": 15.840816449308114 },
+          "dense": null,
+          "fused": { "rank": 24, "score": 0.013888888888888888 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00118",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 13, "score": 0.689911041841692 },
+          "fused": { "rank": 25, "score": 0.0136986301369863 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00166",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 13, "score": 14.716656075149618 },
+          "dense": null,
+          "fused": { "rank": 26, "score": 0.0136986301369863 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00069",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 14, "score": 14.416660506725904 },
+          "dense": null,
+          "fused": { "rank": 27, "score": 0.013513513513513514 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00159",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 14, "score": 0.6897626675070275 },
+          "fused": { "rank": 28, "score": 0.013513513513513514 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00017",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 15, "score": 14.098950118937974 },
+          "dense": null,
+          "fused": { "rank": 29, "score": 0.013333333333333334 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00098",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 15, "score": 0.6895516440797687 },
+          "fused": { "rank": 30, "score": 0.013333333333333334 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00000",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 16, "score": 13.746132948726466 },
+          "dense": null,
+          "fused": { "rank": 31, "score": 0.013157894736842105 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00161",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 16, "score": 0.6874396657216928 },
+          "fused": { "rank": 32, "score": 0.013157894736842105 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00122",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 17, "score": 0.6868950256999321 },
+          "fused": { "rank": 33, "score": 0.012987012987012988 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00068",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 18, "score": 13.468552223119053 },
+          "dense": null,
+          "fused": { "rank": 34, "score": 0.01282051282051282 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00194",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 18, "score": 0.6865067943997643 },
+          "fused": { "rank": 35, "score": 0.01282051282051282 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00185",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 19, "score": 13.36517922012305 },
+          "dense": null,
+          "fused": { "rank": 36, "score": 0.012658227848101266 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00273",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 19, "score": 0.6861495311613933 },
+          "fused": { "rank": 37, "score": 0.012658227848101266 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00094",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 20, "score": 0.686096886514488 },
+          "fused": { "rank": 38, "score": 0.0125 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00123",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 20, "score": 13.34669101016672 },
+          "dense": null,
+          "fused": { "rank": 39, "score": 0.0125 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00091",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 21, "score": 0.6860737911024292 },
+          "fused": { "rank": 40, "score": 0.012345679012345678 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00070",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 21, "score": 13.144287437641815 },
+          "dense": null,
+          "fused": { "rank": 41, "score": 0.012345679012345678 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00138",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 22, "score": 12.961775711412946 },
+          "dense": null,
+          "fused": { "rank": 42, "score": 0.012195121951219513 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00074",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 23, "score": 0.6852886410818788 },
+          "fused": { "rank": 43, "score": 0.012048192771084338 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00178",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 23, "score": 12.708659393992448 },
+          "dense": null,
+          "fused": { "rank": 44, "score": 0.012048192771084338 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00156",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 24, "score": 0.6846168182542752 },
+          "fused": { "rank": 45, "score": 0.011904761904761904 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00150",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 24, "score": 12.653703997213412 },
+          "dense": null,
+          "fused": { "rank": 46, "score": 0.011904761904761904 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00075",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 25, "score": 12.40760623989986 },
+          "dense": null,
+          "fused": { "rank": 47, "score": 0.011764705882352941 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00117",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 25, "score": 0.6839761857941007 },
+          "fused": { "rank": 48, "score": 0.011764705882352941 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00192",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 26, "score": 0.6832441706385453 },
+          "fused": { "rank": 49, "score": 0.011627906976744186 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00109",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 26, "score": 12.264306459263434 },
+          "dense": null,
+          "fused": { "rank": 50, "score": 0.011627906976744186 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00090",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 27, "score": 12.241094314613369 },
+          "dense": null,
+          "fused": { "rank": 51, "score": 0.011494252873563218 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00266",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 27, "score": 0.6830784645981545 },
+          "fused": { "rank": 52, "score": 0.011494252873563218 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00080",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 28, "score": 0.6827633827919163 },
+          "fused": { "rank": 53, "score": 0.011363636363636364 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00177",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 29, "score": 0.6820238026607552 },
+          "fused": { "rank": 54, "score": 0.011235955056179775 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00242",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 30, "score": 0.6796035374823997 },
+          "fused": { "rank": 55, "score": 0.011111111111111112 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00179",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 31, "score": 11.61454110727285 },
+          "dense": null,
+          "fused": { "rank": 56, "score": 0.01098901098901099 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00212",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 32, "score": 0.6781380280171614 },
+          "fused": { "rank": 57, "score": 0.010869565217391304 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00255",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 32, "score": 11.5117769723776 },
+          "dense": null,
+          "fused": { "rank": 58, "score": 0.010869565217391304 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00207",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 33, "score": 11.406861637109868 },
+          "dense": null,
+          "fused": { "rank": 59, "score": 0.010752688172043012 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00132",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 34, "score": 11.096753690783085 },
+          "dense": null,
+          "fused": { "rank": 60, "score": 0.010638297872340425 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00277",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 34, "score": 0.6733941230732278 },
+          "fused": { "rank": 61, "score": 0.010638297872340425 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00183",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 35, "score": 11.047421083919778 },
+          "dense": null,
+          "fused": { "rank": 62, "score": 0.010526315789473684 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00137",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 35, "score": 0.6732307542018794 },
+          "fused": { "rank": 63, "score": 0.010526315789473684 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00199",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 36, "score": 0.6729053141238138 },
+          "fused": { "rank": 64, "score": 0.010416666666666666 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00110",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 36, "score": 10.944750441955005 },
+          "dense": null,
+          "fused": { "rank": 65, "score": 0.010416666666666666 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00125",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 37, "score": 10.806818805378695 },
+          "dense": null,
+          "fused": { "rank": 66, "score": 0.010309278350515464 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00205",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 37, "score": 0.6729053141238138 },
+          "fused": { "rank": 67, "score": 0.010309278350515464 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00206",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 38, "score": 10.797990288228522 },
+          "dense": null,
+          "fused": { "rank": 68, "score": 0.01020408163265306 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00096",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 38, "score": 0.6701658304591486 },
+          "fused": { "rank": 69, "score": 0.01020408163265306 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00055",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 39, "score": 10.764341660800893 },
+          "dense": null,
+          "fused": { "rank": 70, "score": 0.010101010101010102 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00121",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 39, "score": 0.6697380182413101 },
+          "fused": { "rank": 71, "score": 0.010101010101010102 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00171",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 40, "score": 10.739843312662195 },
+          "dense": null,
+          "fused": { "rank": 72, "score": 0.01 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00087",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 40, "score": 0.6688240106299276 },
+          "fused": { "rank": 73, "score": 0.01 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00082",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 41, "score": 10.729177209218909 },
+          "dense": null,
+          "fused": { "rank": 74, "score": 0.009900990099009901 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00121",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 41, "score": 0.6686433863277462 },
+          "fused": { "rank": 75, "score": 0.009900990099009901 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00083",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 42, "score": 10.667227835635623 },
+          "dense": null,
+          "fused": { "rank": 76, "score": 0.00980392156862745 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00132",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 42, "score": 0.6685159442309812 },
+          "fused": { "rank": 77, "score": 0.00980392156862745 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00116",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 43, "score": 0.6679492407661972 },
+          "fused": { "rank": 78, "score": 0.009708737864077669 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00075",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 43, "score": 10.618134014447861 },
+          "dense": null,
+          "fused": { "rank": 79, "score": 0.009708737864077669 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00022",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 44, "score": 10.614406572416176 },
+          "dense": null,
+          "fused": { "rank": 80, "score": 0.009615384615384616 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00127",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 44, "score": 0.666933109730897 },
+          "fused": { "rank": 81, "score": 0.009615384615384616 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00076",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 45, "score": 10.6059897362382 },
+          "dense": null,
+          "fused": { "rank": 82, "score": 0.009523809523809525 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00078",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 46, "score": 10.6059897362382 },
+          "dense": null,
+          "fused": { "rank": 83, "score": 0.009433962264150943 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00179",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 46, "score": 0.6651616395735006 },
+          "fused": { "rank": 84, "score": 0.009433962264150943 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00271",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 47, "score": 0.665106521655468 },
+          "fused": { "rank": 85, "score": 0.009345794392523364 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00086",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 48, "score": 10.485598917064056 },
+          "dense": null,
+          "fused": { "rank": 86, "score": 0.009259259259259259 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00120",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 48, "score": 0.6636218162802743 },
+          "fused": { "rank": 87, "score": 0.009259259259259259 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00170",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 49, "score": 10.399658442968633 },
+          "dense": null,
+          "fused": { "rank": 88, "score": 0.009174311926605505 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00275",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 49, "score": 0.6634722322640563 },
+          "fused": { "rank": 89, "score": 0.009174311926605505 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00079",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 50, "score": 10.367910584393456 },
+          "dense": null,
+          "fused": { "rank": 90, "score": 0.00909090909090909 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00177",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 50, "score": 0.6622958001329291 },
+          "fused": { "rank": 91, "score": 0.00909090909090909 },
+          "rerank": null
+        }
+      ],
+      "top": [
+        {
+          "chunk_id": "AAPL-FY2025-structure-00139",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 2, "score": 27.790407579796316 },
+          "dense": { "rank": 1, "score": 0.7397203268505278 },
+          "fused": { "rank": 1, "score": 0.03252247488101534 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00115",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 5, "score": 22.178025823652874 },
+          "dense": { "rank": 2, "score": 0.7258971742994382 },
+          "fused": { "rank": 2, "score": 0.0315136476426799 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00140",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 1, "score": 28.759134474204675 },
+          "dense": { "rank": 8, "score": 0.6979375685917313 },
+          "fused": { "rank": 3, "score": 0.031099324975891997 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00129",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 6, "score": 21.908396602641275 },
+          "dense": { "rank": 3, "score": 0.7135543209247636 },
+          "fused": { "rank": 4, "score": 0.031024531024531024 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00111",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 29, "score": 11.792969837674029 },
+          "dense": { "rank": 5, "score": 0.7028383005517399 },
+          "fused": { "rank": 5, "score": 0.02662057044079516 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00180",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 17, "score": 13.621471755805008 },
+          "dense": { "rank": 33, "score": 0.6764489190205539 },
+          "fused": { "rank": 6, "score": 0.023739701159056 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00131",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 30, "score": 11.784461654833507 },
+          "dense": { "rank": 22, "score": 0.6859694649802851 },
+          "fused": { "rank": 7, "score": 0.023306233062330622 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00119",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 28, "score": 12.069154353679433 },
+          "dense": { "rank": 45, "score": 0.6653288802839658 },
+          "fused": { "rank": 8, "score": 0.02088744588744589 },
+          "rerank": null
+        }
+      ],
+      "timings": {
+        "filter_ms": 4.3,
+        "lexical_ms": 12.7,
+        "embed_ms": 99.8,
+        "dense_ms": 6.4,
+        "fuse_ms": 0.2,
+        "rerank_ms": 0,
+        "total_ms": 123.4
+      }
+    },
+    "passages": [
+      {
+        "candidate": {
+          "chunk_id": "AAPL-FY2025-structure-00139",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 2, "score": 27.790407579796316 },
+          "dense": { "rank": 1, "score": 0.7397203268505278 },
+          "fused": { "rank": 1, "score": 0.03252247488101534 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 124319,
+          "char_start": 123679,
+          "doc_id": "AAPL-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "Note 3 – Earnings Per Share"
+          ],
+          "item": "8",
+          "text": "The following table shows the computation of basic and diluted earnings per share for 2025, 2024 and 2023 (net income in millions and shares in thousands):\n|  | 2025 | 2024 | 2023 |\n| --- | --- | --- | --- |\n| Numerator: |  |  |  |\n| Net income | $112,010 | $93,736 | $96,995 |\n| Denominator: |  |  |  |\n| Weighted-average basic shares outstanding | 14,948,500 | 15,343,783 | 15,744,231 |\n| Effect of dilutive share-based awards | 56,197 | 64,312 | 68,316 |\n| Weighted-average diluted shares | 15,004,697 | 15,408,095 | 15,812,547 |\n| Basic earnings per share | $7.49 | $6.11 | $6.16 |\n| Diluted earnings per share | $7.46 | $6.08 | $6.13 |"
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Apple",
+          "filing_date": "2025-10-31",
+          "fy": 2025,
+          "ticker": "AAPL",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AAPL-FY2025-structure-00115",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 5, "score": 22.178025823652874 },
+          "dense": { "rank": 2, "score": 0.7258971742994382 },
+          "fused": { "rank": 2, "score": 0.0315136476426799 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 107828,
+          "char_start": 106497,
+          "doc_id": "AAPL-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "CONSOLIDATED STATEMENTS OF OPERATIONS"
+          ],
+          "item": "8",
+          "text": "(In millions, except number of shares, which are reflected in thousands, and per-share amounts)\n|  | Years ended September 27, 2025 | September 28, 2024 | September 30, 2023 |\n| --- | --- | --- | --- |\n| Net sales: |  |  |  |\n| Products | $307,003 | $294,866 | $298,085 |\n| Services | 109,158 | 96,169 | 85,200 |\n| Total net sales | 416,161 | 391,035 | 383,285 |\n| Cost of sales: |  |  |  |\n| Products | 194,116 | 185,233 | 189,282 |\n| Services | 26,844 | 25,119 | 24,855 |\n| Total cost of sales | 220,960 | 210,352 | 214,137 |\n| Gross margin | 195,201 | 180,683 | 169,148 |\n| Operating expenses: |  |  |  |\n| Research and development | 34,550 | 31,370 | 29,915 |\n| Selling, general and administrative | 27,601 | 26,097 | 24,932 |\n| Total operating expenses | 62,151 | 57,467 | 54,847 |\n| Operating income | 133,050 | 123,216 | 114,301 |\n| Other income/(expense), net | (321) | 269 | (565) |\n| Income before provision for income taxes | 132,729 | 123,485 | 113,736 |\n| Provision for income taxes | 20,719 | 29,749 | 16,741 |\n| Net income | $112,010 | $93,736 | $96,995 |\n| Earnings per share: |  |  |  |\n| Basic | $7.49 | $6.11 | $6.16 |\n| Diluted | $7.46 | $6.08 | $6.13 |\n| Shares used in computing earnings per share: |  |  |  |\n| Basic | 14,948,500 | 15,343,783 | 15,744,231 |\n| Diluted | 15,004,697 | 15,408,095 | 15,812,547 |"
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Apple",
+          "filing_date": "2025-10-31",
+          "fy": 2025,
+          "ticker": "AAPL",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AMZN-FY2025-structure-00140",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 1, "score": 28.759134474204675 },
+          "dense": { "rank": 8, "score": 0.6979375685917313 },
+          "fused": { "rank": 3, "score": 0.031099324975891997 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 149722,
+          "char_start": 149326,
+          "doc_id": "AMZN-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "Earnings Per Share"
+          ],
+          "item": "8",
+          "text": "The following table shows the calculation of diluted shares (in millions):\n|  | 2023 | 2024 | Year Ended December 31, 2025 |\n| --- | --- | --- | --- |\n| Shares used in computation of basic earnings per share | 10,304 | 10,473 | 10,656 |\n| Total dilutive effect of outstanding stock awards | 188 | 248 | 171 |\n| Shares used in computation of diluted earnings per share | 10,492 | 10,721 | 10,827 |"
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Amazon",
+          "filing_date": "2026-02-06",
+          "fy": 2025,
+          "ticker": "AMZN",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AMZN-FY2025-structure-00129",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 6, "score": 21.908396602641275 },
+          "dense": { "rank": 3, "score": 0.7135543209247636 },
+          "fused": { "rank": 4, "score": 0.031024531024531024 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 138826,
+          "char_start": 137387,
+          "doc_id": "AMZN-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "CONSOLIDATED STATEMENTS OF OPERATIONS"
+          ],
+          "item": "8",
+          "text": "(in millions, except per share data)\n|  | Year Ended December 31, 2023 | 2024 | 2025 |\n| --- | --- | --- | --- |\n| Net product sales | $255,887 | $272,311 | $296,266 |\n| Net service sales | 318,898 | 365,648 | 420,658 |\n| Total net sales | 574,785 | 637,959 | 716,924 |\n| Operating expenses: |  |  |  |\n| Cost of sales | 304,739 | 326,288 | 356,414 |\n| Fulfillment | 90,619 | 98,505 | 109,074 |\n| Technology and infrastructure | 85,622 | 88,544 | 108,521 |\n| Sales and marketing | 44,370 | 43,907 | 47,129 |\n| General and administrative | 11,816 | 11,359 | 11,172 |\n| Other operating expense (income), net | 767 | 763 | 4,639 |\n| Total operating expenses | 537,933 | 569,366 | 636,949 |\n| Operating income | 36,852 | 68,593 | 79,975 |\n| Interest income | 2,949 | 4,677 | 4,381 |\n| Interest expense | (3,182) | (2,406) | (2,274) |\n| Other income (expense), net | 938 | (2,250) | 15,229 |\n| Total non-operating income | 705 | 21 | 17,336 |\n| Income before income taxes | 37,557 | 68,614 | 97,311 |\n| Provision for income taxes | (7,120) | (9,265) | (19,087) |\n| Equity-method investment activity, net of tax | (12) | (101) | (554) |\n| Net income | $30,425 | $59,248 | $77,670 |\n| Basic earnings per share | $2.95 | $5.66 | $7.29 |\n| Diluted earnings per share | $2.90 | $5.53 | $7.17 |\n| Weighted-average shares used in computation of earnings per share: |  |  |  |\n| Basic | 10,304 | 10,473 | 10,656 |\n| Diluted | 10,492 | 10,721 | 10,827 |"
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Amazon",
+          "filing_date": "2026-02-06",
+          "fy": 2025,
+          "ticker": "AMZN",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AMZN-FY2025-structure-00111",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 29, "score": 11.792969837674029 },
+          "dense": { "rank": 5, "score": 0.7028383005517399 },
+          "fused": { "rank": 5, "score": 0.02662057044079516 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 121273,
+          "char_start": 119790,
+          "doc_id": "AMZN-FY2025",
+          "heading_path": [
+            "Item 7 Management's Discussion and Analysis of Financial Condition and Results of Operations",
+            "Guidance"
+          ],
+          "item": "7",
+          "text": "We provided guidance on February 5, 2026, in our earnings release furnished on Form 8-K as set forth below. These forward-looking statements reflect Amazon.com's expectations as of February 5, 2026, and are subject to substantial uncertainty. Our results are inherently unpredictable and may be materially affected by many factors, such as fluctuations in foreign exchange rates and energy prices, changes in global economic and geopolitical conditions, tariff and trade policies, resource and supply volatility, including for memory chips, and customer demand and spending (including the impact of recessionary fears), inflation, interest rates, regional labor market constraints, world events, the rate of growth of the internet, online commerce, cloud services, and new and emerging technologies, as well as those outlined in Item 1A of Part I, \"Risk Factors.\"\n\nFirst Quarter 2026 Guidance\n\n• Net sales are expected to be between $173.5 billion and $178.5 billion, or to grow between 11% and 15% compared with first quarter 2025. This guidance anticipates a favorable impact of approximately 180 basis points from foreign exchange rates.\n\n• Operating income is expected to be between $16.5 billion and $21.5 billion, compared with $18.4 billion in first quarter 2025. This guidance includes approximately $1 billion of higher year-over-year Amazon Leo costs as we scale in 2026, as well as investment in quick commerce and even sharper prices in our international stores business."
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Amazon",
+          "filing_date": "2026-02-06",
+          "fy": 2025,
+          "ticker": "AMZN",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AAPL-FY2025-structure-00180",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 17, "score": 13.621471755805008 },
+          "dense": { "rank": 33, "score": 0.6764489190205539 },
+          "fused": { "rank": 6, "score": 0.023739701159056 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 150572,
+          "char_start": 149771,
+          "doc_id": "AAPL-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "2022 Employee Stock Plan"
+          ],
+          "item": "8",
+          "text": "The Apple Inc. 2022 Employee Stock Plan (\"2022 Plan\") is a shareholder-approved plan that provides for broad-based equity grants to employees, including executive officers, and permits the granting of RSUs, stock grants, performance-based awards, stock options and stock appreciation rights. RSUs granted under the 2022 Plan generally vest over four years, based on continued employment, and are settled upon vesting in shares of the Company's common stock on a one-for-one basis. All RSUs granted under the 2022 Plan have dividend equivalent rights, which entitle holders of RSUs to the same dividend value per share as holders of common stock. A maximum of approximately 1.3 billion shares were authorized for issuance pursuant to 2022 Plan awards at the time the plan was approved on March 4, 2022."
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Apple",
+          "filing_date": "2025-10-31",
+          "fy": 2025,
+          "ticker": "AAPL",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AMZN-FY2025-structure-00131",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 30, "score": 11.784461654833507 },
+          "dense": { "rank": 22, "score": 0.6859694649802851 },
+          "fused": { "rank": 7, "score": 0.023306233062330622 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 141352,
+          "char_start": 139744,
+          "doc_id": "AMZN-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "CONSOLIDATED BALANCE SHEETS"
+          ],
+          "item": "8",
+          "text": "(in millions, except per share data)\n|  | December 31, 2024 | 2025 |\n| --- | --- | --- |\n| ASSETS |  |  |\n| Current assets: |  |  |\n| Cash and cash equivalents | $78,779 | $86,810 |\n| Marketable securities | 22,423 | 36,219 |\n| Inventories | 34,214 | 38,325 |\n| Accounts receivable, net and other | 55,451 | 67,729 |\n| Total current assets | 190,867 | 229,083 |\n| Property and equipment, net | 252,665 | 357,025 |\n| Operating leases | 76,141 | 86,054 |\n| Goodwill | 23,074 | 23,273 |\n| Other assets | 82,147 | 122,607 |\n| Total assets | $624,894 | $818,042 |\n| LIABILITIES AND STOCKHOLDERS' EQUITY |  |  |\n| Current liabilities: |  |  |\n| Accounts payable | $94,363 | $121,909 |\n| Accrued expenses and other | 66,965 | 75,520 |\n| Unearned revenue | 18,103 | 20,576 |\n| Total current liabilities | 179,431 | 218,005 |\n| Long-term lease liabilities | 78,277 | 87,339 |\n| Long-term debt | 52,623 | 65,648 |\n| Other long-term liabilities | 28,593 | 35,985 |\n| Commitments and contingencies (Note 7) |  |  |\n| Stockholders' equity: |  |  |\n| Preferred stock ($0.01 par value; 500 shares authorized; no shares issued or outstanding) | — | — |\n| Common stock ($0.01 par value; 100,000 shares authorized; 11,108 and 11,246 shares issued; 10,593 and 10,731 shares outstanding) | 111 | 112 |\n| Treasury stock, at cost | (7,837) | (7,837) |\n| Additional paid-in capital | 120,864 | 140,024 |\n| Accumulated other comprehensive income (loss) | (34) | 28,230 |\n| Retained earnings | 172,866 | 250,536 |\n| Total stockholders' equity | 285,970 | 411,065 |\n| Total liabilities and stockholders' equity | $624,894 | $818,042 |"
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Amazon",
+          "filing_date": "2026-02-06",
+          "fy": 2025,
+          "ticker": "AMZN",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AAPL-FY2025-structure-00119",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 28, "score": 12.069154353679433 },
+          "dense": { "rank": 45, "score": 0.6653288802839658 },
+          "fused": { "rank": 8, "score": 0.02088744588744589 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 112295,
+          "char_start": 110892,
+          "doc_id": "AAPL-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "CONSOLIDATED STATEMENTS OF SHAREHOLDERS' EQUITY"
+          ],
+          "item": "8",
+          "text": "(In millions, except per-share amounts)\n|  | Years ended September 27, 2025 | September 28, 2024 | September 30, 2023 |\n| --- | --- | --- | --- |\n| Total shareholders' equity, beginning balances | $56,950 | $62,146 | $50,672 |\n| Common stock and additional paid-in capital: |  |  |  |\n| Beginning balances | 83,276 | 73,812 | 64,849 |\n| Common stock issued | 1,498 | 1,423 | 1,346 |\n| Common stock withheld related to net share settlement of equity awards | (4,452) | (3,993) | (3,521) |\n| Share-based compensation | 13,246 | 12,034 | 11,138 |\n| Ending balances | 93,568 | 83,276 | 73,812 |\n| Accumulated deficit: |  |  |  |\n| Beginning balances | (19,154) | (214) | (3,068) |\n| Net income | 112,010 | 93,736 | 96,995 |\n| Dividends and dividend equivalents declared | (15,413) | (15,218) | (14,996) |\n| Common stock withheld related to net share settlement of equity awards | (1,655) | (1,612) | (2,099) |\n| Common stock repurchased | (90,052) | (95,846) | (77,046) |\n| Ending balances | (14,264) | (19,154) | (214) |\n| Accumulated other comprehensive loss: |  |  |  |\n| Beginning balances | (7,172) | (11,452) | (11,109) |\n| Other comprehensive income/(loss) | 1,601 | 4,280 | (343) |\n| Ending balances | (5,571) | (7,172) | (11,452) |\n| Total shareholders' equity, ending balances | $73,733 | $56,950 | $62,146 |\n| Dividends and dividend equivalents declared per share or RSU | $1.02 | $0.98 | $0.94 |"
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Apple",
+          "filing_date": "2025-10-31",
+          "fy": 2025,
+          "ticker": "AAPL",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+        }
+      }
+    ],
+    "fetch_ms": 3,
+    "runtime": {
+      "model": "Xenova/bge-small-en-v1.5",
+      "revision": "ea104dacec62c0de699686887e3f920caeb4f3e3",
+      "dtype": "q8",
+      "strategy": "structure",
+      "n": 10547
+    }
+  },
+  "answer": {
+    "text": "Apple reported higher diluted earnings per share for fiscal year 2025 at $7.46, while Amazon reported $7.17 [1][2][4]. Apple’s diluted EPS was therefore $0.29 greater than Amazon’s [1][2][4].",
+    "chunkIds": [
+      "AAPL-FY2025-structure-00139",
+      "AAPL-FY2025-structure-00115",
+      "AMZN-FY2025-structure-00140",
+      "AMZN-FY2025-structure-00129",
+      "AMZN-FY2025-structure-00111",
+      "AAPL-FY2025-structure-00180",
+      "AMZN-FY2025-structure-00131",
+      "AAPL-FY2025-structure-00119"
+    ],
+    "done": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "promptVersion": "answer-v2",
+      "usage": {
+        "queue_time": 0.301231493,
+        "prompt_tokens": 3475,
+        "prompt_time": 0.185395383,
+        "completion_tokens": 114,
+        "completion_time": 0.240936924,
+        "total_tokens": 3589,
+        "total_time": 0.426332307,
+        "completion_tokens_details": { "reasoning_tokens": 49 }
+      },
+      "latencyMs": 1086,
+      "cached": false
+    }
+  },
+  "judge": {
+    "verdicts": [
+      {
+        "plain": "Apple reported higher diluted earnings per share for fiscal year 2025 at $7.46, while Amazon reported $7.17.",
+        "supported": true,
+        "reason": "Sources confirm Apple $7.46 and Amazon $7.17 for FY2025."
+      },
+      {
+        "plain": "Apple’s diluted EPS was therefore $0.29 greater than Amazon’s.",
+        "supported": true,
+        "reason": "Difference $7.46 - $7.17 equals $0.29."
+      }
+    ],
+    "provider": "groqJudge",
+    "model": "qwen/qwen3.8-27b",
+    "judgeVersion": "support-v1",
+    "cached": false
+  }
+}

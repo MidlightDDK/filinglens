@@ -2,6 +2,8 @@ export type {
   AnswerDone,
   AnswerRequest,
   ErrorReason,
+  ExampleFile,
+  Passage,
   Usage,
   VerifyRequest,
   VerifyResponse,

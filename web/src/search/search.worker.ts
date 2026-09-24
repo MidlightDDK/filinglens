@@ -1,5 +1,6 @@
 // Loads the index and the embedding model off the main thread, then answers
-// search requests with the shared retrieval code from @filinglens/core.
+// search requests with the shared retrieval code from @filinglens/core. Other
+// configs' indexes and the reranker load on first use (Pipeline Lab).
 import {
   ChunkStore,
   type Embedder,
@@ -7,14 +8,21 @@ import {
   type LoadedIndex,
   loadEmbedder,
   loadIndex,
-  type RetrievalConfig,
+  loadReranker,
+  type Reranker,
   retrieve,
 } from "@filinglens/core";
-import { AutoModel, AutoTokenizer, env } from "@huggingface/transformers";
-import defaultConfig from "../../../evals/configs/default.json";
+import {
+  AutoModel,
+  AutoModelForSequenceClassification,
+  AutoTokenizer,
+  env,
+} from "@huggingface/transformers";
+import { CONFIG_ID } from "../config";
+import { CONFIGS } from "../configs";
 import type { Device, WorkerRequest, WorkerResponse } from "./protocol";
 
-const config: RetrievalConfig = defaultConfig;
+const defaultStrategy = (CONFIGS[CONFIG_ID] as { strategy: string }).strategy;
 env.allowLocalModels = false;
 // huggingface.co answers requests whose Referer is a *.workers.dev page with a
 // 404 and no CORS headers, so model downloads go out without a referrer.
@@ -70,11 +78,39 @@ async function loadModel(device: Device): Promise<Embedder> {
   );
 }
 
-let ready: Promise<{
+interface Loaded {
   index: LoadedIndex;
-  embedder: Embedder;
   chunks: ChunkStore;
-}> | null = null;
+}
+
+/** One loaded index per chunking strategy, shared by every config using it. */
+const indexes = new Map<string, Promise<Loaded>>();
+
+function indexFor(strategy: string, from: IndexSource = source) {
+  let p = indexes.get(strategy);
+  if (!p) {
+    p = loadIndex(from, strategy).then((index) => ({
+      index,
+      chunks: new ChunkStore(source, strategy),
+    }));
+    p.catch(() => indexes.delete(strategy));
+    indexes.set(strategy, p);
+  }
+  return p;
+}
+
+let ready: Promise<{ embedder: Embedder; device: Device }> | null = null;
+let reranker: Promise<Reranker> | null = null;
+
+async function loadRerankerOn(device: Device): Promise<Reranker> {
+  const lib = { AutoModelForSequenceClassification, AutoTokenizer };
+  try {
+    return await loadReranker(lib, { device });
+  } catch (err) {
+    if (device !== "webgpu") throw err;
+    return loadReranker(lib, { device: "wasm" });
+  }
+}
 
 async function init(forced?: Device) {
   const t0 = performance.now();
@@ -91,7 +127,7 @@ async function init(forced?: Device) {
       return out;
     },
   };
-  const indexP = loadIndex(counting, config.strategy);
+  const indexP = indexFor(defaultStrategy, counting);
   let device = forced ?? (await pickDevice());
   let embedder: Embedder;
   try {
@@ -103,28 +139,42 @@ async function init(forced?: Device) {
   }
   // Warm-up: the first inference compiles kernels.
   await embedder.embedQuery("warm-up");
-  const index = await indexP;
+  const { index } = await indexP;
   post({
     type: "ready",
     device,
-    strategy: config.strategy,
+    strategy: defaultStrategy,
     n: index.meta.n,
     model: index.meta.model,
     revision: index.meta.revision,
     dtype: index.meta.dtype,
     load_ms: Math.round(performance.now() - t0),
   });
-  return {
-    index,
-    embedder,
-    chunks: new ChunkStore(source, config.strategy),
-  };
+  return { embedder, device };
 }
 
-async function search(id: number, query: string) {
+async function search(id: number, query: string, configId: string) {
   if (!ready) throw new Error("search before init");
-  const { index, embedder, chunks } = await ready;
-  const result = await retrieve(index, query, config, { embedder, chunks });
+  const config = CONFIGS[configId];
+  if (!config) throw new Error(`unknown config ${configId}`);
+  const { embedder, device } = await ready;
+  const { index, chunks } = await indexFor(config.strategy);
+  let rr: Reranker | undefined;
+  if (config.rerank) {
+    if (!reranker) {
+      const p = loadRerankerOn(device);
+      p.catch(() => {
+        if (reranker === p) reranker = null;
+      });
+      reranker = p;
+    }
+    rr = await reranker;
+  }
+  const result = await retrieve(index, query, config, {
+    embedder,
+    reranker: rr,
+    chunks,
+  });
   const t0 = performance.now();
   const texts = await chunks.get(result.top.map((c) => c.chunk_id));
   const passages = result.top.flatMap((candidate) => {
@@ -144,7 +194,7 @@ self.addEventListener("message", (e: MessageEvent<WorkerRequest>) => {
       post({ type: "error", message: String(err) }),
     );
   } else if (msg.type === "search") {
-    search(msg.id, msg.query).catch((err: unknown) =>
+    search(msg.id, msg.query, msg.configId).catch((err: unknown) =>
       post({ type: "error", id: msg.id, message: String(err) }),
     );
   }

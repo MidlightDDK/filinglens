@@ -1,0 +1,982 @@
+{
+  "id": "table-number",
+  "category": "table_number",
+  "question": "What was Alphabet's total revenue for fiscal year 2025?",
+  "created_at": "2026-09-24T19:39:45.135Z",
+  "commit": "7a5fde023461d8d69d3c10ba75389626e6f0b6bc-dirty",
+  "retrieval": {
+    "result": {
+      "query": "What was Alphabet's total revenue for fiscal year 2025?",
+      "config_id": "default",
+      "filters": {
+        "tickers": ["GOOGL"],
+        "fiscal_years": [2025],
+        "latest": false,
+        "doc_ids": ["GOOGL-FY2025"],
+        "notes": []
+      },
+      "candidates": [
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00228",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 4, "score": 11.34464990796028 },
+          "dense": { "rank": 2, "score": 0.7412375020441138 },
+          "fused": { "rank": 1, "score": 0.031754032258064516 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00104",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 3, "score": 11.760502983292609 },
+          "dense": { "rank": 4, "score": 0.7397540820411427 },
+          "fused": { "rank": 2, "score": 0.03149801587301587 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00328",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 7, "score": 10.104538758601272 },
+          "dense": { "rank": 3, "score": 0.7400071630042723 },
+          "fused": { "rank": 3, "score": 0.030798389007344232 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00348",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 5, "score": 11.011998721945565 },
+          "dense": { "rank": 6, "score": 0.7375774744338931 },
+          "fused": { "rank": 4, "score": 0.030536130536130537 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00125",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 8, "score": 9.6119034278329 },
+          "dense": { "rank": 5, "score": 0.7390324369900002 },
+          "fused": { "rank": 5, "score": 0.030090497737556562 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00181",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 14, "score": 9.391531265280369 },
+          "dense": { "rank": 1, "score": 0.7459775738117148 },
+          "fused": { "rank": 6, "score": 0.029906956136464335 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00230",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 6, "score": 10.804295835356234 },
+          "dense": { "rank": 10, "score": 0.7076467078753593 },
+          "fused": { "rank": 7, "score": 0.029437229437229435 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00333",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 20, "score": 9.022497162251312 },
+          "dense": { "rank": 9, "score": 0.7121183764359339 },
+          "fused": { "rank": 8, "score": 0.026992753623188405 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00233",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 1, "score": 13.11840447376926 },
+          "dense": { "rank": 41, "score": 0.6613346423627846 },
+          "fused": { "rank": 9, "score": 0.02629443272196072 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00229",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 19, "score": 9.053671282132832 },
+          "dense": { "rank": 14, "score": 0.6957744309345845 },
+          "fused": { "rank": 10, "score": 0.026171741361614778 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00114",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 13, "score": 9.44345944603418 },
+          "dense": { "rank": 26, "score": 0.6754664484575539 },
+          "fused": { "rank": 11, "score": 0.025326537113730486 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00336",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 34, "score": 8.223525458597766 },
+          "dense": { "rank": 12, "score": 0.6978802227978113 },
+          "fused": { "rank": 12, "score": 0.024527186761229315 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00332",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 15, "score": 9.184867700533252 },
+          "dense": { "rank": 32, "score": 0.670284783709669 },
+          "fused": { "rank": 13, "score": 0.02420289855072464 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00342",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 22, "score": 8.944286316073233 },
+          "dense": { "rank": 24, "score": 0.6798701393543267 },
+          "fused": { "rank": 14, "score": 0.024099883855981417 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00318",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 24, "score": 8.554187932050207 },
+          "dense": { "rank": 29, "score": 0.672009023224268 },
+          "fused": { "rank": 15, "score": 0.02314071696094168 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00147",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 28, "score": 8.409929467687654 },
+          "dense": { "rank": 25, "score": 0.6782875556080443 },
+          "fused": { "rank": 16, "score": 0.023128342245989305 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00293",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 18, "score": 9.092640545726137 },
+          "dense": { "rank": 38, "score": 0.6622403356197436 },
+          "fused": { "rank": 17, "score": 0.023024594453165882 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00100",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 31, "score": 8.30066688916912 },
+          "dense": { "rank": 27, "score": 0.6740926236078421 },
+          "fused": { "rank": 18, "score": 0.02248326386257421 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00232",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 16, "score": 9.172452752400776 },
+          "dense": { "rank": 48, "score": 0.6504240732855331 },
+          "fused": { "rank": 19, "score": 0.022417153996101363 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00179",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 40, "score": 7.917459378818945 },
+          "dense": { "rank": 23, "score": 0.6867497165485944 },
+          "fused": { "rank": 20, "score": 0.022048192771084336 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00329",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 37, "score": 8.07333187074113 },
+          "dense": { "rank": 30, "score": 0.6717126347679098 },
+          "fused": { "rank": 21, "score": 0.021420389461626575 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00117",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 25, "score": 8.544116645539807 },
+          "dense": { "rank": 44, "score": 0.6536525959799867 },
+          "fused": { "rank": 22, "score": 0.021380090497737557 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00101",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 35, "score": 8.216512203135578 },
+          "dense": { "rank": 45, "score": 0.6516482202941025 },
+          "fused": { "rank": 23, "score": 0.020050125313283207 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00112",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 36, "score": 8.162495931664125 },
+          "dense": { "rank": 49, "score": 0.6492041681702192 },
+          "fused": { "rank": 24, "score": 0.01959097859327217 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00270",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 50, "score": 7.525288629024809 },
+          "dense": { "rank": 40, "score": 0.661641982719261 },
+          "fused": { "rank": 25, "score": 0.01909090909090909 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00116",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 2, "score": 13.061904601627706 },
+          "dense": null,
+          "fused": { "rank": 26, "score": 0.016129032258064516 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00170",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 7, "score": 0.7371702118381995 },
+          "fused": { "rank": 27, "score": 0.014925373134328358 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00102",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 8, "score": 0.7202438256640226 },
+          "fused": { "rank": 28, "score": 0.014705882352941176 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00239",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 9, "score": 9.494641584066635 },
+          "dense": null,
+          "fused": { "rank": 29, "score": 0.014492753623188406 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00118",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 10, "score": 9.494178196751363 },
+          "dense": null,
+          "fused": { "rank": 30, "score": 0.014285714285714285 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00083",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 11, "score": 0.7011532938176566 },
+          "fused": { "rank": 31, "score": 0.014084507042253521 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00120",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 11, "score": 9.494178196751363 },
+          "dense": null,
+          "fused": { "rank": 32, "score": 0.014084507042253521 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00122",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 12, "score": 9.494178196751363 },
+          "dense": null,
+          "fused": { "rank": 33, "score": 0.013888888888888888 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00339",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 13, "score": 0.6967170720595363 },
+          "fused": { "rank": 34, "score": 0.0136986301369863 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00169",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 15, "score": 0.69524966798086 },
+          "fused": { "rank": 35, "score": 0.013333333333333334 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00175",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 16, "score": 0.69524966798086 },
+          "fused": { "rank": 36, "score": 0.013157894736842105 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00185",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 17, "score": 0.693984823927961 },
+          "fused": { "rank": 37, "score": 0.012987012987012988 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00331",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 17, "score": 9.120537797587527 },
+          "dense": null,
+          "fused": { "rank": 38, "score": 0.012987012987012988 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00298",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 18, "score": 0.6909502187802999 },
+          "fused": { "rank": 39, "score": 0.01282051282051282 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00187",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 19, "score": 0.6888680688911776 },
+          "fused": { "rank": 40, "score": 0.012658227848101266 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00273",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 20, "score": 0.6887064738263354 },
+          "fused": { "rank": 41, "score": 0.0125 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00105",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 21, "score": 0.6883563144730865 },
+          "fused": { "rank": 42, "score": 0.012345679012345678 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00107",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 21, "score": 9.003198329262016 },
+          "dense": null,
+          "fused": { "rank": 43, "score": 0.012345679012345678 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00016",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 22, "score": 0.6873229110940341 },
+          "fused": { "rank": 44, "score": 0.012195121951219513 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00263",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 23, "score": 8.718685975664615 },
+          "dense": null,
+          "fused": { "rank": 45, "score": 0.012048192771084338 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00252",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 26, "score": 8.468091806505118 },
+          "dense": null,
+          "fused": { "rank": 46, "score": 0.011627906976744186 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00108",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 27, "score": 8.41882414567837 },
+          "dense": null,
+          "fused": { "rank": 47, "score": 0.011494252873563218 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00330",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 28, "score": 0.6724411566308652 },
+          "fused": { "rank": 48, "score": 0.011363636363636364 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00316",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 29, "score": 8.34259616111198 },
+          "dense": null,
+          "fused": { "rank": 49, "score": 0.011235955056179775 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00268",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 30, "score": 8.302524643249782 },
+          "dense": null,
+          "fused": { "rank": 50, "score": 0.011111111111111112 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00176",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 31, "score": 0.670722851605232 },
+          "fused": { "rank": 51, "score": 0.01098901098901099 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00133",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 32, "score": 8.29238733771161 },
+          "dense": null,
+          "fused": { "rank": 52, "score": 0.010869565217391304 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00111",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 33, "score": 8.227343762178704 },
+          "dense": null,
+          "fused": { "rank": 53, "score": 0.010752688172043012 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00271",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 33, "score": 0.666227947506689 },
+          "fused": { "rank": 54, "score": 0.010752688172043012 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00245",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 34, "score": 0.6653007737317952 },
+          "fused": { "rank": 55, "score": 0.010638297872340425 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00244",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 35, "score": 0.6652504109100739 },
+          "fused": { "rank": 56, "score": 0.010526315789473684 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00180",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 36, "score": 0.6640569444904595 },
+          "fused": { "rank": 57, "score": 0.010416666666666666 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00188",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 37, "score": 0.6631401298762308 },
+          "fused": { "rank": 58, "score": 0.010309278350515464 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00144",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 38, "score": 8.015433621081145 },
+          "dense": null,
+          "fused": { "rank": 59, "score": 0.01020408163265306 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00106",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 39, "score": 7.938488673825424 },
+          "dense": null,
+          "fused": { "rank": 60, "score": 0.010101010101010102 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00269",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 39, "score": 0.6621691532358892 },
+          "fused": { "rank": 61, "score": 0.010101010101010102 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00128",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 41, "score": 7.809890352681626 },
+          "dense": null,
+          "fused": { "rank": 62, "score": 0.009900990099009901 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00242",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 42, "score": 0.6580640232535913 },
+          "fused": { "rank": 63, "score": 0.00980392156862745 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00247",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 42, "score": 7.779396014617437 },
+          "dense": null,
+          "fused": { "rank": 64, "score": 0.00980392156862745 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00262",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 43, "score": 7.779396014617437 },
+          "dense": null,
+          "fused": { "rank": 65, "score": 0.009708737864077669 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00281",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 43, "score": 0.6576716172808621 },
+          "fused": { "rank": 66, "score": 0.009708737864077669 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00297",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 44, "score": 7.756160760037663 },
+          "dense": null,
+          "fused": { "rank": 67, "score": 0.009615384615384616 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00127",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 45, "score": 7.72644808443734 },
+          "dense": null,
+          "fused": { "rank": 68, "score": 0.009523809523809525 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00184",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 46, "score": 0.6511211374605141 },
+          "fused": { "rank": 69, "score": 0.009433962264150943 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00283",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 46, "score": 7.723213210573482 },
+          "dense": null,
+          "fused": { "rank": 70, "score": 0.009433962264150943 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00004",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 47, "score": 7.720606981724174 },
+          "dense": null,
+          "fused": { "rank": 71, "score": 0.009345794392523364 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00182",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 47, "score": 0.6510798487155511 },
+          "fused": { "rank": 72, "score": 0.009345794392523364 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00023",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 48, "score": 7.5931779234612105 },
+          "dense": null,
+          "fused": { "rank": 73, "score": 0.009259259259259259 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00327",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 49, "score": 7.559947430569446 },
+          "dense": null,
+          "fused": { "rank": 74, "score": 0.009174311926605505 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00241",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 50, "score": 0.648641477796015 },
+          "fused": { "rank": 75, "score": 0.00909090909090909 },
+          "rerank": null
+        }
+      ],
+      "top": [
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00228",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 4, "score": 11.34464990796028 },
+          "dense": { "rank": 2, "score": 0.7412375020441138 },
+          "fused": { "rank": 1, "score": 0.031754032258064516 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00104",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 3, "score": 11.760502983292609 },
+          "dense": { "rank": 4, "score": 0.7397540820411427 },
+          "fused": { "rank": 2, "score": 0.03149801587301587 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00328",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 7, "score": 10.104538758601272 },
+          "dense": { "rank": 3, "score": 0.7400071630042723 },
+          "fused": { "rank": 3, "score": 0.030798389007344232 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00348",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 5, "score": 11.011998721945565 },
+          "dense": { "rank": 6, "score": 0.7375774744338931 },
+          "fused": { "rank": 4, "score": 0.030536130536130537 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00125",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 8, "score": 9.6119034278329 },
+          "dense": { "rank": 5, "score": 0.7390324369900002 },
+          "fused": { "rank": 5, "score": 0.030090497737556562 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00181",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 14, "score": 9.391531265280369 },
+          "dense": { "rank": 1, "score": 0.7459775738117148 },
+          "fused": { "rank": 6, "score": 0.029906956136464335 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00230",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 6, "score": 10.804295835356234 },
+          "dense": { "rank": 10, "score": 0.7076467078753593 },
+          "fused": { "rank": 7, "score": 0.029437229437229435 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00333",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 20, "score": 9.022497162251312 },
+          "dense": { "rank": 9, "score": 0.7121183764359339 },
+          "fused": { "rank": 8, "score": 0.026992753623188405 },
+          "rerank": null
+        }
+      ],
+      "timings": {
+        "filter_ms": 4.5,
+        "lexical_ms": 1.1,
+        "embed_ms": 70.4,
+        "dense_ms": 2.2,
+        "fuse_ms": 0.2,
+        "rerank_ms": 0,
+        "total_ms": 78.4
+      }
+    },
+    "passages": [
+      {
+        "candidate": {
+          "chunk_id": "GOOGL-FY2025-structure-00228",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 4, "score": 11.34464990796028 },
+          "dense": { "rank": 2, "score": 0.7412375020441138 },
+          "fused": { "rank": 1, "score": 0.031754032258064516 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 220779,
+          "char_start": 220114,
+          "doc_id": "GOOGL-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "Disaggregated Revenues"
+          ],
+          "item": "8",
+          "text": "The following table presents revenues disaggregated by type (in millions):\n|  | Year Ended December 31, 2023 | 2024 | 2025 |\n| --- | --- | --- | --- |\n| Google Search & other | $175,033 | $198,084 | $224,532 |\n| YouTube ads | 31,510 | 36,147 | 40,367 |\n| Google Network | 31,312 | 30,359 | 29,792 |\n| Google advertising | 237,855 | 264,590 | 294,691 |\n| Google subscriptions, platforms, and devices | 34,688 | 40,340 | 48,030 |\n| Google Services total | 272,543 | 304,930 | 342,721 |\n| Google Cloud | 33,088 | 43,229 | 58,705 |\n| Other Bets | 1,527 | 1,648 | 1,537 |\n| Hedging gains (losses) | 236 | 211 | (127) |\n| Total revenues | $307,394 | $350,018 | $402,836 |"
+        },
+        "doc": {
+          "aliases": ["Google", "GOOG"],
+          "company": "Alphabet",
+          "filing_date": "2026-02-05",
+          "fy": 2025,
+          "ticker": "GOOGL",
+          "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "GOOGL-FY2025-structure-00104",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 3, "score": 11.760502983292609 },
+          "dense": { "rank": 4, "score": 0.7397540820411427 },
+          "fused": { "rank": 2, "score": 0.03149801587301587 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 131153,
+          "char_start": 130607,
+          "doc_id": "GOOGL-FY2025",
+          "heading_path": [
+            "Item 7 Management's Discussion and Analysis of Financial Condition and Results of Operations",
+            "Revenues"
+          ],
+          "item": "7",
+          "text": "The following table presents revenues by type (in millions):\n|  | Year Ended December 31, 2024 | 2025 |\n| --- | --- | --- |\n| Google Search & other | $198,084 | $224,532 |\n| YouTube ads | 36,147 | 40,367 |\n| Google Network | 30,359 | 29,792 |\n| Google advertising | 264,590 | 294,691 |\n| Google subscriptions, platforms, and devices | 40,340 | 48,030 |\n| Google Services total | 304,930 | 342,721 |\n| Google Cloud | 43,229 | 58,705 |\n| Other Bets | 1,648 | 1,537 |\n| Hedging gains (losses) | 211 | (127) |\n| Total revenues | $350,018 | $402,836 |"
+        },
+        "doc": {
+          "aliases": ["Google", "GOOG"],
+          "company": "Alphabet",
+          "filing_date": "2026-02-05",
+          "fy": 2025,
+          "ticker": "GOOGL",
+          "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "GOOGL-FY2025-structure-00328",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 7, "score": 10.104538758601272 },
+          "dense": { "rank": 3, "score": 0.7400071630042723 },
+          "fused": { "rank": 3, "score": 0.030798389007344232 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 290685,
+          "char_start": 289855,
+          "doc_id": "GOOGL-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "Stock-Based Compensation"
+          ],
+          "item": "8",
+          "text": "For the years ended December 31, 2023, 2024, and 2025, total SBC expense was $22.1 billion, $22.8 billion, and $27.1 billion, including amounts associated with awards we expect to settle in Alphabet stock of $21.7 billion, $22.0 billion, and $24.1 billion, respectively.\n\nFor the years ended December 31, 2023, 2024, and 2025, we recognized tax benefits on total SBC expense, which are reflected in the provision for income taxes, of $4.5 billion, $4.6 billion, and $5.0 billion, respectively.\n\nFor the years ended December 31, 2023, 2024, and 2025, tax benefit realized related to awards vested or exercised during the period was $5.6 billion, $6.8 billion, and $8.1 billion, respectively. These amounts do not include the indirect effects of stock-based awards, which primarily relate to the research and development tax credit."
+        },
+        "doc": {
+          "aliases": ["Google", "GOOG"],
+          "company": "Alphabet",
+          "filing_date": "2026-02-05",
+          "fy": 2025,
+          "ticker": "GOOGL",
+          "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "GOOGL-FY2025-structure-00348",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 5, "score": 11.011998721945565 },
+          "dense": { "rank": 6, "score": 0.7375774744338931 },
+          "fused": { "rank": 4, "score": 0.030536130536130537 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 305243,
+          "char_start": 303981,
+          "doc_id": "GOOGL-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "Note 15. Information about Segments and Geographic Areas"
+          ],
+          "item": "8",
+          "text": "The following table presents revenue, profitability, and expense information about our segments (in millions):\n|  | Year Ended December 31, 2023 | 2024 | 2025 |\n| --- | --- | --- | --- |\n| Revenues: |  |  |  |\n| Google Services | $272,543 | $304,930 | $342,721 |\n| Google Cloud | 33,088 | 43,229 | 58,705 |\n| Other Bets | 1,527 | 1,648 | 1,537 |\n| Hedging gains (losses) | 236 | 211 | (127) |\n| Total revenues | $307,394 | $350,018 | $402,836 |\n| Operating income (loss): |  |  |  |\n| Google Services | $95,858 | $121,263 | $139,404 |\n| Google Cloud | 1,716 | 6,112 | 13,910 |\n| Other Bets | (4,095) | (4,444) | (7,515) |\n| Alphabet-level activities | (9,186) | (10,541) | (16,760) |\n| Total income from operations | $84,293 | $112,390 | $129,039 |\n| Supplemental information about segment expenses: |  |  |  |\n| Google Services: |  |  |  |\n| Employee compensation expenses | $46,224 | $44,560 | $45,124 |\n| Other costs and expenses | 130,461 | 139,107 | 158,193 |\n| Total Google Services costs and expenses | $176,685 | $183,667 | $203,317 |\n| Google Cloud: |  |  |  |\n| Employee compensation expenses | $19,054 | $20,519 | $22,078 |\n| Other costs and expenses | 12,318 | 16,598 | 22,717 |\n| Total Google Cloud costs and expenses | $31,372 | $37,117 | $44,795 |"
+        },
+        "doc": {
+          "aliases": ["Google", "GOOG"],
+          "company": "Alphabet",
+          "filing_date": "2026-02-05",
+          "fy": 2025,
+          "ticker": "GOOGL",
+          "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "GOOGL-FY2025-structure-00125",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 8, "score": 9.6119034278329 },
+          "dense": { "rank": 5, "score": 0.7390324369900002 },
+          "fused": { "rank": 5, "score": 0.030090497737556562 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 138252,
+          "char_start": 137858,
+          "doc_id": "GOOGL-FY2025",
+          "heading_path": [
+            "Item 7 Management's Discussion and Analysis of Financial Condition and Results of Operations",
+            "Segment Profitability"
+          ],
+          "item": "7",
+          "text": "The following table presents segment operating income (loss) (in millions).\n|  | Year Ended December 31, 2024 | 2025 |\n| --- | --- | --- |\n| Operating income (loss): |  |  |\n| Google Services | $121,263 | $139,404 |\n| Google Cloud | 6,112 | 13,910 |\n| Other Bets | (4,444) | (7,515) |\n| Alphabet-level activities(1) | (10,541) | (16,760) |\n| Total income from operations | $112,390 | $129,039 |"
+        },
+        "doc": {
+          "aliases": ["Google", "GOOG"],
+          "company": "Alphabet",
+          "filing_date": "2026-02-05",
+          "fy": 2025,
+          "ticker": "GOOGL",
+          "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "GOOGL-FY2025-structure-00181",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 14, "score": 9.391531265280369 },
+          "dense": { "rank": 1, "score": 0.7459775738117148 },
+          "fused": { "rank": 6, "score": 0.029906956136464335 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 182418,
+          "char_start": 181537,
+          "doc_id": "GOOGL-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "CONSOLIDATED STATEMENTS OF INCOME"
+          ],
+          "item": "8",
+          "text": "(in millions, except per share amounts)\n|  | Year Ended December 31, 2023 | 2024 | 2025 |\n| --- | --- | --- | --- |\n| Revenues | $307,394 | $350,018 | $402,836 |\n| Costs and expenses: |  |  |  |\n| Cost of revenues | 133,332 | 146,306 | 162,535 |\n| Research and development | 45,427 | 49,326 | 61,087 |\n| Sales and marketing | 27,917 | 27,808 | 28,693 |\n| General and administrative | 16,425 | 14,188 | 21,482 |\n| Total costs and expenses | 223,101 | 237,628 | 273,797 |\n| Income from operations | 84,293 | 112,390 | 129,039 |\n| Other income (expense), net | 1,424 | 7,425 | 29,787 |\n| Income before income taxes | 85,717 | 119,815 | 158,826 |\n| Provision for income taxes | 11,922 | 19,697 | 26,656 |\n| Net income | $73,795 | $100,118 | $132,170 |\n| Basic net income per share (Note 12) | $5.84 | $8.13 | $10.91 |\n| Diluted net income per share (Note 12) | $5.80 | $8.04 | $10.81 |"
+        },
+        "doc": {
+          "aliases": ["Google", "GOOG"],
+          "company": "Alphabet",
+          "filing_date": "2026-02-05",
+          "fy": 2025,
+          "ticker": "GOOGL",
+          "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "GOOGL-FY2025-structure-00230",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 6, "score": 10.804295835356234 },
+          "dense": { "rank": 10, "score": 0.7076467078753593 },
+          "fused": { "rank": 7, "score": 0.029437229437229435 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 221500,
+          "char_start": 220905,
+          "doc_id": "GOOGL-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "Disaggregated Revenues"
+          ],
+          "item": "8",
+          "text": "The following table presents revenues disaggregated by geography, based on the addresses of our customers (in millions):\n|  | Year Ended December 31, 2023 |  | 2024 |  | 2025 |  |\n| --- | --- | --- | --- | --- | --- | --- |\n| United States | $146,286% | 47 | $170,447% | 49 | $194,229% | 48 |\n| EMEA(1) | 91,038 | 30 | 102,127 | 29 | 117,152 | 29 |\n| APAC(1) | 51,514 | 17 | 56,815 | 16 | 67,680 | 17 |\n| Other Americas(1) | 18,320 | 6 | 20,418 | 6 | 23,902 | 6 |\n| Hedging gains (losses) | 236 | 0 | 211 | 0 | (127) | 0 |\n| Total revenues | $307,394% | 100 | $350,018% | 100 | $402,836% | 100 |"
+        },
+        "doc": {
+          "aliases": ["Google", "GOOG"],
+          "company": "Alphabet",
+          "filing_date": "2026-02-05",
+          "fy": 2025,
+          "ticker": "GOOGL",
+          "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "GOOGL-FY2025-structure-00333",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 20, "score": 9.022497162251312 },
+          "dense": { "rank": 9, "score": 0.7121183764359339 },
+          "fused": { "rank": 8, "score": 0.026992753623188405 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 292603,
+          "char_start": 292111,
+          "doc_id": "GOOGL-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "Note 14. Income Taxes"
+          ],
+          "item": "8",
+          "text": "Provision for income taxes consisted of the following (in millions):\n|  | Year Ended December 31, 2023 | 2024 | 2025 |\n| --- | --- | --- | --- |\n| Current: |  |  |  |\n| Federal and state | $15,716 | $21,101 | $13,378 |\n| Foreign | 3,935 | 3,852 | 5,028 |\n| Total | 19,651 | 24,953 | 18,406 |\n| Deferred: |  |  |  |\n| Federal and state | (7,482) | (5,350) | 8,243 |\n| Foreign | (247) | 94 | 7 |\n| Total | (7,729) | (5,256) | 8,250 |\n| Provision for income taxes | $11,922 | $19,697 | $26,656 |"
+        },
+        "doc": {
+          "aliases": ["Google", "GOOG"],
+          "company": "Alphabet",
+          "filing_date": "2026-02-05",
+          "fy": 2025,
+          "ticker": "GOOGL",
+          "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+        }
+      }
+    ],
+    "fetch_ms": 5,
+    "runtime": {
+      "model": "Xenova/bge-small-en-v1.5",
+      "revision": "ea104dacec62c0de699686887e3f920caeb4f3e3",
+      "dtype": "q8",
+      "strategy": "structure",
+      "n": 10547
+    }
+  },
+  "answer": {
+    "text": "Alphabet reported total revenue of $402,836 million for fiscal year 2025【1】【2】【4】【6】【7】.",
+    "chunkIds": [
+      "GOOGL-FY2025-structure-00228",
+      "GOOGL-FY2025-structure-00104",
+      "GOOGL-FY2025-structure-00328",
+      "GOOGL-FY2025-structure-00348",
+      "GOOGL-FY2025-structure-00125",
+      "GOOGL-FY2025-structure-00181",
+      "GOOGL-FY2025-structure-00230",
+      "GOOGL-FY2025-structure-00333"
+    ],
+    "done": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "promptVersion": "answer-v2",
+      "usage": {
+        "queue_time": 0.302193991,
+        "prompt_tokens": 2587,
+        "prompt_time": 0.136779595,
+        "completion_tokens": 67,
+        "completion_time": 0.139331805,
+        "total_tokens": 2654,
+        "total_time": 0.2761114,
+        "completion_tokens_details": { "reasoning_tokens": 29 }
+      },
+      "latencyMs": 733,
+      "cached": false
+    }
+  },
+  "judge": {
+    "verdicts": [
+      {
+        "plain": "Alphabet reported total revenue of $402,836 million for fiscal year 2025.",
+        "supported": true,
+        "reason": "All cited sources list $402,836 million for 2025."
+      }
+    ],
+    "provider": "groqJudge",
+    "model": "qwen/qwen3.8-27b",
+    "judgeVersion": "support-v1",
+    "cached": false
+  }
+}

@@ -1,140 +1,94 @@
-import { type FormEvent, useEffect, useRef, useState } from "react";
-import { type ActiveCite, Answer } from "./answer/Answer";
-import { useAnswer } from "./answer/useAnswer";
-import { useVerify } from "./answer/useVerify";
-import { Passages } from "./ask/Passages";
-import { UnderTheHood } from "./ask/UnderTheHood";
-import { CONFIG_ID } from "./config";
-import { type LoadState, useSearch } from "./search/useSearch";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { AskPage } from "./ask/AskPage";
+import { REPO } from "./evals/report";
+import { Link, usePath } from "./router";
+import { useSearchEngine } from "./search/useSearch";
 
-function LoadStatus({ load }: { load: LoadState }) {
-  if (load.status === "error") {
-    return (
-      <p role="alert" className="text-sm text-red-700">
-        Search is unavailable right now: {load.message}
-      </p>
-    );
-  }
-  if (load.status === "ready") {
-    return (
-      <p className="text-sm text-slate-500" data-testid="load-status">
-        Ready: {load.n.toLocaleString()} passages, model on{" "}
-        {load.device === "webgpu" ? "WebGPU" : "WASM"} (loaded in{" "}
-        {(load.load_ms / 1000).toFixed(1)} s)
-      </p>
-    );
-  }
-  const pct = Math.round(((load.index + load.model) / 2) * 100);
-  return (
-    <div className="text-sm text-slate-500">
-      <p>
-        Loading the search index and embedding model in your browser… {pct}%
-      </p>
-      <progress className="mt-1 h-1.5 w-full" max={100} value={pct}>
-        {pct}%
-      </progress>
-    </div>
-  );
-}
+// Lab and Evals load on first visit, keeping them out of the Ask page's bundle.
+const LabPage = lazy(() =>
+  import("./lab/LabPage").then((m) => ({ default: m.LabPage })),
+);
+const EvalsPage = lazy(() =>
+  import("./evals/EvalsPage").then((m) => ({ default: m.EvalsPage })),
+);
+
+const TITLES: Record<string, string> = {
+  "/": "FilingLens",
+  "/lab": "Pipeline Lab · FilingLens",
+  "/evals": "Evals · FilingLens",
+};
+
+const navLink =
+  "rounded px-1 py-0.5 text-slate-600 hover:text-slate-900 aria-[current=page]:font-medium aria-[current=page]:text-slate-900 aria-[current=page]:underline";
 
 export function App() {
-  const { load, outcome, error, busy, search } = useSearch();
-  const turnstileRef = useRef<HTMLDivElement>(null);
-  const { state: answer, ask, prepare, checkNeeded } = useAnswer(turnstileRef);
-  const { state: judge, verify } = useVerify(turnstileRef);
-  const [query, setQuery] = useState("");
-  const [active, setActive] = useState<ActiveCite | null>(null);
-
-  // Each retrieval result is answered from its top passages, in order.
+  // One search worker for all pages, so the model and index load once.
+  const { load, run } = useSearchEngine();
+  const path = usePath();
+  const known = path in TITLES;
+  // Pages stay mounted once visited, so going back keeps their results.
+  const [visited, setVisited] = useState(() => new Set([path]));
   useEffect(() => {
-    if (!outcome) return;
-    setActive(null);
-    if (outcome.passages.length) {
-      ask(
-        outcome.query,
-        outcome.passages.map((p) => p.candidate.chunk_id),
-      );
-    }
-  }, [outcome, ask]);
-
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    search(query);
-  };
-  const answering =
-    answer.status === "pending" || answer.status === "streaming";
+    setVisited((v) => (v.has(path) ? v : new Set(v).add(path)));
+    document.title = TITLES[path] ?? "Not found · FilingLens";
+  }, [path]);
+  const wide = path === "/lab" || path === "/evals";
 
   return (
-    <main className="mx-auto flex min-h-dvh max-w-3xl flex-col gap-6 px-4 py-10 text-slate-900 sm:px-6">
-      <header className="flex flex-col gap-2">
-        <h1 className="text-4xl font-semibold tracking-tight">FilingLens</h1>
-        <p className="text-lg text-slate-700">
-          Ask about the 10-K annual reports of 12 public companies. Retrieval
-          runs in your browser, and every sentence of the answer cites the
-          passage it came from.
-        </p>
-      </header>
-
-      <form onSubmit={onSubmit} className="flex flex-col gap-2 sm:flex-row">
-        <label htmlFor="q" className="sr-only">
-          Ask a question about the filings
-        </label>
-        <input
-          id="q"
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onFocus={prepare}
-          maxLength={500}
-          placeholder="e.g. What was NVIDIA's data center revenue in FY2026?"
-          className="min-w-0 flex-1 rounded-md border border-slate-300 bg-white px-3 py-2 text-base shadow-sm focus:border-slate-500 focus:outline-none"
-        />
-        <button
-          type="submit"
-          disabled={!query.trim() || load.status === "error"}
-          className="rounded-md bg-slate-900 px-4 py-2 font-medium text-white disabled:opacity-50"
+    <div
+      className={`mx-auto flex min-h-dvh flex-col gap-6 px-4 py-6 text-slate-900 sm:px-6 ${
+        wide ? "max-w-6xl" : "max-w-3xl"
+      }`}
+    >
+      <nav
+        aria-label="Main"
+        className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm"
+      >
+        <Link to="/" className={navLink}>
+          Ask
+        </Link>
+        <Link to="/lab" className={navLink}>
+          Pipeline Lab
+        </Link>
+        <Link to="/evals" className={navLink}>
+          Evals
+        </Link>
+        <a
+          href={REPO}
+          target="_blank"
+          rel="noreferrer"
+          className="ml-auto rounded px-1 py-0.5 text-slate-600 hover:text-slate-900"
         >
-          {busy || answering ? "Asking…" : "Ask"}
-        </button>
-      </form>
-
-      {/* Turnstile renders here only if a visitor must interact. */}
-      <div ref={turnstileRef} />
-      <LoadStatus load={load} />
-      {error && (
-        <p role="alert" className="text-sm text-red-700">
-          Search failed: {error}
-        </p>
-      )}
-
-      {outcome && (
-        <section aria-label="Results" className="flex flex-col gap-4">
-          <p className="text-sm text-slate-500" data-testid="result-summary">
-            Top {outcome.passages.length} passages for “{outcome.query}” in{" "}
-            <span data-testid="wall-ms">{outcome.wall_ms}</span> ms
-          </p>
-          <Answer
-            state={answer}
-            sources={outcome.passages}
-            active={active}
-            onCite={setActive}
-            checkNeeded={checkNeeded}
-            judge={judge}
-            onJudge={() =>
-              answer.status === "done" &&
-              verify({
-                question: answer.question,
-                answer: answer.text,
-                chunkIds: answer.chunkIds,
-                configId: CONFIG_ID,
-              })
-            }
-          />
-          <h2 className="font-medium">Sources</h2>
-          <Passages passages={outcome.passages} active={active} />
-          <UnderTheHood outcome={outcome} load={load} answer={answer} />
-        </section>
-      )}
-    </main>
+          Source on GitHub
+        </a>
+      </nav>
+      <main className="flex flex-col gap-6">
+        <div hidden={path !== "/"}>
+          <AskPage load={load} run={run} />
+        </div>
+        <Suspense fallback={<p className="text-slate-500">Loading…</p>}>
+          {visited.has("/lab") && (
+            <div hidden={path !== "/lab"}>
+              <LabPage load={load} run={run} />
+            </div>
+          )}
+          {visited.has("/evals") && (
+            <div hidden={path !== "/evals"}>
+              <EvalsPage />
+            </div>
+          )}
+        </Suspense>
+        {!known && (
+          <div className="flex flex-col gap-2">
+            <h1 className="text-2xl font-semibold">Page not found</h1>
+            <p>
+              <Link to="/" className="text-blue-700 underline">
+                Go to the Ask page
+              </Link>
+            </p>
+          </div>
+        )}
+      </main>
+    </div>
   );
 }

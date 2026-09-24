@@ -6,7 +6,13 @@ import type { Passage } from "../search/protocol";
 const rank = (label: string, r: Ranked | null) =>
   r ? `${label} #${r.rank}` : `${label}: not in top 50`;
 
-function PassageText({ text, sentence }: { text: string; sentence?: string }) {
+export function PassageText({
+  text,
+  sentence,
+}: {
+  text: string;
+  sentence?: string;
+}) {
   const mark = useRef<HTMLElement>(null);
   const span = sentence ? highlightSpan(sentence, text) : null;
   const start = span?.start;

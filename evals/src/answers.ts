@@ -41,6 +41,8 @@ import {
 import { GROQ } from "../../worker/src/providers/providers.config.ts";
 import {
   type AnswerSummary,
+  failureExamples,
+  type ItemDetail,
   type ItemResult,
   itemCorrect,
   needsJudge,
@@ -54,6 +56,7 @@ import {
   loadGolden,
   type Split,
   sha256,
+  writeJsonl,
 } from "./dataset.ts";
 import {
   type Calibration,
@@ -72,6 +75,8 @@ import { changedTexts, commit } from "./retrieval.ts";
 
 const BASELINE_PATH = `${EVALS_DIR}/baseline_answers.json`;
 const REPORT_PATH = `${EVALS_DIR}/reports/latest.json`;
+/** Reviewer notes on failed items, keyed by item id (shown on /evals). */
+const NOTES_PATH = `${EVALS_DIR}/failure_notes.json`;
 /** Absolute drops that fail the gate (20 items: 2 numeric items, ~5% of sentences). */
 const GATE = { numeric_em: 0.1, citation_coverage: 0.05 };
 export const GENERATOR_MODEL = GROQ.model;
@@ -79,7 +84,7 @@ export const GENERATOR_MODEL = GROQ.model;
 class QuotaError extends Error {}
 
 /** The Worker's Groq request, non-streaming. */
-const generationRequest = (messages: Message[]): ChatRequest =>
+export const generationRequest = (messages: Message[]): ChatRequest =>
   ({
     model: GROQ.model,
     messages,
@@ -185,7 +190,7 @@ async function main(): Promise<number> {
   const outDir = `${EVALS_DIR}/results/${ts}`;
   mkdirSync(outDir, { recursive: true });
   const rows: ItemResult[] = [];
-  const details: string[] = [];
+  const details: ItemDetail[] = [];
 
   let calibration: Calibration | null = null;
   try {
@@ -200,7 +205,7 @@ async function main(): Promise<number> {
         judge,
       });
       rows.push(row);
-      details.push(JSON.stringify(detail));
+      details.push(detail);
       const ok = itemCorrect(row);
       console.log(
         `${String(i + 1).padStart(3)}/${items.length} ${item.id.padEnd(44)} ` +
@@ -210,7 +215,7 @@ async function main(): Promise<number> {
     if (judge) calibration = await orQuota(calibrate(judge, store, index.docs));
   } catch (e) {
     if (!(e instanceof QuotaError)) throw e;
-    writeFileSync(`${outDir}/answers.jsonl`, `${details.join("\n")}\n`);
+    writeJsonl(`${outDir}/answers.jsonl`, details);
     console.error(
       `${e.message}\nStopped after ${rows.length}/${items.length} items; ` +
         "rerun the same command later (finished calls are cached).",
@@ -277,10 +282,16 @@ async function main(): Promise<number> {
       ? { model: JUDGE_MODEL, correctness_version: CORRECTNESS_VERSION }
       : null,
     summary,
+    failures: failureExamples(
+      details,
+      existsSync(NOTES_PATH)
+        ? JSON.parse(readFileSync(NOTES_PATH, "utf8"))
+        : {},
+    ),
   };
   const md = markdown(split, summary, calibration, gateLine);
   console.log(`\n${md}`);
-  writeFileSync(`${outDir}/answers.jsonl`, `${details.join("\n")}\n`);
+  writeJsonl(`${outDir}/answers.jsonl`, details);
   writeFileSync(
     `${outDir}/answers.json`,
     `${JSON.stringify({ ...result, calibration }, null, 2)}\n`,
@@ -390,7 +401,7 @@ async function runItem(item: GoldItem, d: Deps) {
     tokens_out: gen.usage.completion_tokens,
     provider: "groq",
   };
-  const detail = {
+  const detail: ItemDetail & Record<string, unknown> = {
     ...row,
     question: item.question,
     gold_answer: item.gold_answer,

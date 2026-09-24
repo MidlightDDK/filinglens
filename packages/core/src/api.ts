@@ -1,5 +1,8 @@
 // The Worker's HTTP contract, shared by the Worker and the browser.
+import type { DocInfo } from "./filters.ts";
 import type { SupportVerdict } from "./judge.ts";
+import type { Candidate, RetrievalResult } from "./retrieve.ts";
+import type { ChunkRecord } from "./store.ts";
 
 export interface Usage {
   prompt_tokens: number;
@@ -54,3 +57,39 @@ export type ErrorReason =
   | "not_found"
   | "method_not_allowed"
   | "internal";
+
+/** A retrieved passage with its text and filing, as the Ask page shows it. */
+export interface Passage {
+  candidate: Candidate;
+  chunk: ChunkRecord;
+  doc: DocInfo;
+}
+
+/**
+ * A precomputed example (`pnpm examples` → `web/public/examples/{id}.json`):
+ * everything the Ask page shows for a live answer, so example chips work
+ * without the index, the model, or any LLM provider.
+ */
+export interface ExampleFile {
+  id: string;
+  category: string;
+  question: string;
+  created_at: string;
+  commit: string | null;
+  retrieval: {
+    result: RetrievalResult;
+    passages: Passage[];
+    fetch_ms: number;
+    /** Where retrieval ran: Node, on the browser's WASM kernels. */
+    runtime: {
+      model: string;
+      revision: string;
+      dtype: string;
+      strategy: string;
+      n: number;
+    };
+  };
+  answer: { text: string; chunkIds: string[]; done: AnswerDone };
+  /** The support judge's verdicts, as `/api/verify` returns them. */
+  judge: VerifyResponse | null;
+}

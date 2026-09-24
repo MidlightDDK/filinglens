@@ -85,6 +85,39 @@ export function loadGolden(split: Split | "all"): GoldItem[] {
   return split === "all" ? items : items.filter((it) => it.split === split);
 }
 
+type SplitCounts = Record<Split, number>;
+
+/** Item counts per split, by category and by source (for the /evals page). */
+export interface Composition {
+  total: SplitCounts;
+  categories: Record<string, SplitCounts>;
+  sources: Record<string, SplitCounts>;
+}
+
+export function composition(items: GoldItem[]): Composition {
+  const out: Composition = {
+    total: { dev: 0, test: 0 },
+    categories: {},
+    sources: {},
+  };
+  const bump = (
+    map: Record<string, SplitCounts>,
+    key: string,
+    split: Split,
+  ) => {
+    const counts = map[key] ?? { dev: 0, test: 0 };
+    counts[split]++;
+    map[key] = counts;
+  };
+  for (const c of CATEGORIES) out.categories[c] = { dev: 0, test: 0 };
+  for (const it of items) {
+    out.total[it.split]++;
+    bump(out.categories, it.category, it.split);
+    bump(out.sources, it.source, it.split);
+  }
+  return out;
+}
+
 const texts = new Map<string, string>();
 
 export function docText(docId: string): string {

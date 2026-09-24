@@ -1,0 +1,922 @@
+{
+  "id": "false-premise",
+  "category": "false_premise",
+  "question": "Why did Apple's total net sales fall in fiscal year 2025?",
+  "created_at": "2026-09-24T19:39:45.477Z",
+  "commit": "7a5fde023461d8d69d3c10ba75389626e6f0b6bc-dirty",
+  "retrieval": {
+    "result": {
+      "query": "Why did Apple's total net sales fall in fiscal year 2025?",
+      "config_id": "default",
+      "filters": {
+        "tickers": ["AAPL"],
+        "fiscal_years": [2025],
+        "latest": false,
+        "doc_ids": ["AAPL-FY2025"],
+        "notes": []
+      },
+      "candidates": [
+        {
+          "chunk_id": "AAPL-FY2025-structure-00075",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 3, "score": 14.553206889124697 },
+          "dense": { "rank": 4, "score": 0.7581939330635742 },
+          "fused": { "rank": 1, "score": 0.03149801587301587 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00196",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 8, "score": 13.903533043535173 },
+          "dense": { "rank": 2, "score": 0.759586786339518 },
+          "fused": { "rank": 2, "score": 0.030834914611005692 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00137",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 4, "score": 14.426726287823296 },
+          "dense": { "rank": 6, "score": 0.7468589600204668 },
+          "fused": { "rank": 3, "score": 0.030776515151515152 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00138",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 1, "score": 15.332085896105381 },
+          "dense": { "rank": 10, "score": 0.7363878087874338 },
+          "fused": { "rank": 4, "score": 0.030679156908665108 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00077",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 14, "score": 12.343044494407343 },
+          "dense": { "rank": 1, "score": 0.7884783154253152 },
+          "fused": { "rank": 5, "score": 0.029906956136464335 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00080",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 12, "score": 12.618351508332772 },
+          "dense": { "rank": 3, "score": 0.7589903170765359 },
+          "fused": { "rank": 6, "score": 0.02976190476190476 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00091",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 5, "score": 14.323193517191505 },
+          "dense": { "rank": 12, "score": 0.7297431783869207 },
+          "fused": { "rank": 7, "score": 0.029273504273504274 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00083",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 16, "score": 12.241700971955057 },
+          "dense": { "rank": 5, "score": 0.7489792570483811 },
+          "fused": { "rank": 8, "score": 0.02854251012145749 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00076",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 18, "score": 12.184666762623554 },
+          "dense": { "rank": 7, "score": 0.7440398988366668 },
+          "fused": { "rank": 9, "score": 0.027745885954841176 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00074",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 13, "score": 12.524851857564812 },
+          "dense": { "rank": 14, "score": 0.7272969470844728 },
+          "fused": { "rank": 10, "score": 0.027212143650499815 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00086",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 21, "score": 12.072267696146433 },
+          "dense": { "rank": 8, "score": 0.7411359275079442 },
+          "fused": { "rank": 11, "score": 0.027051561365286855 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00195",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 9, "score": 12.832152950080266 },
+          "dense": { "rank": 21, "score": 0.7116678492373331 },
+          "fused": { "rank": 12, "score": 0.026838432635534086 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00078",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 19, "score": 12.184666762623554 },
+          "dense": { "rank": 11, "score": 0.730540468569963 },
+          "fused": { "rank": 13, "score": 0.026742734890354787 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00085",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 22, "score": 12.016885875273141 },
+          "dense": { "rank": 9, "score": 0.7397555783344352 },
+          "fused": { "rank": 14, "score": 0.026687875574407917 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00082",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 15, "score": 12.299303246855569 },
+          "dense": { "rank": 15, "score": 0.7272414833615993 },
+          "fused": { "rank": 15, "score": 0.02666666666666667 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00122",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 7, "score": 14.182596731220894 },
+          "dense": { "rank": 27, "score": 0.702064319987253 },
+          "fused": { "rank": 16, "score": 0.026419626007891578 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00115",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 11, "score": 12.731934627072778 },
+          "dense": { "rank": 22, "score": 0.7080243135973951 },
+          "fused": { "rank": 17, "score": 0.026279628993473032 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00070",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 6, "score": 14.25662424683899 },
+          "dense": { "rank": 31, "score": 0.6980577874027818 },
+          "fused": { "rank": 18, "score": 0.026140526140526144 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00069",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 10, "score": 12.82293142916416 },
+          "dense": { "rank": 30, "score": 0.7000142536036286 },
+          "fused": { "rank": 19, "score": 0.025396825396825397 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00079",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 23, "score": 11.962038182674538 },
+          "dense": { "rank": 17, "score": 0.721798125277968 },
+          "fused": { "rank": 20, "score": 0.025035205758097326 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00084",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 17, "score": 12.197163915631961 },
+          "dense": { "rank": 23, "score": 0.7064474715575546 },
+          "fused": { "rank": 21, "score": 0.025035205758097326 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00193",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 31, "score": 10.192826609327591 },
+          "dense": { "rank": 16, "score": 0.7262776628472473 },
+          "fused": { "rank": 22, "score": 0.024146905725853096 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00194",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 32, "score": 10.192826609327591 },
+          "dense": { "rank": 18, "score": 0.7170331804450548 },
+          "fused": { "rank": 23, "score": 0.023690078037904124 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00087",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 48, "score": 8.370355363268787 },
+          "dense": { "rank": 13, "score": 0.7286115481666281 },
+          "fused": { "rank": 24, "score": 0.02295788939624556 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00090",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 38, "score": 9.177655209489325 },
+          "dense": { "rank": 19, "score": 0.7154460213401392 },
+          "fused": { "rank": 25, "score": 0.022862309480754326 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00192",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 25, "score": 11.748992565233216 },
+          "dense": { "rank": 32, "score": 0.6952764557860622 },
+          "fused": { "rank": 26, "score": 0.022634271099744245 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00159",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 47, "score": 8.3747583973496 },
+          "dense": { "rank": 20, "score": 0.7118283503534872 },
+          "fused": { "rank": 27, "score": 0.021845794392523363 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00116",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 29, "score": 10.564149769208223 },
+          "dense": { "rank": 43, "score": 0.6749967495609436 },
+          "fused": { "rank": 28, "score": 0.020944692920257444 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00174",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 27, "score": 10.821789794034688 },
+          "dense": { "rank": 47, "score": 0.6731334203778252 },
+          "fused": { "rank": 29, "score": 0.020840047266086584 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00156",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 44, "score": 8.495267059340541 },
+          "dense": { "rank": 33, "score": 0.6947917940717173 },
+          "fused": { "rank": 30, "score": 0.020368072787427628 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00153",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 37, "score": 9.307779784787883 },
+          "dense": { "rank": 40, "score": 0.6809399791805949 },
+          "fused": { "rank": 31, "score": 0.020309278350515464 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00118",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 43, "score": 8.543210731159206 },
+          "dense": { "rank": 38, "score": 0.6848187707188512 },
+          "fused": { "rank": 32, "score": 0.01991281949673073 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00157",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 46, "score": 8.40097612934331 },
+          "dense": { "rank": 37, "score": 0.6853715416143118 },
+          "fused": { "rank": 33, "score": 0.019743240614666407 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00017",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 2, "score": 14.60069893479897 },
+          "dense": null,
+          "fused": { "rank": 34, "score": 0.016129032258064516 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00011",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 20, "score": 12.159205897722803 },
+          "dense": null,
+          "fused": { "rank": 35, "score": 0.0125 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00094",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 24, "score": 0.7053066727316623 },
+          "fused": { "rank": 36, "score": 0.011904761904761904 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00152",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 24, "score": 11.874913988048075 },
+          "dense": null,
+          "fused": { "rank": 37, "score": 0.011904761904761904 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00187",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 25, "score": 0.7051657919323887 },
+          "fused": { "rank": 38, "score": 0.011764705882352941 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00068",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 26, "score": 11.679400265469717 },
+          "dense": null,
+          "fused": { "rank": 39, "score": 0.011627906976744186 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00093",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 26, "score": 0.7043159484635647 },
+          "fused": { "rank": 40, "score": 0.011627906976744186 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00000",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 28, "score": 10.80296937940017 },
+          "dense": null,
+          "fused": { "rank": 41, "score": 0.011363636363636364 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00095",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 28, "score": 0.7013870053349044 },
+          "fused": { "rank": 42, "score": 0.011363636363636364 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00062",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 29, "score": 0.7005901296725402 },
+          "fused": { "rank": 43, "score": 0.011235955056179775 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00185",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 30, "score": 10.298999735250941 },
+          "dense": null,
+          "fused": { "rank": 44, "score": 0.011111111111111112 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00172",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 33, "score": 10.121099804720906 },
+          "dense": null,
+          "fused": { "rank": 45, "score": 0.010752688172043012 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00022",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 34, "score": 10.032384536664338 },
+          "dense": null,
+          "fused": { "rank": 46, "score": 0.010638297872340425 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00177",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 34, "score": 0.6912777078718707 },
+          "fused": { "rank": 47, "score": 0.010638297872340425 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00081",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 35, "score": 9.830397607682322 },
+          "dense": null,
+          "fused": { "rank": 48, "score": 0.010526315789473684 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00150",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 35, "score": 0.6897501792321749 },
+          "fused": { "rank": 49, "score": 0.010526315789473684 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00161",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 36, "score": 0.6864175101768555 },
+          "fused": { "rank": 50, "score": 0.010416666666666666 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00162",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 36, "score": 9.41915107278331 },
+          "dense": null,
+          "fused": { "rank": 51, "score": 0.010416666666666666 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00092",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 39, "score": 0.6836042542470158 },
+          "fused": { "rank": 52, "score": 0.010101010101010102 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00183",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 39, "score": 9.164984131726468 },
+          "dense": null,
+          "fused": { "rank": 53, "score": 0.010101010101010102 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00168",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 40, "score": 8.841703036545619 },
+          "dense": null,
+          "fused": { "rank": 54, "score": 0.01 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00119",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 41, "score": 8.804896725511108 },
+          "dense": null,
+          "fused": { "rank": 55, "score": 0.009900990099009901 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00176",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 41, "score": 0.6805117380145627 },
+          "fused": { "rank": 56, "score": 0.009900990099009901 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00151",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 42, "score": 8.584792475784207 },
+          "dense": null,
+          "fused": { "rank": 57, "score": 0.00980392156862745 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00171",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 42, "score": 0.6785454107669566 },
+          "fused": { "rank": 58, "score": 0.00980392156862745 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00089",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 44, "score": 0.6742717073673166 },
+          "fused": { "rank": 59, "score": 0.009615384615384616 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00136",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 45, "score": 8.402016786036071 },
+          "dense": null,
+          "fused": { "rank": 60, "score": 0.009523809523809525 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00155",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 45, "score": 0.6739067786058589 },
+          "fused": { "rank": 61, "score": 0.009523809523809525 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00088",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 46, "score": 0.6734884427907383 },
+          "fused": { "rank": 62, "score": 0.009433962264150943 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00154",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 48, "score": 0.6711367851700104 },
+          "fused": { "rank": 63, "score": 0.009259259259259259 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00197",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 49, "score": 8.354611249991994 },
+          "dense": null,
+          "fused": { "rank": 64, "score": 0.009174311926605505 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00200",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 49, "score": 0.6691185105244638 },
+          "fused": { "rank": 65, "score": 0.009174311926605505 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00097",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 50, "score": 0.6685720456094644 },
+          "fused": { "rank": 66, "score": 0.00909090909090909 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00206",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 50, "score": 8.348844633789373 },
+          "dense": null,
+          "fused": { "rank": 67, "score": 0.00909090909090909 },
+          "rerank": null
+        }
+      ],
+      "top": [
+        {
+          "chunk_id": "AAPL-FY2025-structure-00075",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 3, "score": 14.553206889124697 },
+          "dense": { "rank": 4, "score": 0.7581939330635742 },
+          "fused": { "rank": 1, "score": 0.03149801587301587 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00196",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 8, "score": 13.903533043535173 },
+          "dense": { "rank": 2, "score": 0.759586786339518 },
+          "fused": { "rank": 2, "score": 0.030834914611005692 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00137",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 4, "score": 14.426726287823296 },
+          "dense": { "rank": 6, "score": 0.7468589600204668 },
+          "fused": { "rank": 3, "score": 0.030776515151515152 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00138",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 1, "score": 15.332085896105381 },
+          "dense": { "rank": 10, "score": 0.7363878087874338 },
+          "fused": { "rank": 4, "score": 0.030679156908665108 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00077",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 14, "score": 12.343044494407343 },
+          "dense": { "rank": 1, "score": 0.7884783154253152 },
+          "fused": { "rank": 5, "score": 0.029906956136464335 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00080",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 12, "score": 12.618351508332772 },
+          "dense": { "rank": 3, "score": 0.7589903170765359 },
+          "fused": { "rank": 6, "score": 0.02976190476190476 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00091",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 5, "score": 14.323193517191505 },
+          "dense": { "rank": 12, "score": 0.7297431783869207 },
+          "fused": { "rank": 7, "score": 0.029273504273504274 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00083",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 16, "score": 12.241700971955057 },
+          "dense": { "rank": 5, "score": 0.7489792570483811 },
+          "fused": { "rank": 8, "score": 0.02854251012145749 },
+          "rerank": null
+        }
+      ],
+      "timings": {
+        "filter_ms": 2.4,
+        "lexical_ms": 0.2,
+        "embed_ms": 109.3,
+        "dense_ms": 0.5,
+        "fuse_ms": 0.2,
+        "rerank_ms": 0,
+        "total_ms": 112.6
+      }
+    },
+    "passages": [
+      {
+        "candidate": {
+          "chunk_id": "AAPL-FY2025-structure-00075",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 3, "score": 14.553206889124697 },
+          "dense": { "rank": 4, "score": 0.7581939330635742 },
+          "fused": { "rank": 1, "score": 0.03149801587301587 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 88395,
+          "char_start": 88141,
+          "doc_id": "AAPL-FY2025",
+          "heading_path": [
+            "Item 7 Management's Discussion and Analysis of Financial Condition and Results of Operations",
+            "Segment Operating Performance",
+            "Americas"
+          ],
+          "item": "7",
+          "text": "Americas net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone and Services. The weakness in foreign currencies relative to the U.S. dollar had an unfavorable year-over-year impact on Americas net sales during 2025."
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Apple",
+          "filing_date": "2025-10-31",
+          "fy": 2025,
+          "ticker": "AAPL",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AAPL-FY2025-structure-00196",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 8, "score": 13.903533043535173 },
+          "dense": { "rank": 2, "score": 0.759586786339518 },
+          "fused": { "rank": 2, "score": 0.030834914611005692 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 159911,
+          "char_start": 159650,
+          "doc_id": "AAPL-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "Note 13 – Segment Information and Geographic Data"
+          ],
+          "item": "8",
+          "text": "|  | 2025 | 2024 | 2023 |\n| --- | --- | --- | --- |\n| Net sales: |  |  |  |\n| U.S. | $151,790 | $142,196 | $138,573 |\n| China (1) | 64,377 | 66,952 | 72,559 |\n| Other countries | 199,994 | 181,887 | 172,153 |\n| Total net sales | $416,161 | $391,035 | $383,285 |"
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Apple",
+          "filing_date": "2025-10-31",
+          "fy": 2025,
+          "ticker": "AAPL",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AAPL-FY2025-structure-00137",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 4, "score": 14.426726287823296 },
+          "dense": { "rank": 6, "score": 0.7468589600204668 },
+          "fused": { "rank": 3, "score": 0.030776515151515152 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 122871,
+          "char_start": 122252,
+          "doc_id": "AAPL-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "Note 2 – Revenue"
+          ],
+          "item": "8",
+          "text": "The following table shows disaggregated net sales, as well as the portion of total net sales that was previously deferred, for 2025, 2024 and 2023 (in millions):\n|  | 2025 | 2024 | 2023 |\n| --- | --- | --- | --- |\n| iPhone | $209,586 | $201,183 | $200,583 |\n| Mac | 33,708 | 29,984 | 29,357 |\n| iPad | 28,023 | 26,694 | 28,300 |\n| Wearables, Home and Accessories | 35,686 | 37,005 | 39,845 |\n| Services (1) | 109,158 | 96,169 | 85,200 |\n| Total net sales | $416,161 | $391,035 | $383,285 |\n| Portion of total net sales that was included in deferred revenue as of the beginning of the period | $8,229 | $7,728 | $8,169 |"
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Apple",
+          "filing_date": "2025-10-31",
+          "fy": 2025,
+          "ticker": "AAPL",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AAPL-FY2025-structure-00138",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 1, "score": 15.332085896105381 },
+          "dense": { "rank": 10, "score": 0.7363878087874338 },
+          "fused": { "rank": 4, "score": 0.030679156908665108 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 123648,
+          "char_start": 122873,
+          "doc_id": "AAPL-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "Note 2 – Revenue"
+          ],
+          "item": "8",
+          "text": "(1)Services net sales include amortization of the deferred value of services bundled in the sales price of certain products.\n\nThe Company's proportion of net sales by disaggregated revenue source was generally consistent for each reportable segment in Note 13, \"Segment Information and Geographic Data\" for 2025, 2024 and 2023, except in Greater China, where iPhone revenue represented a moderately higher proportion of net sales.\n\nAs of September 27, 2025 and September 28, 2024, the Company had total deferred revenue of $13.7 billion and $12.8 billion, respectively. As of September 27, 2025, the Company expects 66% of total deferred revenue to be realized in less than a year, 23% within one-to-two years, 9% within two-to-three years and 2% in greater than three years."
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Apple",
+          "filing_date": "2025-10-31",
+          "fy": 2025,
+          "ticker": "AAPL",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AAPL-FY2025-structure-00077",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 14, "score": 12.343044494407343 },
+          "dense": { "rank": 1, "score": 0.7884783154253152 },
+          "fused": { "rank": 5, "score": 0.029906956136464335 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 88691,
+          "char_start": 88540,
+          "doc_id": "AAPL-FY2025",
+          "heading_path": [
+            "Item 7 Management's Discussion and Analysis of Financial Condition and Results of Operations",
+            "Segment Operating Performance",
+            "Greater China"
+          ],
+          "item": "7",
+          "text": "Greater China net sales decreased during 2025 compared to 2024 primarily due to lower net sales of iPhone, partially offset by higher net sales of Mac."
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Apple",
+          "filing_date": "2025-10-31",
+          "fy": 2025,
+          "ticker": "AAPL",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AAPL-FY2025-structure-00080",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 12, "score": 12.618351508332772 },
+          "dense": { "rank": 3, "score": 0.7589903170765359 },
+          "fused": { "rank": 6, "score": 0.02976190476190476 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 89559,
+          "char_start": 89011,
+          "doc_id": "AAPL-FY2025",
+          "heading_path": [
+            "Item 7 Management's Discussion and Analysis of Financial Condition and Results of Operations",
+            "Products and Services Performance"
+          ],
+          "item": "7",
+          "text": "The following table shows net sales by category for 2025, 2024 and 2023 (dollars in millions):\n|  | 2025 |  | Change | 2024 | Change | 2023 |\n| --- | --- | --- | --- | --- | --- | --- |\n| iPhone | $209,586% | 4 |  | $201,183% | — | $200,583 |\n| Mac | 33,708 | 12 | %% | 29,984 | 2 | 29,357 |\n| iPad | 28,023 | 5 | %% | 26,694 | (6) | 28,300 |\n| Wearables, Home and Accessories | 35,686 | (4) | %% | 37,005 | (7) | 39,845 |\n| Services (1) | 109,158 | 14 | %% | 96,169 | 13 | 85,200 |\n| Total net sales | $416,161% | 6 |  | $391,035% | 2 | $383,285 |"
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Apple",
+          "filing_date": "2025-10-31",
+          "fy": 2025,
+          "ticker": "AAPL",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AAPL-FY2025-structure-00091",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 5, "score": 14.323193517191505 },
+          "dense": { "rank": 12, "score": 0.7297431783869207 },
+          "fused": { "rank": 7, "score": 0.029273504273504274 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 92519,
+          "char_start": 91969,
+          "doc_id": "AAPL-FY2025",
+          "heading_path": [
+            "Item 7 Management's Discussion and Analysis of Financial Condition and Results of Operations",
+            "Operating Expenses"
+          ],
+          "item": "7",
+          "text": "Operating expenses for 2025, 2024 and 2023 were as follows (dollars in millions):\n|  | 2025 | Change | 2024 | Change | 2023 |\n| --- | --- | --- | --- | --- | --- |\n| Research and development | $34,550% | 10 | $31,370% | 5 | $29,915 |\n| Percentage of total net sales | 8 | %%% | 8 |  | 8 |\n| Selling, general and administrative | $27,601% | 6 | $26,097% | 5 | $24,932 |\n| Percentage of total net sales | 7 | %%% | 7 |  | 7 |\n| Total operating expenses | $62,151% | 8 | $57,467% | 5 | $54,847 |\n| Percentage of total net sales | 15 | %%% | 15 |  | 14 |"
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Apple",
+          "filing_date": "2025-10-31",
+          "fy": 2025,
+          "ticker": "AAPL",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "AAPL-FY2025-structure-00083",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 16, "score": 12.241700971955057 },
+          "dense": { "rank": 5, "score": 0.7489792570483811 },
+          "fused": { "rank": 8, "score": 0.02854251012145749 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 89907,
+          "char_start": 89796,
+          "doc_id": "AAPL-FY2025",
+          "heading_path": [
+            "Item 7 Management's Discussion and Analysis of Financial Condition and Results of Operations",
+            "Products and Services Performance",
+            "Mac"
+          ],
+          "item": "7",
+          "text": "Mac net sales increased during 2025 compared to 2024 primarily due to higher net sales of laptops and desktops."
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Apple",
+          "filing_date": "2025-10-31",
+          "fy": 2025,
+          "ticker": "AAPL",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+        }
+      }
+    ],
+    "fetch_ms": 4.4,
+    "runtime": {
+      "model": "Xenova/bge-small-en-v1.5",
+      "revision": "ea104dacec62c0de699686887e3f920caeb4f3e3",
+      "dtype": "q8",
+      "strategy": "structure",
+      "n": 10547
+    }
+  },
+  "answer": {
+    "text": "Apple’s total net sales did not fall in fiscal year 2025; they actually increased from $391,035 million in 2024 to $416,161 million in 2025 [3][2].",
+    "chunkIds": [
+      "AAPL-FY2025-structure-00075",
+      "AAPL-FY2025-structure-00196",
+      "AAPL-FY2025-structure-00137",
+      "AAPL-FY2025-structure-00138",
+      "AAPL-FY2025-structure-00077",
+      "AAPL-FY2025-structure-00080",
+      "AAPL-FY2025-structure-00091",
+      "AAPL-FY2025-structure-00083"
+    ],
+    "done": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "promptVersion": "answer-v2",
+      "usage": {
+        "queue_time": 0.214442501,
+        "prompt_tokens": 1674,
+        "prompt_time": 0.245380785,
+        "completion_tokens": 92,
+        "completion_time": 0.190264785,
+        "total_tokens": 1766,
+        "total_time": 0.43564557,
+        "prompt_tokens_details": { "cached_tokens": 256 },
+        "completion_tokens_details": { "reasoning_tokens": 37 }
+      },
+      "latencyMs": 1008,
+      "cached": false
+    }
+  },
+  "judge": {
+    "verdicts": [
+      {
+        "plain": "Apple’s total net sales did not fall in fiscal year 2025; they actually increased from $391,035 million in 2024 to $416,161 million in 2025.",
+        "supported": true,
+        "reason": "Sources confirm sales increased from 2024 to 2025."
+      }
+    ],
+    "provider": "groqJudge",
+    "model": "qwen/qwen3.8-27b",
+    "judgeVersion": "support-v1",
+    "cached": false
+  }
+}

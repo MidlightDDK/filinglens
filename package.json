@@ -12,7 +12,7 @@
     "data:chunk": "uv run --project pipeline python -m pipeline.chunk",
     "data:xbrl": "uv run --project pipeline python -m pipeline.xbrl",
     "index": "node scripts/src/build-index.ts",
-    "examples": "node -e \"console.log('examples: not implemented (M6)')\"",
+    "examples": "node scripts/src/precompute-examples.ts",
     "lint": "biome check .",
     "format": "biome check --write .",
     "typecheck": "pnpm -r --if-present typecheck",

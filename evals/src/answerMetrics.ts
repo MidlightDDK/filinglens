@@ -108,7 +108,12 @@ export interface ItemResult {
 }
 
 /** The item's headline outcome: EM for numbers, abstention for unanswerable, else the judge. */
-export function itemCorrect(r: ItemResult): boolean | null {
+export function itemCorrect(
+  r: Pick<
+    ItemResult,
+    "answerable" | "abstained" | "category" | "numeric_em" | "judge_correct"
+  >,
+): boolean | null {
   if (!r.answerable) return r.abstained;
   if (r.category === "false_premise") return r.judge_correct;
   return r.numeric_em ?? r.judge_correct;
@@ -200,3 +205,84 @@ export function summarize(rows: ItemResult[]) {
 }
 
 export type AnswerSummary = ReturnType<typeof summarize>;
+
+/** One sentence of an item's answer, as the runner records it. */
+export interface SentenceDetail {
+  text: string;
+  status: string;
+  reason: string | null;
+  missing: string[];
+}
+
+/** An item's full record (answers.jsonl). */
+export interface ItemDetail extends Omit<ItemResult, "sentences"> {
+  question: string;
+  gold_answer: string;
+  answer: string;
+  judge: { correct: boolean; reason: string } | null;
+  sentences: SentenceDetail[];
+}
+
+/** A wrong answer or an answer with unverified sentences, for the /evals page. */
+export interface FailureExample {
+  id: string;
+  category: string;
+  kind: "incorrect" | "unverified";
+  question: string;
+  gold_answer: string;
+  answer: string;
+  /** What the metrics recorded, generated from the item's results. */
+  why: string;
+  /** Sentences the deterministic verifier didn't verify. */
+  unverified: SentenceDetail[];
+  /** A reviewer's explanation (evals/failure_notes.json), if written. */
+  note: string | null;
+}
+
+function whyIncorrect(d: ItemDetail): string {
+  if (!d.answerable) return "Answered a question the filings can't answer.";
+  if (d.abstained) return "Declined a question the filings answer.";
+  if (d.numeric_em === false && d.category !== "false_premise") {
+    return "The number doesn't match the gold value within tolerance.";
+  }
+  return `Judge: ${d.judge?.reason ?? "incorrect"}`;
+}
+
+/** Every incorrect item, then every correct one with an unverified sentence. */
+export function failureExamples(
+  details: ItemDetail[],
+  notes: Record<string, string>,
+): FailureExample[] {
+  const example = (
+    d: ItemDetail,
+    kind: FailureExample["kind"],
+  ): FailureExample => {
+    const unverified = d.sentences.filter((s) => s.status !== "verified");
+    return {
+      id: d.id,
+      category: d.category,
+      kind,
+      question: d.question,
+      gold_answer: d.gold_answer,
+      answer: d.answer,
+      why:
+        kind === "incorrect"
+          ? whyIncorrect(d)
+          : `${unverified.length} of ${d.sentences.length} sentences unverified.`,
+      unverified,
+      note: notes[d.id] ?? null,
+    };
+  };
+  return [
+    ...details
+      .filter((d) => itemCorrect(d) === false)
+      .map((d) => example(d, "incorrect")),
+    ...details
+      .filter(
+        (d) =>
+          itemCorrect(d) !== false &&
+          d.sentences.some((s) => s.status !== "verified"),
+      )
+      .map((d) => example(d, "unverified")),
+  ];
+}

@@ -1,0 +1,212 @@
+import type { ExampleFile } from "@filinglens/core";
+import { type FormEvent, useEffect, useRef, useState } from "react";
+import { type ActiveCite, Answer } from "../answer/Answer";
+import { useAnswer } from "../answer/useAnswer";
+import { useVerify } from "../answer/useVerify";
+import { CONFIG_ID } from "../config";
+import {
+  type LoadState,
+  type RunSearch,
+  useLatestSearch,
+} from "../search/useSearch";
+import { ExampleView } from "./ExampleView";
+import { EXAMPLES } from "./examples";
+import { loadExample, prefetchExamples } from "./loadExample";
+import { Passages } from "./Passages";
+import { UnderTheHood } from "./UnderTheHood";
+
+function LoadStatus({ load }: { load: LoadState }) {
+  if (load.status === "error") {
+    return (
+      <p role="alert" className="text-sm text-red-700">
+        Search is unavailable right now: {load.message}
+      </p>
+    );
+  }
+  if (load.status === "ready") {
+    return (
+      <p className="text-sm text-slate-500" data-testid="load-status">
+        Ready: {load.n.toLocaleString()} passages, model on{" "}
+        {load.device === "webgpu" ? "WebGPU" : "WASM"} (loaded in{" "}
+        {(load.load_ms / 1000).toFixed(1)} s)
+      </p>
+    );
+  }
+  const pct = Math.round(((load.index + load.model) / 2) * 100);
+  return (
+    <div className="text-sm text-slate-500">
+      <p>
+        Loading the search index and embedding model in your browser… {pct}%
+      </p>
+      <progress className="mt-1 h-1.5 w-full" max={100} value={pct}>
+        {pct}%
+      </progress>
+    </div>
+  );
+}
+
+export function AskPage({ load, run }: { load: LoadState; run: RunSearch }) {
+  const { outcome, error, busy, search, cancel } = useLatestSearch(run);
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const { state: answer, ask, prepare, checkNeeded } = useAnswer(turnstileRef);
+  const { state: judge, verify } = useVerify(turnstileRef);
+  const [query, setQuery] = useState("");
+  const [active, setActive] = useState<ActiveCite | null>(null);
+  const [example, setExample] = useState<ExampleFile | null>(null);
+  const [exampleError, setExampleError] = useState(false);
+  const exampleReq = useRef(0);
+
+  useEffect(prefetchExamples, []);
+
+  // Each retrieval result is answered from its top passages, in order.
+  useEffect(() => {
+    if (!outcome) return;
+    setActive(null);
+    setExample(null);
+    if (outcome.passages.length) {
+      ask(
+        outcome.query,
+        outcome.passages.map((p) => p.candidate.chunk_id),
+      );
+    }
+  }, [outcome, ask]);
+
+  const showExample = async (id: string) => {
+    const mine = ++exampleReq.current;
+    cancel();
+    setExampleError(false);
+    try {
+      const ex = await loadExample(id);
+      if (mine !== exampleReq.current) return;
+      setExample(ex);
+      setQuery(ex.question);
+      setActive(null);
+    } catch {
+      if (mine === exampleReq.current) setExampleError(true);
+    }
+  };
+
+  const liveSearch = (q: string) => {
+    exampleReq.current++;
+    search(q);
+  };
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    liveSearch(query);
+  };
+  const answering =
+    answer.status === "pending" || answer.status === "streaming";
+
+  return (
+    <div className="flex flex-col gap-6">
+      <header className="flex flex-col gap-2">
+        <h1 className="text-4xl font-semibold tracking-tight">FilingLens</h1>
+        <p className="text-lg text-slate-700">
+          Ask about the 10-K annual reports of 12 public companies. Retrieval
+          runs in your browser, and every sentence of the answer cites the
+          passage it came from.
+        </p>
+      </header>
+
+      <section aria-labelledby="examples-heading">
+        <h2
+          id="examples-heading"
+          className="text-sm font-medium text-slate-500"
+        >
+          Try an example (precomputed, instant)
+        </h2>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {EXAMPLES.map((ex) => (
+            <button
+              key={ex.id}
+              type="button"
+              data-example={ex.id}
+              aria-pressed={example?.id === ex.id}
+              onClick={() => showExample(ex.id)}
+              className="rounded-full border border-slate-300 bg-white px-3 py-1 text-left text-sm shadow-sm hover:bg-slate-50 aria-pressed:border-slate-900 aria-pressed:bg-slate-900 aria-pressed:text-white"
+            >
+              <span className="opacity-70">{ex.kind}:</span> {ex.title}
+            </button>
+          ))}
+        </div>
+        {exampleError && (
+          <p role="alert" className="mt-2 text-sm text-red-700">
+            Couldn't load that example. Check your connection and try again.
+          </p>
+        )}
+      </section>
+
+      <form onSubmit={onSubmit} className="flex flex-col gap-2 sm:flex-row">
+        <label htmlFor="q" className="sr-only">
+          Ask a question about the filings
+        </label>
+        <input
+          id="q"
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onFocus={prepare}
+          maxLength={500}
+          placeholder="e.g. What was NVIDIA's data center revenue in FY2026?"
+          className="min-w-0 flex-1 rounded-md border border-slate-300 bg-white px-3 py-2 text-base shadow-sm focus:border-slate-500 focus:outline-none"
+        />
+        <button
+          type="submit"
+          disabled={!query.trim() || load.status === "error"}
+          className="rounded-md bg-slate-900 px-4 py-2 font-medium text-white disabled:opacity-50"
+        >
+          {busy || answering ? "Asking…" : "Ask"}
+        </button>
+      </form>
+
+      {/* Turnstile renders here only if a visitor must interact. */}
+      <div ref={turnstileRef} />
+      <LoadStatus load={load} />
+      {error && (
+        <p role="alert" className="text-sm text-red-700">
+          Search failed: {error}
+        </p>
+      )}
+
+      {example && (
+        <ExampleView
+          example={example}
+          active={active}
+          onCite={setActive}
+          onRunLive={() => liveSearch(example.question)}
+          running={busy}
+          canRun={load.status !== "error"}
+        />
+      )}
+
+      {!example && outcome && (
+        <section aria-label="Results" className="flex flex-col gap-4">
+          <p className="text-sm text-slate-500" data-testid="result-summary">
+            Top {outcome.passages.length} passages for “{outcome.query}” in{" "}
+            <span data-testid="wall-ms">{outcome.wall_ms}</span> ms
+          </p>
+          <Answer
+            state={answer}
+            sources={outcome.passages}
+            active={active}
+            onCite={setActive}
+            checkNeeded={checkNeeded}
+            judge={judge}
+            onJudge={() =>
+              answer.status === "done" &&
+              verify({
+                question: answer.question,
+                answer: answer.text,
+                chunkIds: answer.chunkIds,
+                configId: CONFIG_ID,
+              })
+            }
+          />
+          <h2 className="font-medium">Sources</h2>
+          <Passages passages={outcome.passages} active={active} />
+          <UnderTheHood outcome={outcome} load={load} answer={answer} />
+        </section>
+      )}
+    </div>
+  );
+}

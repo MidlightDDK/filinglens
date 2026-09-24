@@ -1,5 +1,21 @@
 import { describe, expect, it } from "vitest";
-import { locate, locateAll } from "./dataset.ts";
+import { composition, type GoldItem, locate, locateAll } from "./dataset.ts";
+
+describe("composition", () => {
+  it("counts items per split by category and source", () => {
+    const item = (category: string, source: string, split: string) =>
+      ({ category, source, split }) as GoldItem;
+    const c = composition([
+      item("lookup", "xbrl", "dev"),
+      item("lookup", "handwritten", "test"),
+      item("trend", "xbrl", "dev"),
+    ]);
+    expect(c.total).toEqual({ dev: 2, test: 1 });
+    expect(c.categories.lookup).toEqual({ dev: 1, test: 1 });
+    expect(c.categories.unanswerable).toEqual({ dev: 0, test: 0 });
+    expect(c.sources.xbrl).toEqual({ dev: 2, test: 0 });
+  });
+});
 
 describe("locate", () => {
   const text = "Revenue was  $130.5 billion.\nWe’re “growing”. Revenue was up.";

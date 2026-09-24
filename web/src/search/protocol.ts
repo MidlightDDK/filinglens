@@ -1,21 +1,12 @@
-import type {
-  Candidate,
-  ChunkRecord,
-  DocInfo,
-  RetrievalResult,
-} from "@filinglens/core";
+import type { Passage, RetrievalResult } from "@filinglens/core";
+
+export type { Passage };
 
 export type Device = "webgpu" | "wasm";
 
 export type WorkerRequest =
   | { type: "init"; device?: Device }
-  | { type: "search"; id: number; query: string };
-
-export interface Passage {
-  candidate: Candidate;
-  chunk: ChunkRecord;
-  doc: DocInfo;
-}
+  | { type: "search"; id: number; query: string; configId: string };
 
 export interface ReadyInfo {
   device: Device;

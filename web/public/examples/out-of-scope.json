@@ -1,0 +1,1184 @@
+{
+  "id": "out-of-scope",
+  "category": "unanswerable",
+  "question": "What was Mark Zuckerberg's base salary in 2025?",
+  "created_at": "2026-09-24T19:39:45.544Z",
+  "commit": "7a5fde023461d8d69d3c10ba75389626e6f0b6bc-dirty",
+  "retrieval": {
+    "result": {
+      "query": "What was Mark Zuckerberg's base salary in 2025?",
+      "config_id": "default",
+      "filters": {
+        "tickers": [],
+        "fiscal_years": [2025],
+        "latest": false,
+        "doc_ids": [
+          "AAPL-FY2025",
+          "AMD-FY2025",
+          "AMZN-FY2025",
+          "GOOGL-FY2025",
+          "INTC-FY2025",
+          "JPM-FY2025",
+          "KO-FY2025",
+          "META-FY2025",
+          "MSFT-FY2025",
+          "NFLX-FY2025",
+          "NVDA-FY2025",
+          "PEP-FY2025"
+        ],
+        "notes": []
+      },
+      "candidates": [
+        {
+          "chunk_id": "META-FY2025-structure-00170",
+          "doc_id": "META-FY2025",
+          "lexical": null,
+          "dense": { "rank": 1, "score": 0.6707608952673171 },
+          "fused": { "rank": 1, "score": 0.01639344262295082 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00366",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 1, "score": 16.452463294625776 },
+          "dense": null,
+          "fused": { "rank": 2, "score": 0.01639344262295082 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00114",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 2, "score": 14.193731483172213 },
+          "dense": null,
+          "fused": { "rank": 3, "score": 0.016129032258064516 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00338",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 2, "score": 0.6470759443377749 },
+          "fused": { "rank": 4, "score": 0.016129032258064516 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00112",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 3, "score": 13.350582559434411 },
+          "dense": null,
+          "fused": { "rank": 5, "score": 0.015873015873015872 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00334",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 3, "score": 0.6452453453351236 },
+          "fused": { "rank": 6, "score": 0.015873015873015872 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NFLX-FY2025-structure-00082",
+          "doc_id": "NFLX-FY2025",
+          "lexical": null,
+          "dense": { "rank": 4, "score": 0.6272084701544977 },
+          "fused": { "rank": 7, "score": 0.015625 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00317",
+          "doc_id": "PEP-FY2025",
+          "lexical": { "rank": 4, "score": 11.382129334442542 },
+          "dense": null,
+          "fused": { "rank": 8, "score": 0.015625 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00023",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 5, "score": 10.018997406517634 },
+          "dense": null,
+          "fused": { "rank": 9, "score": 0.015384615384615385 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00209",
+          "doc_id": "META-FY2025",
+          "lexical": null,
+          "dense": { "rank": 5, "score": 0.6269140103873538 },
+          "fused": { "rank": 10, "score": 0.015384615384615385 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00275",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 6, "score": 0.6228759046466965 },
+          "fused": { "rank": 11, "score": 0.015151515151515152 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00326",
+          "doc_id": "MSFT-FY2025",
+          "lexical": { "rank": 6, "score": 9.634415040221217 },
+          "dense": null,
+          "fused": { "rank": 12, "score": 0.015151515151515152 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00279",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 7, "score": 0.6210063768798517 },
+          "fused": { "rank": 13, "score": 0.014925373134328358 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NFLX-FY2025-structure-00278",
+          "doc_id": "NFLX-FY2025",
+          "lexical": { "rank": 7, "score": 9.497557801866995 },
+          "dense": null,
+          "fused": { "rank": 14, "score": 0.014925373134328358 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00082",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 8, "score": 9.031811354753103 },
+          "dense": null,
+          "fused": { "rank": 15, "score": 0.014705882352941176 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00173",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 8, "score": 0.6196893771975241 },
+          "fused": { "rank": 16, "score": 0.014705882352941176 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00180",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 9, "score": 8.271557226680073 },
+          "dense": null,
+          "fused": { "rank": 17, "score": 0.014492753623188406 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00336",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 9, "score": 0.6187079987742988 },
+          "fused": { "rank": 18, "score": 0.014492753623188406 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMD-FY2025-structure-00041",
+          "doc_id": "AMD-FY2025",
+          "lexical": { "rank": 10, "score": 8.117670998580586 },
+          "dense": null,
+          "fused": { "rank": 19, "score": 0.014285714285714285 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00117",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 10, "score": 0.6185270583549838 },
+          "fused": { "rank": 20, "score": 0.014285714285714285 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00010",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 11, "score": 8.067231780165939 },
+          "dense": null,
+          "fused": { "rank": 21, "score": 0.014084507042253521 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00248",
+          "doc_id": "AMZN-FY2025",
+          "lexical": null,
+          "dense": { "rank": 11, "score": 0.6178442371894852 },
+          "fused": { "rank": 22, "score": 0.014084507042253521 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "INTC-FY2025-structure-00336",
+          "doc_id": "INTC-FY2025",
+          "lexical": { "rank": 12, "score": 8.05209739714101 },
+          "dense": null,
+          "fused": { "rank": 23, "score": 0.013888888888888888 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00322",
+          "doc_id": "PEP-FY2025",
+          "lexical": null,
+          "dense": { "rank": 12, "score": 0.6153828225504123 },
+          "fused": { "rank": 24, "score": 0.013888888888888888 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00211",
+          "doc_id": "META-FY2025",
+          "lexical": null,
+          "dense": { "rank": 13, "score": 0.6148801734822497 },
+          "fused": { "rank": 25, "score": 0.0136986301369863 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00146",
+          "doc_id": "PEP-FY2025",
+          "lexical": { "rank": 13, "score": 7.529228156839277 },
+          "dense": null,
+          "fused": { "rank": 26, "score": 0.0136986301369863 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00104",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 14, "score": 0.6147638844699789 },
+          "fused": { "rank": 27, "score": 0.013513513513513514 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00022",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 14, "score": 7.464298503634284 },
+          "dense": null,
+          "fused": { "rank": 28, "score": 0.013513513513513514 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "JPM-FY2025-structure-00232",
+          "doc_id": "JPM-FY2025",
+          "lexical": null,
+          "dense": { "rank": 15, "score": 0.6142794216854588 },
+          "fused": { "rank": 29, "score": 0.013333333333333334 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00167",
+          "doc_id": "PEP-FY2025",
+          "lexical": { "rank": 15, "score": 7.360438614545688 },
+          "dense": null,
+          "fused": { "rank": 30, "score": 0.013333333333333334 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "INTC-FY2025-structure-00441",
+          "doc_id": "INTC-FY2025",
+          "lexical": null,
+          "dense": { "rank": 16, "score": 0.6142604567769628 },
+          "fused": { "rank": 31, "score": 0.013157894736842105 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00302",
+          "doc_id": "PEP-FY2025",
+          "lexical": { "rank": 16, "score": 7.229698324935091 },
+          "dense": null,
+          "fused": { "rank": 32, "score": 0.013157894736842105 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMD-FY2025-structure-00048",
+          "doc_id": "AMD-FY2025",
+          "lexical": { "rank": 17, "score": 7.218475637898736 },
+          "dense": null,
+          "fused": { "rank": 33, "score": 0.012987012987012988 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "JPM-FY2025-structure-01168",
+          "doc_id": "JPM-FY2025",
+          "lexical": null,
+          "dense": { "rank": 17, "score": 0.6134946188455809 },
+          "fused": { "rank": 34, "score": 0.012987012987012988 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00269",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 18, "score": 0.6132762284452065 },
+          "fused": { "rank": 35, "score": 0.01282051282051282 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NFLX-FY2025-structure-00204",
+          "doc_id": "NFLX-FY2025",
+          "lexical": { "rank": 18, "score": 7.122495923723394 },
+          "dense": null,
+          "fused": { "rank": 36, "score": 0.01282051282051282 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMZN-FY2025-structure-00207",
+          "doc_id": "AMZN-FY2025",
+          "lexical": { "rank": 19, "score": 7.037149935910145 },
+          "dense": null,
+          "fused": { "rank": 37, "score": 0.012658227848101266 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00289",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 19, "score": 0.6130341019660093 },
+          "fused": { "rank": 38, "score": 0.012658227848101266 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "INTC-FY2025-structure-00390",
+          "doc_id": "INTC-FY2025",
+          "lexical": null,
+          "dense": { "rank": 20, "score": 0.6126350992803943 },
+          "fused": { "rank": 39, "score": 0.0125 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00123",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 20, "score": 6.8424020663565575 },
+          "dense": null,
+          "fused": { "rank": 40, "score": 0.0125 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "INTC-FY2025-structure-00337",
+          "doc_id": "INTC-FY2025",
+          "lexical": { "rank": 21, "score": 6.645658032003753 },
+          "dense": null,
+          "fused": { "rank": 41, "score": 0.012345679012345678 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00147",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 21, "score": 0.6121485303551423 },
+          "fused": { "rank": 42, "score": 0.012345679012345678 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMD-FY2025-structure-00339",
+          "doc_id": "AMD-FY2025",
+          "lexical": null,
+          "dense": { "rank": 22, "score": 0.6115605996047628 },
+          "fused": { "rank": 43, "score": 0.012195121951219513 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NFLX-FY2025-structure-00209",
+          "doc_id": "NFLX-FY2025",
+          "lexical": { "rank": 22, "score": 6.565396022178685 },
+          "dense": null,
+          "fused": { "rank": 44, "score": 0.012195121951219513 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00105",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 23, "score": 0.6114774186525542 },
+          "fused": { "rank": 45, "score": 0.012048192771084338 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00145",
+          "doc_id": "PEP-FY2025",
+          "lexical": { "rank": 23, "score": 6.5333987021595075 },
+          "dense": null,
+          "fused": { "rank": 46, "score": 0.012048192771084338 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00031",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 24, "score": 6.18569749000031 },
+          "dense": null,
+          "fused": { "rank": 47, "score": 0.011904761904761904 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00218",
+          "doc_id": "META-FY2025",
+          "lexical": null,
+          "dense": { "rank": 24, "score": 0.6110250180423196 },
+          "fused": { "rank": 48, "score": 0.011904761904761904 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "KO-FY2025-structure-00225",
+          "doc_id": "KO-FY2025",
+          "lexical": { "rank": 25, "score": 6.176333801938871 },
+          "dense": null,
+          "fused": { "rank": 49, "score": 0.011764705882352941 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00172",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 25, "score": 0.6098857686146122 },
+          "fused": { "rank": 50, "score": 0.011764705882352941 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00328",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 26, "score": 0.6095622506235735 },
+          "fused": { "rank": 51, "score": 0.011627906976744186 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "INTC-FY2025-structure-00347",
+          "doc_id": "INTC-FY2025",
+          "lexical": { "rank": 26, "score": 6.139215934783263 },
+          "dense": null,
+          "fused": { "rank": 52, "score": 0.011627906976744186 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMD-FY2025-structure-00054",
+          "doc_id": "AMD-FY2025",
+          "lexical": { "rank": 27, "score": 6.121623562011337 },
+          "dense": null,
+          "fused": { "rank": 53, "score": 0.011494252873563218 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00269",
+          "doc_id": "PEP-FY2025",
+          "lexical": null,
+          "dense": { "rank": 27, "score": 0.6089969753000383 },
+          "fused": { "rank": 54, "score": 0.011494252873563218 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NFLX-FY2025-structure-00070",
+          "doc_id": "NFLX-FY2025",
+          "lexical": null,
+          "dense": { "rank": 28, "score": 0.6079431083579574 },
+          "fused": { "rank": 55, "score": 0.011363636363636364 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00142",
+          "doc_id": "PEP-FY2025",
+          "lexical": { "rank": 28, "score": 6.047991816224562 },
+          "dense": null,
+          "fused": { "rank": 56, "score": 0.011363636363636364 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00019",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": { "rank": 29, "score": 5.9778150595445805 },
+          "dense": null,
+          "fused": { "rank": 57, "score": 0.011235955056179775 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00276",
+          "doc_id": "PEP-FY2025",
+          "lexical": null,
+          "dense": { "rank": 29, "score": 0.6078731275488847 },
+          "fused": { "rank": 58, "score": 0.011235955056179775 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00139",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 30, "score": 0.6078689595085278 },
+          "fused": { "rank": 59, "score": 0.011111111111111112 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00125",
+          "doc_id": "PEP-FY2025",
+          "lexical": { "rank": 30, "score": 5.959439046634976 },
+          "dense": null,
+          "fused": { "rank": 60, "score": 0.011111111111111112 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMD-FY2025-structure-00278",
+          "doc_id": "AMD-FY2025",
+          "lexical": { "rank": 31, "score": 5.955939513552479 },
+          "dense": null,
+          "fused": { "rank": 61, "score": 0.01098901098901099 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00267",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 31, "score": 0.6078011138985008 },
+          "fused": { "rank": 62, "score": 0.01098901098901099 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NFLX-FY2025-structure-00280",
+          "doc_id": "NFLX-FY2025",
+          "lexical": null,
+          "dense": { "rank": 32, "score": 0.6074313096487891 },
+          "fused": { "rank": 63, "score": 0.010869565217391304 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00092",
+          "doc_id": "PEP-FY2025",
+          "lexical": { "rank": 32, "score": 5.9517836265116015 },
+          "dense": null,
+          "fused": { "rank": 64, "score": 0.010869565217391304 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NFLX-FY2025-structure-00207",
+          "doc_id": "NFLX-FY2025",
+          "lexical": { "rank": 33, "score": 5.884434482037002 },
+          "dense": null,
+          "fused": { "rank": 65, "score": 0.010752688172043012 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NVDA-FY2025-structure-00301",
+          "doc_id": "NVDA-FY2025",
+          "lexical": null,
+          "dense": { "rank": 33, "score": 0.6069614628627775 },
+          "fused": { "rank": 66, "score": 0.010752688172043012 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "JPM-FY2025-structure-00862",
+          "doc_id": "JPM-FY2025",
+          "lexical": null,
+          "dense": { "rank": 34, "score": 0.6066036680526367 },
+          "fused": { "rank": 67, "score": 0.010638297872340425 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00005",
+          "doc_id": "MSFT-FY2025",
+          "lexical": { "rank": 34, "score": 5.881786405782624 },
+          "dense": null,
+          "fused": { "rank": 68, "score": 0.010638297872340425 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "INTC-FY2025-structure-00308",
+          "doc_id": "INTC-FY2025",
+          "lexical": { "rank": 35, "score": 5.8540100141392175 },
+          "dense": null,
+          "fused": { "rank": 69, "score": 0.010526315789473684 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NFLX-FY2025-structure-00095",
+          "doc_id": "NFLX-FY2025",
+          "lexical": null,
+          "dense": { "rank": 35, "score": 0.6061337386806082 },
+          "fused": { "rank": 70, "score": 0.010526315789473684 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "INTC-FY2025-structure-00388",
+          "doc_id": "INTC-FY2025",
+          "lexical": null,
+          "dense": { "rank": 36, "score": 0.6052264721135028 },
+          "fused": { "rank": 71, "score": 0.010416666666666666 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00020",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 36, "score": 5.775739018096282 },
+          "dense": null,
+          "fused": { "rank": 72, "score": 0.010416666666666666 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00013",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 37, "score": 5.735896097305739 },
+          "dense": null,
+          "fused": { "rank": 73, "score": 0.010309278350515464 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NFLX-FY2025-structure-00282",
+          "doc_id": "NFLX-FY2025",
+          "lexical": null,
+          "dense": { "rank": 37, "score": 0.6051306184708315 },
+          "fused": { "rank": 74, "score": 0.010309278350515464 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00159",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 38, "score": 0.6037226748252682 },
+          "fused": { "rank": 75, "score": 0.01020408163265306 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00022",
+          "doc_id": "MSFT-FY2025",
+          "lexical": { "rank": 38, "score": 5.694041104483796 },
+          "dense": null,
+          "fused": { "rank": 76, "score": 0.01020408163265306 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "JPM-FY2025-structure-00724",
+          "doc_id": "JPM-FY2025",
+          "lexical": { "rank": 39, "score": 5.601958933404649 },
+          "dense": null,
+          "fused": { "rank": 77, "score": 0.010101010101010102 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NVDA-FY2025-structure-00232",
+          "doc_id": "NVDA-FY2025",
+          "lexical": null,
+          "dense": { "rank": 39, "score": 0.6035996700261866 },
+          "fused": { "rank": 78, "score": 0.010101010101010102 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "JPM-FY2025-structure-00704",
+          "doc_id": "JPM-FY2025",
+          "lexical": null,
+          "dense": { "rank": 40, "score": 0.6035191916422141 },
+          "fused": { "rank": 79, "score": 0.01 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00138",
+          "doc_id": "MSFT-FY2025",
+          "lexical": { "rank": 40, "score": 5.599760209904966 },
+          "dense": null,
+          "fused": { "rank": 80, "score": 0.01 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00115",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 41, "score": 5.52237884021988 },
+          "dense": null,
+          "fused": { "rank": 81, "score": 0.009900990099009901 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00258",
+          "doc_id": "PEP-FY2025",
+          "lexical": null,
+          "dense": { "rank": 41, "score": 0.6025189742270861 },
+          "fused": { "rank": 82, "score": 0.009900990099009901 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "GOOGL-FY2025-structure-00228",
+          "doc_id": "GOOGL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 42, "score": 0.6021903019893808 },
+          "fused": { "rank": 83, "score": 0.00980392156862745 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00206",
+          "doc_id": "PEP-FY2025",
+          "lexical": { "rank": 42, "score": 5.473767852389954 },
+          "dense": null,
+          "fused": { "rank": 84, "score": 0.00980392156862745 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00160",
+          "doc_id": "AAPL-FY2025",
+          "lexical": null,
+          "dense": { "rank": 43, "score": 0.6018693947556228 },
+          "fused": { "rank": 85, "score": 0.009708737864077669 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00019",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 43, "score": 5.454394413500765 },
+          "dense": null,
+          "fused": { "rank": 86, "score": 0.009708737864077669 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "JPM-FY2025-structure-00468",
+          "doc_id": "JPM-FY2025",
+          "lexical": null,
+          "dense": { "rank": 44, "score": 0.6018652054560057 },
+          "fused": { "rank": 87, "score": 0.009615384615384616 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00036",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 44, "score": 5.27839444362396 },
+          "dense": null,
+          "fused": { "rank": 88, "score": 0.009615384615384616 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "INTC-FY2025-structure-00044",
+          "doc_id": "INTC-FY2025",
+          "lexical": { "rank": 45, "score": 5.256846334244418 },
+          "dense": null,
+          "fused": { "rank": 89, "score": 0.009523809523809525 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NFLX-FY2025-structure-00072",
+          "doc_id": "NFLX-FY2025",
+          "lexical": null,
+          "dense": { "rank": 45, "score": 0.6014152945547964 },
+          "fused": { "rank": 90, "score": 0.009523809523809525 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "JPM-FY2025-structure-01171",
+          "doc_id": "JPM-FY2025",
+          "lexical": null,
+          "dense": { "rank": 46, "score": 0.6013388407214569 },
+          "fused": { "rank": 91, "score": 0.009433962264150943 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00127",
+          "doc_id": "PEP-FY2025",
+          "lexical": { "rank": 46, "score": 5.252330544956752 },
+          "dense": null,
+          "fused": { "rank": 92, "score": 0.009433962264150943 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00166",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 47, "score": 5.202953513817723 },
+          "dense": null,
+          "fused": { "rank": 93, "score": 0.009345794392523364 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00332",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 47, "score": 0.6011771590468736 },
+          "fused": { "rank": 94, "score": 0.009345794392523364 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00284",
+          "doc_id": "MSFT-FY2025",
+          "lexical": { "rank": 48, "score": 5.12683624918807 },
+          "dense": null,
+          "fused": { "rank": 95, "score": 0.009259259259259259 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00225",
+          "doc_id": "PEP-FY2025",
+          "lexical": null,
+          "dense": { "rank": 48, "score": 0.6008911868820878 },
+          "fused": { "rank": 96, "score": 0.009259259259259259 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00164",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 49, "score": 5.120678463471557 },
+          "dense": null,
+          "fused": { "rank": 97, "score": 0.009174311926605505 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NFLX-FY2025-structure-00177",
+          "doc_id": "NFLX-FY2025",
+          "lexical": null,
+          "dense": { "rank": 49, "score": 0.6007431710134805 },
+          "fused": { "rank": 98, "score": 0.009174311926605505 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AAPL-FY2025-structure-00072",
+          "doc_id": "AAPL-FY2025",
+          "lexical": { "rank": 50, "score": 5.099242161119381 },
+          "dense": null,
+          "fused": { "rank": 99, "score": 0.00909090909090909 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "AMD-FY2025-structure-00341",
+          "doc_id": "AMD-FY2025",
+          "lexical": null,
+          "dense": { "rank": 50, "score": 0.6002734772542664 },
+          "fused": { "rank": 100, "score": 0.00909090909090909 },
+          "rerank": null
+        }
+      ],
+      "top": [
+        {
+          "chunk_id": "META-FY2025-structure-00170",
+          "doc_id": "META-FY2025",
+          "lexical": null,
+          "dense": { "rank": 1, "score": 0.6707608952673171 },
+          "fused": { "rank": 1, "score": 0.01639344262295082 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00366",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 1, "score": 16.452463294625776 },
+          "dense": null,
+          "fused": { "rank": 2, "score": 0.01639344262295082 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00114",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 2, "score": 14.193731483172213 },
+          "dense": null,
+          "fused": { "rank": 3, "score": 0.016129032258064516 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00338",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 2, "score": 0.6470759443377749 },
+          "fused": { "rank": 4, "score": 0.016129032258064516 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "META-FY2025-structure-00112",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 3, "score": 13.350582559434411 },
+          "dense": null,
+          "fused": { "rank": 5, "score": 0.015873015873015872 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "MSFT-FY2025-structure-00334",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 3, "score": 0.6452453453351236 },
+          "fused": { "rank": 6, "score": 0.015873015873015872 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "NFLX-FY2025-structure-00082",
+          "doc_id": "NFLX-FY2025",
+          "lexical": null,
+          "dense": { "rank": 4, "score": 0.6272084701544977 },
+          "fused": { "rank": 7, "score": 0.015625 },
+          "rerank": null
+        },
+        {
+          "chunk_id": "PEP-FY2025-structure-00317",
+          "doc_id": "PEP-FY2025",
+          "lexical": { "rank": 4, "score": 11.382129334442542 },
+          "dense": null,
+          "fused": { "rank": 8, "score": 0.015625 },
+          "rerank": null
+        }
+      ],
+      "timings": {
+        "filter_ms": 3.1,
+        "lexical_ms": 1.5,
+        "embed_ms": 38.3,
+        "dense_ms": 11.2,
+        "fuse_ms": 0.3,
+        "rerank_ms": 0,
+        "total_ms": 54.5
+      }
+    },
+    "passages": [
+      {
+        "candidate": {
+          "chunk_id": "META-FY2025-structure-00170",
+          "doc_id": "META-FY2025",
+          "lexical": null,
+          "dense": { "rank": 1, "score": 0.6707608952673171 },
+          "fused": { "rank": 1, "score": 0.01639344262295082 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 223525,
+          "char_start": 222756,
+          "doc_id": "META-FY2025",
+          "heading_path": [
+            "Item 7 Management's Discussion and Analysis of Financial Condition and Results of Operations",
+            "Executive Overview of Full Year 2025 Results"
+          ],
+          "item": "7",
+          "text": "Our mission is to build the future of human connection and the technology that makes it possible.\n\nOur financial results and key Family metrics for 2025 are set forth below. Total revenue for 2025 was $200.97 billion, an increase of 22% compared to 2024, due to an increase in advertising revenue. Ad impressions delivered across our Family of Apps in 2025 increased 12% year-over-year, and our average price per ad increased 9% year-over-year.\n\nIncome from operations for 2025 was $83.28 billion, an increase of $13.90 billion, or 20%, compared to 2024, driven by an increase in advertising revenue, partially offset by an increase in costs and expenses. The increase in costs and expenses was mainly due to increases in employee compensation and infrastructure costs."
+        },
+        "doc": {
+          "aliases": ["Meta", "Facebook"],
+          "company": "Meta Platforms",
+          "filing_date": "2026-01-29",
+          "fy": 2025,
+          "ticker": "META",
+          "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "META-FY2025-structure-00366",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 1, "score": 16.452463294625776 },
+          "dense": null,
+          "fused": { "rank": 2, "score": 0.01639344262295082 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 379795,
+          "char_start": 379380,
+          "doc_id": "META-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "Legal and Related Matters",
+            "Privacy and Related Matters"
+          ],
+          "item": "8",
+          "text": "On January 19, 2022, we filed a motion to dismiss, which was denied in part on May 10, 2023. The insider trading claim was dismissed as to all defendants except Mark Zuckerberg, and the motion was denied as to the breach of fiduciary duty claims. Trial began on July 16, 2025. On July 17, 2025, the parties agreed to a settlement in principle to resolve all claims in the action, which is subject to court approval."
+        },
+        "doc": {
+          "aliases": ["Meta", "Facebook"],
+          "company": "Meta Platforms",
+          "filing_date": "2026-01-29",
+          "fy": 2025,
+          "ticker": "META",
+          "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "META-FY2025-structure-00114",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 2, "score": 14.193731483172213 },
+          "dense": null,
+          "fused": { "rank": 3, "score": 0.016129032258064516 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 145843,
+          "char_start": 144226,
+          "doc_id": "META-FY2025",
+          "heading_path": [
+            "Item 1A Risk Factors",
+            "We face inventory risk with respect to our consumer hardware products."
+          ],
+          "item": "1A",
+          "text": "Mark Zuckerberg, our founder, Chairman, and CEO, is able to exercise voting rights with respect to a majority of the voting power of our outstanding capital stock and therefore has the ability to control the outcome of all matters submitted to our stockholders for approval, including the election of directors and any merger, consolidation, or sale of all or substantially all of our assets. This concentrated control could delay, defer, or prevent a change of control, merger, consolidation, or sale of all or substantially all of our assets that our other stockholders support, or conversely this concentrated control could result in the consummation of such a transaction that our other stockholders do not support. This concentrated control could also discourage a potential investor from acquiring our Class A common stock, which has limited voting power relative to the Class B common stock, and might harm the trading price of our Class A common stock. In addition, Mr. Zuckerberg has the ability to control the management and major strategic investments of our company as a result of his position as our CEO and his ability to control the election or, in some cases, the replacement of our directors. In the event of his death, the shares of our capital stock that Mr. Zuckerberg owns will be transferred to the persons or entities that he has designated. As a board member and officer, Mr. Zuckerberg owes a fiduciary duty to our stockholders and must act in good faith in a manner he reasonably believes to be in the best interests of our stockholders. As a stockholder, even a controlling stockholder, Mr."
+        },
+        "doc": {
+          "aliases": ["Meta", "Facebook"],
+          "company": "Meta Platforms",
+          "filing_date": "2026-01-29",
+          "fy": 2025,
+          "ticker": "META",
+          "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "MSFT-FY2025-structure-00338",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 2, "score": 0.6470759443377749 },
+          "fused": { "rank": 4, "score": 0.016129032258064516 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 266650,
+          "char_start": 266421,
+          "doc_id": "MSFT-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "More Personal Computing"
+          ],
+          "item": "8",
+          "text": "| (In millions) |  |  |  |\n| --- | --- | --- | --- |\n| June 30, | 2025 | 2024 | 2023 |\n| United States | $230,069 | $186,106 | $114,380 |\n| Other countries | 141,833 | 115,263 | 72,859 |\n| Total | $371,902 | $301,369 | $187,239 |"
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Microsoft",
+          "filing_date": "2025-07-30",
+          "fy": 2025,
+          "ticker": "MSFT",
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "META-FY2025-structure-00112",
+          "doc_id": "META-FY2025",
+          "lexical": { "rank": 3, "score": 13.350582559434411 },
+          "dense": null,
+          "fused": { "rank": 5, "score": 0.015873015873015872 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 142734,
+          "char_start": 141188,
+          "doc_id": "META-FY2025",
+          "heading_path": [
+            "Item 1A Risk Factors",
+            "We face inventory risk with respect to our consumer hardware products."
+          ],
+          "item": "1A",
+          "text": "We review our intangible assets for impairment when events or changes in circumstances indicate the carrying value may not be recoverable, such as a decline in stock price and market capitalization. We test goodwill for impairment at the reporting unit level at least annually. If such goodwill or intangible assets are deemed to be impaired, an impairment loss equal to the amount by which the carrying amount exceeds the fair value of the assets would be recognized. We may be required to record a significant charge in our financial statements during the period in which any impairment of our goodwill or intangible assets is determined, which would negatively affect our results of operations.\n\nThe loss of one or more of our key personnel, or our failure to attract and retain other highly qualified personnel in the future, could harm our business.\n\nWe currently depend on the continued services and performance of our key personnel, including Mark Zuckerberg. Mr. Zuckerberg and certain other members of management participate in various high-risk activities, such as combat sports, extreme sports, and recreational aviation, which carry the risk of serious injury and death. If Mr. Zuckerberg were to become unavailable for any reason, there could be a material adverse impact on our operations. The loss of other key personnel, including members of management as well as key engineering, product development, science, research, marketing, and sales personnel, could also disrupt our operations and have an adverse effect on our business."
+        },
+        "doc": {
+          "aliases": ["Meta", "Facebook"],
+          "company": "Meta Platforms",
+          "filing_date": "2026-01-29",
+          "fy": 2025,
+          "ticker": "META",
+          "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "MSFT-FY2025-structure-00334",
+          "doc_id": "MSFT-FY2025",
+          "lexical": null,
+          "dense": { "rank": 3, "score": 0.6452453453351236 },
+          "fused": { "rank": 6, "score": 0.015873015873015872 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 264404,
+          "char_start": 264159,
+          "doc_id": "MSFT-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "More Personal Computing"
+          ],
+          "item": "8",
+          "text": "| (In millions) |  |  |  |\n| --- | --- | --- | --- |\n| Year Ended June 30, | 2025 | 2024 | 2023 |\n| United States (a) | $144,546 | $124,704 | $106,744 |\n| Other countries | 137,178 | 120,418 | 105,171 |\n| Total | $281,724 | $245,122 | $211,915 |"
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Microsoft",
+          "filing_date": "2025-07-30",
+          "fy": 2025,
+          "ticker": "MSFT",
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "NFLX-FY2025-structure-00082",
+          "doc_id": "NFLX-FY2025",
+          "lexical": null,
+          "dense": { "rank": 4, "score": 0.6272084701544977 },
+          "fused": { "rank": 7, "score": 0.015625 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 96188,
+          "char_start": 95885,
+          "doc_id": "NFLX-FY2025",
+          "heading_path": [
+            "Item 7 Management's Discussion and Analysis of Financial Condition and Results of Operations",
+            "Technology and Development"
+          ],
+          "item": "7",
+          "text": "|  | Year Ended December 31, 2025 (in thousands, except percentages) |  | 2024 | 2023 | Change 2025 vs. 2024 |  |\n| --- | --- | --- | --- | --- | --- | --- |\n| Technology and development | $3,391,390 |  | $2,925,295 | $2,675,758 | $466,095% | 16 |\n| As a percentage of revenues | 8 | %%% | 8 | 8 |  |  |"
+        },
+        "doc": {
+          "aliases": [],
+          "company": "Netflix",
+          "filing_date": "2026-01-23",
+          "fy": 2025,
+          "ticker": "NFLX",
+          "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000034/nflx-20251231.htm"
+        }
+      },
+      {
+        "candidate": {
+          "chunk_id": "PEP-FY2025-structure-00317",
+          "doc_id": "PEP-FY2025",
+          "lexical": { "rank": 4, "score": 11.382129334442542 },
+          "dense": null,
+          "fused": { "rank": 8, "score": 0.015625 },
+          "rerank": null
+        },
+        "chunk": {
+          "char_end": 284231,
+          "char_start": 283381,
+          "doc_id": "PEP-FY2025",
+          "heading_path": [
+            "Item 8 Financial Statements and Supplementary Data",
+            "Note 7 — Pension, Retiree Medical and Savings Plans"
+          ],
+          "item": "8",
+          "text": "|  |  | Pension U.S. 2025 | 2024 | 2023 | 2025 | 2024 | International 2023 | 2025 | 2024 | Retiree Medical 2023 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| Net Periodic Benefit Cost |  |  |  |  |  |  |  |  |  |  |\n| Service cost discount rate | 5.8 | %%%%%%%%% | 5.1 | 5.4 | 7.8 | 6.9 | 7.0 | 5.6 | 5.1 | 5.4 |\n| Interest cost discount rate | 5.4 | %%%%%%%%% | 5.1 | 5.4 | 5.3 | 5.0 | 5.4 | 5.2 | 5.0 | 5.3 |\n| Expected return on plan assets | 7.5 | %%%%%%%%% | 7.4 | 7.4 | 5.8 | 5.8 | 5.7 | 7.1 | 7.1 | 7.1 |\n| Rate of salary increases | 3.9 | %%%%%% | 3.9 | 3.2 | 4.0 | 4.3 | 4.2 |  |  |  |\n| Projected Benefit Obligation |  |  |  |  |  |  |  |  |  |  |\n| Discount rate | 5.5 | %%%%%%%%% | 5.7 | 5.1 | 5.8 | 5.5 | 5.1 | 5.2 | 5.5 | 5.1 |\n| Rate of salary increases | 3.1 | %%%%%% | 3.9 | 3.9 | 4.5 | 4.0 | 4.3 |  |  |  |"
+        },
+        "doc": {
+          "aliases": ["Pepsi"],
+          "company": "PepsiCo",
+          "filing_date": "2026-02-03",
+          "fy": 2025,
+          "ticker": "PEP",
+          "url": "https://www.sec.gov/Archives/edgar/data/77476/000007747626000007/pep-20251227.htm"
+        }
+      }
+    ],
+    "fetch_ms": 10.4,
+    "runtime": {
+      "model": "Xenova/bge-small-en-v1.5",
+      "revision": "ea104dacec62c0de699686887e3f920caeb4f3e3",
+      "dtype": "q8",
+      "strategy": "structure",
+      "n": 10547
+    }
+  },
+  "answer": {
+    "text": "INSUFFICIENT_EVIDENCE: Mark Zuckerberg's base salary in 2025.",
+    "chunkIds": [
+      "META-FY2025-structure-00170",
+      "META-FY2025-structure-00366",
+      "META-FY2025-structure-00114",
+      "MSFT-FY2025-structure-00338",
+      "META-FY2025-structure-00112",
+      "MSFT-FY2025-structure-00334",
+      "NFLX-FY2025-structure-00082",
+      "PEP-FY2025-structure-00317"
+    ],
+    "done": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "promptVersion": "answer-v2",
+      "usage": {
+        "queue_time": 0.017677886,
+        "prompt_tokens": 2210,
+        "prompt_time": 0.0956798,
+        "completion_tokens": 40,
+        "completion_time": 0.082145997,
+        "total_tokens": 2250,
+        "total_time": 0.177825797,
+        "completion_tokens_details": { "reasoning_tokens": 13 }
+      },
+      "latencyMs": 583,
+      "cached": false
+    }
+  },
+  "judge": null
+}

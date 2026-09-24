@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
+  failureExamples,
+  type ItemDetail,
   type ItemResult,
   itemCorrect,
   needsJudge,
@@ -226,5 +228,54 @@ describe("judge helpers", () => {
       ),
     ).toEqual({ correct: false, reason: "wrong FY" });
     expect(parseCorrectness('{"correct": "yes"}')).toBeNull();
+  });
+});
+
+describe("failureExamples", () => {
+  const detail = (over: Partial<ItemDetail>): ItemDetail => {
+    const { sentences: _, ...base } = row({});
+    return {
+      ...base,
+      question: "q",
+      gold_answer: "g",
+      answer: "a",
+      judge: null,
+      sentences: [
+        { text: "s1 [1]", status: "verified", reason: null, missing: [] },
+      ],
+      ...over,
+    };
+  };
+  const unverified = {
+    text: "s2",
+    status: "unverified",
+    reason: "no_citation",
+    missing: [],
+  };
+
+  it("lists incorrect items first, then correct ones with unverified sentences", () => {
+    const out = failureExamples(
+      [
+        detail({ id: "ok", numeric_em: true }),
+        detail({
+          id: "partial",
+          numeric_em: true,
+          sentences: [detail({}).sentences[0], unverified] as never,
+        }),
+        detail({ id: "wrong", numeric_em: false }),
+        detail({ id: "answered", answerable: false, abstained: false }),
+      ],
+      { wrong: "A note." },
+    );
+    expect(out.map((f) => [f.id, f.kind])).toEqual([
+      ["wrong", "incorrect"],
+      ["answered", "incorrect"],
+      ["partial", "unverified"],
+    ]);
+    expect(out[0]?.note).toBe("A note.");
+    expect(out[0]?.why).toMatch(/gold value/);
+    expect(out[1]?.why).toMatch(/can't answer/);
+    expect(out[2]?.why).toBe("1 of 2 sentences unverified.");
+    expect(out[2]?.unverified).toEqual([unverified]);
   });
 });

@@ -5,7 +5,8 @@
 //   --gate            fail if the default config's recall@10 drops by more than
 //                     2 points vs evals/baseline.json
 //   --write-baseline  save the default config's metrics as the new baseline
-//   --report          write evals/reports/latest.json (metrics only)
+//   --report          write the retrieval and dataset sections of
+//                     evals/reports/latest.json (keeps the answers and judge ones)
 import { execSync } from "node:child_process";
 import {
   appendFileSync,
@@ -31,6 +32,7 @@ import {
 } from "@filinglens/core/node";
 import {
   CATEGORIES,
+  composition,
   EVALS_DIR,
   type GoldItem,
   loadGolden,
@@ -323,7 +325,11 @@ async function main(): Promise<number> {
     created_at: new Date().toISOString(),
     commit: run,
     split,
-    dataset: { items: items.length, sha256: datasetSha },
+    dataset: {
+      items: items.length,
+      sha256: datasetSha,
+      composition: composition(loadGolden("all")),
+    },
     configs: summaries,
   };
   const md = markdown(split, items, summaries, gateLine);
@@ -338,7 +344,11 @@ async function main(): Promise<number> {
   if (args.report) {
     mkdirSync(`${EVALS_DIR}/reports`, { recursive: true });
     const { configs: retrieval, ...meta } = summary;
-    const report = { ...meta, retrieval };
+    // Keep the sections other runners wrote (answers, judge).
+    const previous = existsSync(REPORT_PATH)
+      ? JSON.parse(readFileSync(REPORT_PATH, "utf8"))
+      : {};
+    const report = { ...previous, ...meta, retrieval };
     writeFileSync(REPORT_PATH, `${JSON.stringify(report, null, 2)}\n`);
     console.log("Wrote evals/reports/latest.json");
   }

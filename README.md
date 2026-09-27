@@ -180,3 +180,7 @@ Raw filings and processed text live in `data/` and are not committed.
 ## License
 
 [MIT](LICENSE)
+
+## Full explanation
+
+New to AI or software? [FULL_EXPLANATION.md](FULL_EXPLANATION.md) explains every part of FilingLens and every decision behind it in plain language, with a glossary and a short guide to explaining the project to others.

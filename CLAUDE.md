@@ -122,5 +122,5 @@ When compacting, keep: the goal, current milestone, decisions and constraints, f
 - [x] M4 Gateway + grounded, cited answers
 - [x] M5 Sentence verification + answer evals
 - [x] M6 Pipeline Lab, Evals page, examples
-- [ ] M7 Polish + launch
+- [x] M7 Polish + launch
 

@@ -115,7 +115,7 @@ Acceptance:
 - README (outline below), architecture diagram (Mermaid in the README), performance-budget and mobile pass, `smoke.yml`, release eval on the test split, final numbers in the README.
 Acceptance:
 - [x] README complete; test-split release numbers committed.
-- [ ] Smoke workflow green for 3 consecutive days.
+- [x] Smoke workflow green for 3 consecutive days.
 - [x] Demo video linked at the top of the README (at the user's request, Claude recorded it with a Playwright script against the live site and uploaded it to YouTube and GitHub).
 
 ## Stretch (only when the user asks)
